@@ -1,3 +1,3 @@
 # README
 
-This repo contains all information required to develop my prospectus
+This repo contains all information required to develop my prospectus.
