@@ -195,6 +195,31 @@
 \renewcommand{\cftfigindent}{1.0em}
 \renewcommand{\cftfignumwidth}{5.5em}
 
+%User-Specific (non-WSU template) Packages
+% Algorithms
+\usepackage[noend]{algpseudocode}
+\usepackage{algorithm}
+% Tabular cells spanning multiple rows
+\usepackage{multirow}
+\usepackage{units}
+\usepackage{cases}
+% Lemma
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{definition}{Definition}
+\newtheorem{property}{Property}
+\newtheorem{case}{Case}
+% Control the presentation of floats - ex. in subfigures
+\usepackage{stfloats}
+%   Captions (and subfloats)
+\usepackage[caption=false,font=footnotesize]{subfig}
+%   Large Comments
+\usepackage{comment}
+
+%User-Specific(non-WSU template) Commands
+%   Engine Control
+\newcommand{\dbf}{\mbox{\sf dbf}} 
+
 %Start document
 \begin{document}
 
@@ -253,19 +278,24 @@
 \setcounter{equation}{0}
 
 %Compile Chapter 1
-\input{chapter1}
+\input{chap1-introduction.tex}
 \clearpage
 
 %Compile Chapter 2
-\input{chapter2}
+\input{chap2-relatedWork.tex}
 \clearpage
-
-%...
 
 %Compile Chapter N
-\input{chapterN}
+\input{chap3-systemModelsAndTerms.tex}
 \clearpage
 
+%Compile Chapter N
+\input{chap4-cat1.tex}
+\clearpage
+
+%Compile Chapter N
+\input{chap5-cat2.tex}
+\clearpage
 
 %Compile Appendix A
 \input{appendixA}
@@ -273,6 +303,10 @@
 
 %Compile Appendix B
 \input{appendixB}
+\clearpage
+
+%Compile Appendix C
+\input{appendixC}
 \clearpage
 
 %...

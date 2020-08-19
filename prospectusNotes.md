@@ -78,3 +78,53 @@ More accurate or tractable demand characterization also yields more accurate and
       3. change their operating parameters online.
    2. Safety critical systems may rely on migration of tasks between ECUs (https://hal.inria.fr/hal-01416879/document)
    3. Reducing demand characterization costs allows for online calculation where predetermined safety measures might be used.
+3. Why do we care about codesign of scheduling and physical components?
+   1. Allows for visualization of the tradeoff between scheduling and physical system dynamics
+   2. Complexity, Concurrency, Correctness
+
+## John Cav. Outline
+
+1. Introduction
+   1. Motivation
+      1. RTS
+      2. WCET
+      3. my specific stuff
+      4. Schedulability Analysis
+   2. Approach
+   3. Contributions
+   4. Outline
+2. Related Works
+3. System Models and Terminology
+   1. Real-Time Terminology
+   2. Real-Time Task Models
+      1. Autonomous Battery Operating System (ABOS)
+      2. Engine Control Unit (ECU)
+      3. Short Circuit Detection (SCD) 
+   3. Control System Terminology
+   4. Control System Models
+      1. Switched Control System (SCS)
+4. CATEGORY 1
+5. CAT 2
+6. CAT 3
+
+## Remaining Works
+
+1. Short Circuit Detection
+   1. Codesign implementation of software and hardware task- Done
+   2. Comparison against existing works
+2. ABOS
+   1. Fault detection - Conf. Paper (merge from Short Circuit but applied to cells)
+   2. Battery size selection (demand modeling) - Conf. Paper
+   3. Route Selection (V2G, G2V) - Conf. Paper merged from joint ABOS
+3. SP Schedule
+   1. WCD for SPSched - Submitted
+   2. DBF for graph - Conf. Paper
+   3. Online Optimization
+4. Engine Control
+   1. Knapsack AVR - Done
+   2. Approx Alg of Knapsack - Extension of Conf. Paper
+   3. Dynamic Skip Fire - Conf. Paper on DBF for DSF, DoD, VD, etc.
+5. Hybrid Systems
+   1. Multichem Route Selection / Eng
+   2. Battery sizing for SDB
+

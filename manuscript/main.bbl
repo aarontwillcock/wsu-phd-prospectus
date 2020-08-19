@@ -1,9 +1,270 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
+
+\bibitem{githubLink}
+S.~K. Bijinemula, A.~Willcock, T.~Chantem, and N.~Fisher.
+\newblock Code for the paper-efficient knapsack-based approach for calculating
+  the worst-case demand of avr tasks, 2018.
+
+\bibitem{engineCtrl}
+A.~Biondi and G.~Buttazzo.
+\newblock Engine control: Task modeling and analysis.
+\newblock In {\em 2015 Design, Automation Test in Europe Conference Exhibition
+  (DATE)}, pages 525--530, March 2015.
+
+\bibitem{realTimeAnalysis}
+A.~Biondi and G.~Buttazzo.
+\newblock Real-time analysis of engine control applications with speed
+  estimation.
+\newblock In {\em 2016 Design, Automation Test in Europe Conference Exhibition
+  (DATE)}, pages 193--198, March 2016.
+
+\bibitem{schedTestBiondi}
+A.~Biondi and G.~Buttazzo.
+\newblock Modeling and analysis of engine control tasks under dynamic priority
+  scheduling.
+\newblock {\em IEEE Transactions on Industrial Informatics}, pages 1--1, 2018.
+
+\bibitem{Feasibility}
+A.~Biondi, G.~Buttazzo, and S.~Simoncelli.
+\newblock Feasibility analysis of engine control tasks under edf scheduling.
+\newblock In {\em 2015 27th Euromicro Conference on Real-Time Systems}, pages
+  139--148, July 2015.
+
+\bibitem{reponseTime}
+A.~Biondi, M.~Di~Natale, and G.~Buttazzo.
+\newblock Response-time analysis for real-time tasks in engine control
+  applications.
+\newblock In {\em Proceedings of the ACM/IEEE Sixth International Conference on
+  Cyber-Physical Systems}, ICCPS '15, pages 120--129, New York, NY, USA, 2015.
+  ACM.
+
+\bibitem{BiondiOptim}
+A.~Biondi, M.~Di~Natale, and G.~Buttazzo.
+\newblock Performance-driven design of engine control tasks.
+\newblock In {\em Proceedings of the 7th International Conference on
+  Cyber-Physical Systems}, ICCPS '16, pages 45:1--45:10, Piscataway, NJ, USA,
+  2016. IEEE Press.
+
+\bibitem{2014Biondi}
+A.~Biondi, A.~Melani, M.~Marinoni, M.~D. Natale, and G.~Buttazzo.
+\newblock Exact interference of adaptive variable-rate tasks under
+  fixed-priority scheduling.
+\newblock In {\em 2014 26th Euromicro Conference on Real-Time Systems}, pages
+  165--174, July 2014.
+
+\bibitem{hiPowerIGBTwind}
+C.~Busca, R.~Teodorescu, F.~Blaabjerg, S.~Munk-Nielsen, L.~Helle,
+  T.~Abeyasekera, and P.~Rodriguez.
+\newblock An overview of the reliability prediction related aspects of high
+  power \{IGBTs\} in wind power applications.
+\newblock {\em Microelectronics Reliability}, 51(9–11):1903 -- 1907, 2011.
+\newblock Proceedings of the 22th European Symposium on the RELIABILITY OF
+  ELECTRON DEVICES, FAILURE PHYSICS AND ANALYSIS.
+
+\bibitem{rateAdaptive}
+G.~C. Buttazzo, E.~Bini, and D.~Buttle.
+\newblock Rate-adaptive tasks: Model, analysis, and design issues.
+\newblock In {\em 2014 Design, Automation Test in Europe Conference Exhibition
+  (DATE)}, pages 1--6, March 2014.
+
+\bibitem{PCKP_paper}
+G.~Cho and D.~X. Shaw.
+\newblock A depth-first dynamic programming algorithm for the tree knapsack
+  problem.
+\newblock {\em INFORMS Journal on Computing}, 9(4):431--438, 1997.
+
+\bibitem{Davis}
+R.~I. Davis, T.~Feld, V.~Pollex, and F.~Slomka.
+\newblock Schedulability tests for tasks with variable rate-dependent behaviour
+  under fixed priority scheduling.
+\newblock In {\em 2014 IEEE 19th Real-Time and Embedded Technology and
+  Applications Symposium (RTAS)}, pages 51--62, April 2014.
+
+\bibitem{buttleKeynote}
+D.Buttle.
+\newblock Real-time in prime-time.
+\newblock Keynote speech at the 24th Euromicro Conference on Real-Time Systems,
+  Pisa, Italy, July 12, 2012.
+
+\bibitem{scd}
+F.~Du, W.~Chen, Y.~Zhuo, and M.~Anheuser.
+\newblock A new method of early short circuit detection.
+\newblock {\em Journal of Power and Energy Engineering JPEE}, 02(04):432–427,
+  2014.
+
+\bibitem{NiFe}
+X.-Y. Gao, Y.~Cao, Y.~Zhou, W.~Ding, C.~Lei, and J.-A. Chen.
+\newblock Fabrication of solenoid-type inductor with electroplated nife
+  magnetic core.
+\newblock {\em Journal of Magnetism and Magnetic Materials}, 305(1):207 -- 211,
+  2006.
+
+\bibitem{guoPaper}
+Z.~Guo and S.~Baruah.
+\newblock {\em Uniprocessor EDF scheduling of AVR task systems}, pages
+  159--168.
+\newblock Association for Computing Machinery, Inc, 4 2015.
+
+\bibitem{ultraFastSCD}
+S.~Hain and M.~M. Bakran.
+\newblock New ultra fast short circuit detection method without using the
+  desaturation process of the power semiconductor.
+\newblock In {\em PCIM Europe 2016; International Exhibition and Conference for
+  Power Electronics, Intelligent Motion, Renewable Energy and Energy
+  Management}, pages 1--8, May 2016.
+
+\bibitem{thermalAware}
+P.~M. Hettiarachchi, N.~Fisher, M.~Ahmed, L.~Y. Wang, S.~Wang, and W.~Shi.
+\newblock A design and analysis framework for thermal-resilient hard real-time
+  systems.
+\newblock {\em ACM Trans. Embed. Comput. Syst.}, 13(5s):146:1--146:25, July
+  2014.
+
+\bibitem{explodingPhone}
+S.~Hollister.
+\newblock Here's why samsung note 7 phones are catching fire.
+\newblock
+  \url{https://www.cnet.com/news/why-is-samsung-galaxy-note-7-exploding-overheating/},
+  Oct 2016.
+\newblock CNET.
+
+\bibitem{gateChargeChara}
+T.~Horiguchi, S.~i.~Kinouchi, Y.~Nakayama, T.~Oi, H.~Urushibata, S.~Okamoto,
+  S.~Tominaga, and H.~Akagi.
+\newblock A short circuit protection method based on a gate charge
+  characteristic.
+\newblock In {\em 2014 International Power Electronics Conference
+  (IPEC-Hiroshima 2014 - ECCE ASIA)}, pages 2290--2296, May 2014.
+
+\bibitem{hiSpeedProtection}
+T.~Horiguchi, S.~i.~Kinouchi, Y.~Nakayama, T.~Oi, H.~Urushibata, S.~Okamoto,
+  S.~Tominaga, and H.~Akagi.
+\newblock A high-speed protection circuit for igbts subjected to hard-switching
+  faults.
+\newblock {\em IEEE Transactions on Industry Applications}, 51(2):1774--1781,
+  March 2015.
+
+\bibitem{modeChangeSystems}
+W.~H. Huang and J.~J. Chen.
+\newblock Techniques for schedulability analysis in mode change systems under
+  fixed-priority scheduling.
+\newblock In {\em 2015 IEEE 21st International Conference on Embedded and
+  Real-Time Computing Systems and Applications}, pages 176--186, Aug 2015.
+
+\bibitem{IGBTvehicle}
+B.~Ji, V.~Pickert, W.~Cao, and B.~Zahawi.
+\newblock In situ diagnostics and prognostics of wire bonding faults in igbt
+  modules for electric vehicle drives.
+\newblock {\em IEEE Transactions on Power Electronics}, 28(12):5568--5577, Dec
+  2013.
+
+\bibitem{PCKPpaper2}
+D.~S. Johnson and K.~A. Niemi.
+\newblock On knapsacks, partitions, and a new dynamic programming technique for
+  trees.
+\newblock {\em Mathematics of Operations Research}, 8(1):1--14, 1983.
+
+\bibitem{KnapsackBook}
+H.~Kellerer, U.~Pferschy, and D.~Pisinger.
+\newblock {\em Knapsack Problems}.
+\newblock Springer Berlin Heidelberg, 01 2004.
+
+\bibitem{Rhythmictask}
+J.~Kim, K.~Lakshmanan, and R.~R. Rajkumar.
+\newblock Rhythmic tasks: A new task model with continually varying periods for
+  cyber-physical systems.
+\newblock In {\em Proceedings of the 2012 IEEE/ACM Third International
+  Conference on Cyber-Physical Systems}, ICCPS '12, pages 55--64, Washington,
+  DC, USA, 2012. IEEE Computer Society.
+
+\bibitem{fastAndEasilyImplementable}
+T.~Krone, C.~Xu, and A.~Mertens.
+\newblock Fast and easily implementable detection circuits for short-circuits
+  of power semiconductors.
+\newblock In {\em 2015 IEEE Energy Conversion Congress and Exposition (ECCE)},
+  pages 2715--2722, Sept 2015.
+
+\bibitem{LiuLayland}
+C.~L. Liu and J.~W. Layland.
+\newblock Scheduling algorithms for multiprogramming in a hard-real-time
+  environment.
+\newblock {\em J. ACM}, 20(1):46--61, Jan. 1973.
+
+\bibitem{Liu&Leyland}
+C.~L. Liu and J.~W. Layland.
+\newblock Scheduling algorithms for multiprogramming in a hard-real-time
+  environment.
+\newblock {\em J. ACM}, 20(1):46--61, Jan. 1973.
+
+\bibitem{DRTPaper}
+M.~Mohaqeqi, J.~Abdullah, P.~Ekberg, and W.~Yi.
+\newblock {Refinement of Workload Models for Engine Controllers by State Space
+  Partitioning}.
+\newblock In M.~Bertogna, editor, {\em 29th Euromicro Conference on Real-Time
+  Systems (ECRTS 2017)}, volume~76 of {\em Leibniz International Proceedings in
+  Informatics (LIPIcs)}, pages 11:1--11:22, Dagstuhl, Germany, 2017. Schloss
+  Dagstuhl--Leibniz-Zentrum fuer Informatik.
+
+\bibitem{sporadicTaskModel}
+A.~K. Mok.
+\newblock {\em Fundamental Design Problems Of Distributed Systems For The
+  Hard-Real-Time Environment}.
+\newblock PhD thesis, Massachusetts Institute of Technology, Cambridge, MA,
+  USA, 1983.
+
+\bibitem{scanalysis}
+R.~Pagano, Y.~Chen, K.~Smedley, S.~Musumeci, and A.~Raciti.
+\newblock Short circuit analysis and protection of power module igbts.
+\newblock In {\em Twentieth Annual IEEE Applied Power Electronics Conference
+  and Exposition, 2005. APEC 2005.}, volume~2, pages 777--783 Vol. 2, March
+  2005.
+
+\bibitem{Digraph_Paper}
+M.~Stigge, P.~Ekberg, N.~Guan, and W.~Yi.
+\newblock The digraph real-time task model.
+\newblock In {\em 2011 17th IEEE Real-Time and Embedded Technology and
+  Applications Symposium}, pages 71--80, April 2011.
 
 \bibitem{WSULibrary}
 W.~S. University.
 \newblock Wayne state university library system.
 \newblock \url{https://library.wayne.edu/}, Mar 2019.
 \newblock WSU.
+
+\bibitem{hcVerma}
+H.~C. Verma.
+\newblock {\em Concepts of Physics - Vol. 1}.
+\newblock Bharati Bhawan Publishers and Distributors, 2010.
+
+\bibitem{rogowskiCoil}
+Y.~Wang, X.~Zhai, Z.~Song, and Y.~Geng.
+\newblock A new method to detect the short circuit current in dc supply system
+  based on the flexible rogowski coil.
+\newblock In {\em Electric Power Equipment - Switching Technology (ICEPE-ST),
+  2011 1st International Conference on}, pages 237--240, Oct 2011.
+
+\bibitem{seniorThesis}
+A.~Willcock.
+\newblock Short circuit detection utilization analysis under uniprocessor edf
+  scheduling.
+\newblock Senior Thesis, 2016.
+
+\bibitem{tufc}
+A.~Willcock and N.~Fisher.
+\newblock Trading utilization for circuitry: Hardware-software co-design for
+  real-time software-based short-circuit protection.
+\newblock In {\em 2017 IEEE 23rd International Conference on Embedded and
+  Real-Time Computing Systems and Applications (RTCSA)}, pages 1--8, Aug 2017.
+
+\bibitem{uniphy}
+H.~D. Young, R.~A. Freedman, A.~L. Ford, and H.~D. Young.
+\newblock {\em Sears and Zemansky's University physics}.
+\newblock Pearson Learning Solutions, 2012.
+
+\bibitem{photoVoltaic}
+L.~Zhang and A.~Q. Huang.
+\newblock Model-based fault detection of hybrid fuel cell and photovoltaic
+  direct current power sources.
+\newblock {\em Journal of Power Sources}, 196(11):5197 -- 5204, 2011.
 
 \end{thebibliography}

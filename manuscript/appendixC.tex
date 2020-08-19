@@ -1,0 +1,276 @@
+
+\centerline{\large\bf APPENDIX C}
+\addcontentsline{toc}{section}{Appendix C}
+
+\appendix{Engine Control Appendix}\label{appendix:engineControl}
+
+\subsection{Proof of Property~\ref{prop:high-speed-transfer}}
+The property is restated here for readability.
+
+\emph{Property 9 (Highest-Speed Relative-Deadline Dominance):}
+For any valid, finite sequence $S = (\omega_1, \ldots, \omega_n)$, if $\omega_\ell$ ($\ell \in \mathbb{N}_1^n-1$) is the highest speed $s_n$ and not the last speed of sequence $S$ and $s_n \leq \Omega_1(\omega_n,\alpha_{\max})$ then new sequence $S'$ with the highest element moved to the last element (i.e., $S' = (\omega_1, \ldots, \omega_{\ell-1}, \omega_{\ell+1}, \ldots, \omega_n, s_n)$) is valid and has the following property: 
+\begin{equation}\label{eqn:high-speed-transfer-appendix}
+    d(S) \geq d(S').
+\end{equation}
+
+
+%%%%%%%%%%%%%%%%%%BEGIN COMMENT%%%%%%%%%%%%%%%%%%%%
+% \begin{comment}
+
+% \begin{IEEEproof} 
+% Consider valid, finite sequence $S = (\omega_1, \ldots, \omega_n)$, where $\omega_\ell$ ($\ell \in \mathbb{N}_1^n-1$) is the highest speed $s_n$ and not the last speed of sequence $S$ and $s_n \leq \Omega_1(\omega_n,\alpha_{\max})$.
+
+% Let $S$ be constructed as described in the statement of the lemma:  $S' = (\omega_1, \ldots, \omega_{\ell-1}, \omega_{\ell+1}, \ldots, \omega_n, s_n)$.  Observe that $S'$ is valid since $s_n$ is reachable from $\omega_n$; also, since $\Omega_1(\omega_{\ell-1},\alpha_{\max}) \geq s_n \geq \omega_{\ell-1}$ and $\Omega_1(\omega_{\ell+1},\alpha_{\max}) \geq s_n \geq \omega_{\ell+1}$, which implies that $\omega_{\ell-1}$ and $\omega_{\ell+1}$ are reachable from each other.  
+
+% We define $\Delta_H(S,S')$ to be the difference $d(S) - d(S')$:
+% \begin{equation}\label{eq:tHST}
+% \begin{array}{ll}
+%     \Delta_H(S,S') =& \widetilde{T}(\omega_{\ell-1}, s_n) + \widetilde{T}(s_n, \omega_{\ell+1})+  \Tilde{d}(\omega_n)\\
+%      &- \widetilde{T}(\omega_{\ell-1},\omega_{\ell+1}) - \widetilde{T}(\omega_n, s_n)
+%         - \Tilde{d}(s_n). 
+% \end{array}
+% \end{equation}
+
+% We now prove that $\Delta_H(S,S') \geq 0$ which proves Equation~\ref{eqn:high-speed-transfer} of the property.  Let $s_{n-1}$ be the second largest speed of $S$.  By the partial derivatives of $\widetilde{T}$ in Equations~\ref{eq:minTimeDerivativeWrtInitial} and~\ref{eq:minTimeDerivativeWrtFinal}, for all $\epsilon > 0$
+% \begin{equation}
+%     \widetilde{T}(\omega_{\ell-1}, s_{n-1} +\epsilon) \geq
+%     \widetilde{T}(s_{n-1}, s_{n-1} + \epsilon),
+% \end{equation}
+% \noindent since $s_{n-1} \geq \omega_{\ell-1}$.  Thus,
+% \begin{equation}
+% \begin{array}{ll}
+%         \lefteqn{\widetilde{T}(\omega_{\ell-1}, s_{n-1}) + \widetilde{T}(\omega_{\ell-1}, s_{n-1} +\epsilon)}&\\
+%         &\geq
+%     \widetilde{T}(s_{n-1}, s_{n-1} + \epsilon) + \widetilde{T}(s_{n-1}, s_{n-1}).
+% \end{array}
+% \end{equation}
+
+% Without loss of generality assume that $\omega_{\ell-1}\leq \omega_{\ell+1}$.  Letting $\epsilon = s_n - s_{n-1}$, we get
+% \begin{equation}
+% \begin{array}{ll}
+
+%     &\begin{array}{ll}
+%         \lefteqn{\widetilde{T}(\omega_{\ell-1}, s_{n-1}) + \widetilde{T}(\omega_{\ell-1}, s_{n})}&\\
+%             &\geq
+%         \widetilde{T}(s_{n-1}, s_{n}) + \widetilde{T}(\omega_{\ell+1}, s_{n-1})
+%         \end{array}\\
+%     \Rightarrow & \begin{array}{ll}
+%         \lefteqn{\widetilde{T}(\omega_{\ell-1}, s_{n-1}) + \widetilde{T}(\omega_{\ell-1}, s_{n})}&\\
+%             &\geq
+%         \widetilde{T}(s_{n-1}, s_{n}) + \widetilde{T}(s_{n-1}, s_{n-1}).
+%         \end{array}
+% \end{array}
+% \end{equation}
+% Using the same reasoning from Equations~\ref{eq:minTimeDerivativeWrtInitial} and~\ref{eq:minTimeDerivativeWrtFinal},
+% we can symmetrically show that
+% \begin{equation}
+% \begin{array}{ll}
+
+%      & \begin{array}{ll}
+%         \lefteqn{\widetilde{T}(\omega_{\ell-1}, s_{n}) + \widetilde{T}(\omega_{\ell-1}, s_{n})}&\\
+%             &\geq
+%         \widetilde{T}(s_{n-1}, s_{n}) + \widetilde{T}(s_{n-1}, s_{n-1})
+%         \end{array}
+% \end{array}
+% \end{equation}
+
+
+% \begin{alignat}{4}
+% && \widetilde{T}(q_k, \omega_k) + \widetilde{T}(\omega_k,\omega_{k+1}) & \leq \widetilde{T}(\omega_k,\omega_k) + \widetilde{T}(q_k,\omega_{k+1}) && \nonumber \\
+% && & \qquad \qquad \qquad \quad \quad \text{By Eq. \ref{eq:HSTcomp}} \nonumber \\
+% \Leftrightarrow && \widetilde{T}(q_k, \omega_k) + \widetilde{T}(\omega_k,\omega_{k+1}) & \leq \widetilde{T}(q_x,\omega_k) + \widetilde{T}(q_k,\omega_{k+1}) & \quad & \nonumber \\
+% \Leftrightarrow && \widetilde{T}(q_n, \omega_n) + \widetilde{T}(\omega_k,\omega_{k+1}) & \leq \widetilde{T}(q_{x},\omega_n) + \widetilde{T}(\omega_n,q_{x+2}) && \nonumber \\
+% && & \quad + \widetilde{T}(q_k,\omega_{k+1}) \quad \text{By Eq. \ref{eq:minimumTimeNonNegative}}& \nonumber \\
+% %\Leftrightarrow && \widetilde{T}(q_k, \omega_k) + E(\omega_k) - (\widetilde{T}(q_{x},\omega_k) + \widetilde{T}(\omega_k,q_{x+2}) + E(q_k)) & \leq 0 & \nonumber \\
+% \Leftrightarrow && \Delta t_{HST}(Q(S(k)) & \leq 0 &\quad&
+% \end{alignat}
+
+
+% \begin{alignat}{3}\label{eq:tHST}
+% &\Delta_H(S) =&\nonumber \\
+% &\left\{
+%     \def\arraystretch{1.0}
+%     \begin{array}{ll}
+%         \widetilde{T}(s_n, \omega_n) + \Tilde{d}(\omega_n)\\
+%         - (\widetilde{T}(\omega_n,q_2) + \Tilde{d}(q_k)) & \quad k = n, q_1 = \omega_k\\
+%         \widetilde{T}(q_k, \omega_k) + \widetilde{T}(\omega_k,\omega_{k+1})\\
+%         - (\widetilde{T}(\omega_k,q_2) + \widetilde{T}(q_k,\omega_{k+1})) & \quad k < n, q_1 = \omega_k \\
+%         \widetilde{T}(q_n, \omega_n) + \Tilde{d}(\omega_n) - (\widetilde{T}(q_x,\omega_n)\\
+%         + \widetilde{T}(\omega_n,q_{x+2}) + \Tilde{d}(q_n)) & \quad k = n, q_{x+1} = \omega_k\\
+%         \widetilde{T}(q_k, \omega_k) + \widetilde{T}(\omega_k,\omega_{k+1})\\
+%         - (\widetilde{T}(q_x,\omega_k) + \widetilde{T}(\omega_k,q_{x+2})\\
+%         + \widetilde{T}(q_k,\omega_{k+1}) & \quad k < n, q_{x+1} = \omega_k
+%     \end{array}
+% \right.
+% \end{alignat}
+
+% We now prove the time-reducing property of Equation \ref{eq:tHST}:
+% \begin{property}[High Speed Transfer Time Reduction]\label{lem:HST}
+% $\forall Q(S(k))$, $\Delta t_{LHST}(Q(S(k)) \leq 0$.
+% \end{property}
+% \begin{IEEEproof}
+% Suppose that $k = n, q_1 = \omega_k$. Given $\widetilde{T}(\omega,f) + E(\omega)$, let $\omega = q_n$, $f = \omega_n$, and $\delta = \omega_n - q_n$. Comparing the partial increase $\delta$ on either $\omega$ term gives:
+% \begin{alignat}{4}
+% && \widetilde{T}(\omega,f) + E(\omega) & = \widetilde{T}(\omega,f) + E(\omega) \nonumber\\
+% \Leftrightarrow && \widetilde{T}(q_n, \omega_n) + E(q_n) & = \widetilde{T}(q_n,\omega_n) + E(q_n) && \nonumber \\
+% \Leftrightarrow && \widetilde{T}(q_n, \omega_n) + E(q_n+\delta) & \leq \widetilde{T}(q_n+\delta,\omega_n) + E(q_n) &&\nonumber \\
+% &&& \quad \text{By Eq.  \ref{eq:partialEpartialwCompare}} \nonumber \\
+% \Leftrightarrow && \widetilde{T}(q_n, \omega_n) + E(\omega_n) & \leq \widetilde{T}(\omega_n,\omega_n) + E(q_n) && \label{eq:HSETcomp}\\
+% \Leftrightarrow && \widetilde{T}(q_n, \omega_n) + E(\omega_n) & \leq \widetilde{T}(\omega_n,q_2) + E(q_n) && \nonumber \\
+% %\Leftrightarrow && \widetilde{T}(q_k, \omega_k) + E(\omega_k) - (\widetilde{T}(\omega_k,q_2) + E(q_k)) & \leq 0 & \nonumber \\
+% \Leftrightarrow && \Delta t_{HST}(Q(S(k)) & \leq 0 \quad \text{By Eq. \ref{eq:tHST}} &&\nonumber
+% \end{alignat}
+% Suppose now that $k < n, q_1 = \omega_k$. Given $\widetilde{T}(\omega,f) + E(\omega)$, let $\omega = q_k$, $f_1 = \omega_k$, $f_2 = \omega_{k+1}$ and $\delta = \omega_k - q_k$. Comparing the partial increase $\delta$ on either $\omega$ term gives:
+% \begin{alignat}{4}
+% && \widetilde{T}(\omega,f_1) + \widetilde{T}(\omega,f_2) & = \widetilde{T}(\omega,f_1) + \widetilde{T}(\omega,f_2) \nonumber\\
+% \Leftrightarrow && \widetilde{T}(q_k, \omega_k) + \widetilde{T}(\omega_k,\omega_{k+1}) & = \widetilde{T}(q_k,\omega_k) + \widetilde{T}(\omega_k,\omega_{k+1}) &\quad& \nonumber \\
+% \Leftrightarrow && \widetilde{T}(q_k, \omega_k) + \widetilde{T}(q_k+\delta,\omega_{k+1}) & \leq \widetilde{T}(q_k+\delta,\omega_k) &\quad& \nonumber \\
+% && & \quad + \widetilde{T}(q_k,\omega_{k+1}) \: \text{By Eq.  \ref{eq:minTimeDerivativeWrtInitial}} \nonumber \\
+% \Leftrightarrow && \widetilde{T}(q_k, \omega_k) + \widetilde{T}(\omega_k,\omega_{k+1}) & \leq \widetilde{T}(\omega_k,\omega_k) + \widetilde{T}(q_k,\omega_{k+1}) &\quad& \label{eq:HSTcomp}\\
+% \Leftrightarrow && \widetilde{T}(q_k, \omega_k) + \widetilde{T}(\omega_k,\omega_{k+1}) & \leq \widetilde{T}(\omega_k,q_2) + \widetilde{T}(q_k,\omega_{k+1}) && \nonumber \\
+% %\Leftrightarrow && \widetilde{T}(q_k, \omega_k) + E(\omega_k) - (\widetilde{T}(\omega_k,q_2) + E(q_k)) & \leq 0 & \nonumber \\
+% \Leftrightarrow && \Delta t_{HST}(Q(S(k)) & \leq 0 \quad \text{By Eq. \ref{eq:tHST}} &&
+% \end{alignat}
+% Suppose now that $k = n, q_{x+1} = \omega_k$. Consider now that for $\omega_k$ to be the highest speed, $q_x$ and $q_{x+2}$ in Equation \ref{eq:HST} are no greater than $\omega_k$. Using the assumptions from the IEEEproof of Lemma \ref{lem:HST}, Equation \ref{eq:HSTcomp} serves as a base inequality for comparison:
+% \begin{alignat}{4}
+% && \widetilde{T}(q_n, \omega_n) + E(\omega_n) & \leq \widetilde{T}(\omega_n,\omega_n) + E(q_n) & \text{By Eq. \ref{eq:HSETcomp}} \nonumber \\
+% \Leftrightarrow && \widetilde{T}(q_n, \omega_n) + E(\omega_n) & \leq \widetilde{T}(\omega_n,q_{x+2}) + E(q_n) &\quad& \nonumber \\
+% \Leftrightarrow && \widetilde{T}(q_n, \omega_n) + E(\omega_n) & \leq \widetilde{T}(q_{x},\omega_n) + \widetilde{T}(\omega_n,q_{x+2}) && \nonumber \\
+% && & \quad + E(q_n) \quad \text{By Eq. \ref{eq:minimumTimeNonNegative}} \nonumber \\
+% %\Leftrightarrow && \widetilde{T}(q_k, \omega_k) + E(\omega_k) - (\widetilde{T}(q_{x},\omega_k) + \widetilde{T}(\omega_k,q_{x+2}) + E(q_k)) & \leq 0 & \nonumber \\
+% \Leftrightarrow && \Delta t_{HST}(Q(S(k)) & \leq 0
+% \end{alignat}
+% Finally, suppose that $k < n, q_{x+1} = \omega_k$. Recall for $\omega_k$ to be the highest speed, $q_x$ and $q_{x+2}$ in Equation \ref{eq:HST} are no greater than $\omega_k$. Equation \ref{eq:HSTcomp} serves as a base inequality for comparison:
+% \begin{alignat}{4}
+% %\Leftrightarrow && \widetilde{T}(q_n, \omega_n) + E(\omega_n) & \leq \widetilde{T}(\omega_n,q_{x+2}) + E(q_n) &\quad& \nonumber \\
+% %\Leftrightarrow && \widetilde{T}(q_n, \omega_n) + E(\omega_n) & \leq \widetilde{T}(q_{x},\omega_n) + \widetilde{T}(\omega_n,q_{x+2}) + E(q_n) &\quad& \text{By Eq. \ref{eq:minimumTimeLessThanZeroHighF}, \ref{eq:minimumTimeLessThanZeroLowF}} \nonumber \\
+% && \widetilde{T}(q_k, \omega_k) + \widetilde{T}(\omega_k,\omega_{k+1}) & \leq \widetilde{T}(\omega_k,\omega_k) + \widetilde{T}(q_k,\omega_{k+1}) && \nonumber \\
+% && & \qquad \qquad \qquad \quad \quad \text{By Eq. \ref{eq:HSTcomp}} \nonumber \\
+% \Leftrightarrow && \widetilde{T}(q_k, \omega_k) + \widetilde{T}(\omega_k,\omega_{k+1}) & \leq \widetilde{T}(q_x,\omega_k) + \widetilde{T}(q_k,\omega_{k+1}) & \quad & \nonumber \\
+% \Leftrightarrow && \widetilde{T}(q_n, \omega_n) + \widetilde{T}(\omega_k,\omega_{k+1}) & \leq \widetilde{T}(q_{x},\omega_n) + \widetilde{T}(\omega_n,q_{x+2}) && \nonumber \\
+% && & \quad + \widetilde{T}(q_k,\omega_{k+1}) \quad \text{By Eq. \ref{eq:minimumTimeNonNegative}}& \nonumber \\
+% %\Leftrightarrow && \widetilde{T}(q_k, \omega_k) + E(\omega_k) - (\widetilde{T}(q_{x},\omega_k) + \widetilde{T}(\omega_k,q_{x+2}) + E(q_k)) & \leq 0 & \nonumber \\
+% \Leftrightarrow && \Delta t_{HST}(Q(S(k)) & \leq 0 &\quad&
+% \end{alignat}
+% Thus, Equation \ref{eq:HST} implies that any sequence $Q(\mathcal{S}(k)) \in \mathcal{Q}_{feasible}$ with highest speed job $q_i = \omega_k$ where $1 \leq i < k$ can be transformed into $Q'(\mathcal{S}(k))$ with $\omega_k$ as the final job such that $\Delta_t(Q'(\mathcal{S}(k))) \leq \Delta_t(Q(\mathcal{S}(k))$.
+% \end{IEEEproof}
+
+% \end{comment}
+%%%%%%%%%%%%%%%%%%%%%END COMMENT%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{proof}
+Consider a valid, finite sequence $S = (\omega_1, \ldots, \omega_n)$, where $\omega_\ell$ ($\ell \in \mathbb{N}_1^n-1$) is the highest speed $s_n$ and not the last speed of sequence $S$ and $s_n \leq \Omega_1(\omega_n,\alpha_{\max})$.
+
+Let $S$ be constructed as described in the statement of the lemma:  $S' = (\omega_1, \ldots, \omega_{\ell-1}, \omega_{\ell+1}, \ldots, \omega_n, s_n)$.  Observe that $S'$ is valid since $s_n$ is reachable from $\omega_n$; also, since $\Omega_1(\omega_{\ell-1},\alpha_{\max}) \geq s_n \geq \omega_{\ell-1}$ and $\Omega_1(\omega_{\ell+1},\alpha_{\max}) \geq s_n \geq \omega_{\ell+1}$, which implies that $\omega_{\ell-1}$ and $\omega_{\ell+1}$ are reachable from each other.  
+
+We define $\Delta_H(S,S')$ to be the difference $d(S) - d(S')$:
+\begin{equation}\label{eq:tHST}
+\begin{array}{ll}
+    \Delta_H(S,S') =& \widetilde{T}(\omega_{\ell-1}, s_n) + \widetilde{T}(s_n, \omega_{\ell+1})+  \Tilde{d}(\omega_n)\\
+     &- \widetilde{T}(\omega_{\ell-1},\omega_{\ell+1}) - \widetilde{T}(\omega_n, s_n)
+        - \Tilde{d}(s_n). 
+\end{array}
+\end{equation}
+
+We now prove that $\Delta_H(S,S') \geq 0$ which proves Equation~\ref{eqn:high-speed-transfer-appendix} of the property.  Let $s_{n-1}$ and $s_{n-2}$ be the second and third largest speed of $S$, respectively.
+
+The rest of the proof is nearly identical to Property~\ref{prop:ascending-dominates-I}.
+Observe that by Properties~\ref{T-reversal} and~\ref{prop:deadline-derivative}, $\widetilde{T}(f,\omega + \epsilon) \geq \tilde{d}(\omega + \epsilon)$ for all $f, \omega$ and $\epsilon > 0$.  Also, $\widetilde{T}(s_k +\epsilon, \omega) = \widetilde{T}(\omega, s_k+\epsilon)$ for all $\omega$ and $\epsilon >0$ by Property~\ref{T-reversal}.  These properties imply that:
+\begin{equation}\label{eqn:change-sn}
+\begin{array}{ll}
+     & 
+     \begin{array}{ll}
+        \lefteqn{\widetilde{T}(s_{n-2},s_{n-1}) + \widetilde{T}(s_{n-1}, s_{n-1}) + \tilde{d}(s_{n-1})}& \\
+            &= \widetilde{T}(s_{n-2},s_{n-1}) + \widetilde{T}(s_{n-1},s_{n-1}) + \tilde{d}(s_{n-1})
+      \end{array}\\
+     \Rightarrow & 
+     \begin{array}{ll}
+        \lefteqn{\widetilde{T}(s_{n-2},s_{n-1} +\epsilon) + \widetilde{T}(s_{n-1}+\epsilon, s_{n-1}) + \tilde{d}(s_{n-1})}& \\
+        &\geq \widetilde{T}(s_{n-2},s_{n-1}) + \widetilde{T}(s_{n-1}, s_{n-1} + \epsilon) + \tilde{d}(s_{n-1}+\epsilon) 
+    \end{array}\\
+\end{array}
+\end{equation}
+
+\noindent Setting $\epsilon = s_{n} - s_{n-1}$ and substituting into the above inequality of Equation~\ref{eqn:change-sn}, we get the following:
+\begin{equation}\label{eqn:change-sn2}
+\begin{array}{ll}
+     &\begin{array}{ll}
+        \lefteqn{\widetilde{T}(s_{n-2},s_{n}) + \widetilde{T}(s_{n}, s_{n-1}) + \tilde{d}(s_{n-1})}& \\
+        &\geq \widetilde{T}(s_{n-2},s_{n-1}) + \widetilde{T}(s_{n-1}, s_{n}) + \tilde{d}(s_{n}) 
+    \end{array}\\
+    \Rightarrow&
+    \begin{array}{ll}
+        \lefteqn{\widetilde{T}(s_{n-2},s_{n}) + \widetilde{T}(s_{n}, s_{n-1}) - \widetilde{T}(s_{n-2},s_{n-1})}& \\
+        &\geq \widetilde{T}(s_{n-1}, s_{n}) + \tilde{d}(s_{n}) - \tilde{d}(s_{n-1})
+    \end{array}\\
+\end{array}
+\end{equation}
+
+Seeing that both $\omega_{\ell-1}$ and $\omega_{\ell+1}$ are at most $s_{n-1}$ and either one of $\omega_{\ell-1}$ and $\omega_{\ell+1}$  must be less than $s_{n-2}$, we get:
+\begin{equation}
+\begin{array}{ll}
+    \lefteqn{\widetilde{T}(\omega_{\ell-1}, s_n)  +\widetilde{T}(s_n,\omega_{\ell+1}) + \tilde{d}(\omega_n)} &\\
+    &- \widetilde{T}(\omega_{\ell-1},\omega_{\ell+1}) - \widetilde{T}(\omega_n, s_{n})  - \tilde{d}(s_n) \geq 0
+\end{array}
+\end{equation}
+
+\noindent The last inequality (which implies Equation~\ref{eq:tHST} of the property) above follows from observing that according to Property~\ref{prop:neg-deriv-min-interarrival}, the following is true for all $\omega$ and $\omega'$:
+\begin{equation}
+\begin{array}{ll}
+        &\frac{\partial \widetilde{T}(\omega,s_{k+1})}{\partial \omega}
+            \leq \frac{\partial \widetilde{T}(\omega,\omega')}{\partial \omega} \nonumber\\
+        \Leftrightarrow&
+        \frac{\partial \widetilde{T}(\omega,s_{k+1})}{\partial \omega} + \frac{\partial \widetilde{T}(s_{k+1},\omega')}{\partial \omega} - \frac{\partial \widetilde{T}(\omega,\omega')}{\partial \omega} \leq 0 \nonumber  
+\end{array}
+\end{equation}
+\end{proof}
+
+\subsection{Table of Notation and Units} \label{appendix:table-of-notation}
+
+\begin{center}
+\bgroup
+\def\arraystretch{1.25}%
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{| c | l | c | c |}
+    
+    \hline			
+    Symbol & Term & Unit \\  \hline \hline \cline{1-3}
+    $\omega$ & Angular speed & rev/min \\ \cline{1-3}
+    $\omega_{rb}$ & Right boundary speed & rev/min \\ \cline{1-3}
+    $\mathbf{\Omega_{rb}}$ & Set of right boundary speeds & N/A \\ \cline{1-3}
+    $\omega_{\max}$ & Maximum angular velocity & rev/min \\ \cline{1-3}
+    $\alpha$ & Angular acceleration & rev/$\text{min}^2$ \\ \cline{1-3}
+    $\alpha_{\max}$ & Maximum angular acceleration & rev/$\text{min}^2$ \\ \cline{1-3}
+    $\alpha_{\min}$ & Minimum angular acceleration & rev/$\text{min}^2$ \\ \cline{1-3}
+    $t$ & Time & sec. \\ \cline{1-3}
+    $\omega(t)$ & Instantaneous angular velocity & rev/min \\ \cline{1-3}
+    $c(\omega(t))$ & Worst-case execution time & sec. \\ \cline{1-3}
+    $\theta$ & Angular position & rev \\ \cline{1-3}
+    $\Delta \theta$ & Change in angular distance & rev \\ \cline{1-3}
+    $\Omega_n$ & Angular velocity at the end of `n' rotations & rev/min \\ \cline{1-3}
+    $\tilde{T}$ & Minimum interarrival time & sec. \\ \cline{1-3}
+    $\omega_p$ & Peak angular velocity & rev/min \\ \cline{1-3}
+    $f$ & Angular velocity at the end of a rotation & rev/min \\ \cline{1-3}
+    %$\omega_p(\omega,f)$ & Peak Angular Velocity & rev/min \\ \cline{1-3}
+    $d(\omega)$ & Relative deadline & sec. \\ \cline{1-3}
+    $D_\omega$ & Demand & sec. \\ \cline{1-3}
+    $\dbf$ & Demand Bound Function & sec. \\ \cline{1-3}
+    $\delta$ & Time interval length & sec. \\ \cline{1-3}
+    $\mathbb{N}_j^k$ & Number set ${j, j+1, ... , k}$& N/A \\ \cline{1-3}
+    $G_I$ & Dependency graph & N/A \\ \cline{1-3}
+    $V_I$ & Vertices & N/A \\ \cline{1-3}
+    $A_I$ & Edges & N/A \\ \cline{1-3}
+    $\eta$ & Number of job releases & N/A \\ \cline{1-3}
+    $\mathbb{Z}^+$ & Positive integers & N/A \\ \cline{1-3}
+    $S$ & Speed sequence & N/A \\ \cline{1-3}
+    $s_i$ & Job release speed & rev/min \\ \cline{1-3}
+%    $S_A$ & Ascending Speed Sequence & UNIT \\ \cline{1-3}
+%    $S(k)$ & Lowest k Speeds in Speed Sequence S & UNIT \\ \cline{1-3}
+    $\Delta_L$ & Leading injection & N/A \\ \cline{1-3}
+    $\Delta_F$ & Final injection & N/A \\ \cline{1-3}
+    $\Delta_I$ & Internal injection & N/A \\ \cline{1-3}
+    \hline  
+\end{tabular}}
+\egroup
+\end{center}

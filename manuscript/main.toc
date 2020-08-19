@@ -1,18 +1,78 @@
 \contentsline {section}{Dedication}{ii}{Doc-Start}
 \contentsline {section}{Acknowledgements}{iii}{Doc-Start}
-\contentsline {section}{List of Tables}{v}{Doc-Start}
-\contentsline {section}{List of Figures}{vi}{Doc-Start}
-\contentsline {section}{\numberline {1}Don't just paste paper 1 in here}{1}{section.1}
-\contentsline {section}{\numberline {2}This better not just be paper 2}{2}{section.2}
-\contentsline {section}{\numberline {3}Still, Another Section}{3}{section.3}
-\contentsline {subsection}{\numberline {3.1}A Subsection}{3}{subsection.3.1}
-\contentsline {subsection}{\numberline {3.2}A Subsection with Enumerate}{3}{subsection.3.2}
-\contentsline {subsection}{\numberline {3.3}A Subsection with Description}{3}{subsection.3.3}
-\contentsline {subsection}{\numberline {3.4}Contributions}{3}{subsection.3.4}
-\contentsline {subsection}{\numberline {3.5}A last Subsection}{3}{subsection.3.5}
-\contentsline {section}{Appendix A}{4}{subsection.3.5}
-\contentsline {section}{Appendix B}{5}{subsection.3.5}
-\contentsline {section}{Appendix Z}{6}{subsection.3.5}
-\contentsline {section}{References}{7}{subsection.3.5}
-\contentsline {section}{Abstract}{8}{subsection.3.5}
-\contentsline {section}{Autobiographical Statement}{9}{subsection.3.5}
+\contentsline {section}{List of Tables}{vii}{Doc-Start}
+\contentsline {section}{List of Figures}{viii}{Doc-Start}
+\contentsline {section}{\numberline {1}Introduction}{1}{section.1}
+\contentsline {subsection}{\numberline {1.1}}{1}{subsection.1.1}
+\contentsline {section}{\numberline {2}Related Work}{2}{section.2}
+\contentsline {section}{\numberline {3}System Models and Terms}{3}{section.3}
+\contentsline {section}{\numberline {4}Codesign of Software}{4}{section.4}
+\contentsline {subsection}{\numberline {4.1}Introduction}{4}{subsection.4.1}
+\contentsline {paragraph}{Motivation and Applications}{4}{subsection.4.1}
+\contentsline {paragraph}{Problem Statement}{5}{subsection.4.1}
+\contentsline {paragraph}{Proposed Solution}{5}{Item.2}
+\contentsline {paragraph}{Contributions}{6}{Item.2}
+\contentsline {paragraph}{Outline}{7}{Item.2}
+\contentsline {subsection}{\numberline {4.2}Related Work}{9}{subsection.4.2}
+\contentsline {subsection}{\numberline {4.3}Electronics Background}{11}{subsection.4.3}
+\contentsline {paragraph}{Nomenclature}{11}{subsection.4.3}
+\contentsline {paragraph}{First-Order DC RL Circuits}{11}{subsection.4.3}
+\contentsline {paragraph}{Inductors}{11}{figure.1}
+\contentsline {subsubsection}{\numberline {4.3.1}Spatial Parameters}{12}{subsubsection.4.3.1}
+\contentsline {subsubsection}{\numberline {4.3.2}Assumption of Constant Turn Density}{13}{subsubsection.4.3.2}
+\contentsline {subsubsection}{\numberline {4.3.3}Inductor Core Composition}{13}{subsubsection.4.3.3}
+\contentsline {paragraph}{Definition of Short and Fault Types}{13}{subsubsection.4.3.3}
+\contentsline {subsubsection}{\numberline {4.3.4}Fault Under Load vs Hard-Switching Fault}{14}{subsubsection.4.3.4}
+\contentsline {paragraph}{Current as a Function of Time}{15}{subsubsection.4.3.4}
+\contentsline {subsection}{\numberline {4.4}Electronic System Model}{16}{subsection.4.4}
+\contentsline {paragraph}{DC RL Short-Circuit Schematic}{16}{subsection.4.4}
+\contentsline {paragraph}{Board Space Consumed}{17}{subsection.4.4}
+\contentsline {paragraph}{Operating Current Model}{17}{equation.4.4}
+\contentsline {subsection}{\numberline {4.5}Methods of Protection}{19}{subsection.4.5}
+\contentsline {paragraph}{Method 1: Maximum Operating Current}{19}{subsection.4.5}
+\contentsline {paragraph}{Method 2: Maximum Change in Current}{19}{subsection.4.5}
+\contentsline {paragraph}{Time-to-Detection}{21}{equation.4.10}
+\contentsline {subsubsection}{\numberline {4.5.1}Arbitrary Operating Voltage}{21}{subsubsection.4.5.1}
+\contentsline {subsubsection}{\numberline {4.5.2}Maximum Operating Voltage}{22}{subsubsection.4.5.2}
+\contentsline {subsubsection}{\numberline {4.5.3}Minimum Time-to-Detection}{22}{subsubsection.4.5.3}
+\contentsline {subsection}{\numberline {4.6}Real-time System Model}{23}{subsection.4.6}
+\contentsline {paragraph}{Sporadic Task Model}{23}{subsection.4.6}
+\contentsline {paragraph}{Preemptive Uniprocessor EDF Scheduling}{25}{figure.5}
+\contentsline {subsection}{\numberline {4.7}Model Optimization}{26}{subsection.4.7}
+\contentsline {paragraph}{Optimal Inductor Orientation}{26}{subsection.4.7}
+\contentsline {paragraph}{Fixed Board Constraints}{27}{equation.4.22}
+\contentsline {paragraph}{Fixed Utilization}{28}{equation.4.23}
+\contentsline {subsection}{\numberline {4.8}Experiments}{30}{subsection.4.8}
+\contentsline {paragraph}{Experiment Outline}{30}{subsection.4.8}
+\contentsline {paragraph}{Setup}{30}{table.1}
+\contentsline {paragraph}{Projected Utilization}{32}{equation.4.25}
+\contentsline {subsection}{\numberline {4.9}Results}{34}{subsection.4.9}
+\contentsline {paragraph}{Experiments 1 and 2: FUL and HSF Detection}{34}{subsection.4.9}
+\contentsline {paragraph}{Experiments 3 and 4: Inductance and Utilization Scaling}{35}{figure.9}
+\contentsline {subsection}{\numberline {4.10}Conclusion}{38}{subsection.4.10}
+\contentsline {section}{\numberline {5}Worst-Case Demand of Engine Control Tasks}{39}{section.5}
+\contentsline {section}{\numberline {6}Introduction}{39}{section.6}
+\contentsline {section}{\numberline {7}Related Work}{42}{section.7}
+\contentsline {section}{\numberline {8}Preliminaries}{43}{section.8}
+\contentsline {subsection}{\numberline {8.1}Task Model}{43}{subsection.8.1}
+\contentsline {subsection}{\numberline {8.2}Minimum Job Inter-arrival Times}{46}{subsection.8.2}
+\contentsline {subsection}{\numberline {8.3}AVR Task Demand}{47}{subsection.8.3}
+\contentsline {subsection}{\numberline {8.4}Problem Definition}{49}{subsection.8.4}
+\contentsline {section}{\numberline {9}Knapsack-based approach for deriving the worst-case demand}{50}{section.9}
+\contentsline {section}{\numberline {10}Dominant Speed Sequences}{54}{section.10}
+\contentsline {subsection}{\numberline {10.1}Properties of Minimum Inter-arrival Times and Deadlines}{55}{subsection.10.1}
+\contentsline {subsection}{\numberline {10.2}Speed Sequence Order Transformations}{57}{subsection.10.2}
+\contentsline {subsection}{\numberline {10.3}Starting Speed of a Dominant Sequence}{65}{subsection.10.3}
+\contentsline {subsection}{\numberline {10.4}Speeds in Subsequent Modes of a Dominant Sequence}{66}{subsection.10.4}
+\contentsline {section}{\numberline {11}The Dominant Sequence Set}{68}{section.11}
+\contentsline {section}{\numberline {12}Evaluation}{71}{section.12}
+\contentsline {section}{\numberline {13}Conclusions and Future Work}{74}{section.13}
+\contentsline {section}{Appendix A}{75}{section.13}
+\contentsline {section}{Appendix B}{76}{figure.19}
+\contentsline {section}{Appendix C}{77}{figure.20}
+\contentsline {subsection}{\numberline {.1}Proof of Property\nobreakspace {}\ref {prop:high-speed-transfer}}{77}{subsection.Alph0.1}
+\contentsline {subsection}{\numberline {.2}Table of Notation and Units}{79}{subsection.Alph0.2}
+\contentsline {section}{Appendix Z}{81}{subsection.Alph0.2}
+\contentsline {section}{References}{82}{subsection.Alph0.2}
+\contentsline {section}{Abstract}{88}{subsection.Alph0.2}
+\contentsline {section}{Autobiographical Statement}{89}{subsection.Alph0.2}
