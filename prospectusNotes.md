@@ -82,6 +82,27 @@ More accurate or tractable demand characterization also yields more accurate and
    1. Allows for visualization of the tradeoff between scheduling and physical system dynamics
    2. Complexity, Concurrency, Correctness
 
+## Remaining Works
+
+1. Short Circuit Detection
+   1. Codesign implementation of software and hardware task- Done
+   2. Comparison against existing works
+2. ABOS
+   1. Fault detection - Conf. Paper (merge from Short Circuit but applied to cells)
+   2. Battery size selection (demand modeling) - Conf. Paper
+   3. Route Selection (V2G, G2V) - Conf. Paper merged from joint ABOS
+3. SP Schedule
+   1. WCD for SPSched - Submitted
+   2. DBF for graph - Conf. Paper
+   3. Online Optimization
+4. Engine Control
+   1. Knapsack AVR - Done
+   2. Approx Alg of Knapsack - Extension of Conf. Paper
+   3. Dynamic Skip Fire - Conf. Paper on DBF for DSF, DoD, VD, etc.
+5. Hybrid Systems
+   1. Multichem Route Selection / Eng
+   2. Battery sizing for SDB
+
 ## John Cav. Outline
 
 1. Introduction
@@ -107,24 +128,75 @@ More accurate or tractable demand characterization also yields more accurate and
 5. CAT 2
 6. CAT 3
 
-## Remaining Works
+## Corey Dissertation Notes
 
-1. Short Circuit Detection
-   1. Codesign implementation of software and hardware task- Done
-   2. Comparison against existing works
-2. ABOS
-   1. Fault detection - Conf. Paper (merge from Short Circuit but applied to cells)
-   2. Battery size selection (demand modeling) - Conf. Paper
-   3. Route Selection (V2G, G2V) - Conf. Paper merged from joint ABOS
-3. SP Schedule
-   1. WCD for SPSched - Submitted
-   2. DBF for graph - Conf. Paper
-   3. Online Optimization
-4. Engine Control
-   1. Knapsack AVR - Done
-   2. Approx Alg of Knapsack - Extension of Conf. Paper
-   3. Dynamic Skip Fire - Conf. Paper on DBF for DSF, DoD, VD, etc.
-5. Hybrid Systems
-   1. Multichem Route Selection / Eng
-   2. Battery sizing for SDB
+1. Introduction
+   1. Context of increasing computational systems
+   2. Context of computing being performed in safety critical systems (give examples)
+   3. These systems in which logical correctness of computational results and timeliness 
+   4. Highlight CPS focusing on integration of software and physical systems
+   5. Cite rising need for analysis of such systems
+   6. What will be examined (old vs new)
+   7. Computer science specific context since Columbia
+   8. Introduce RTS specifically
+   9. Introduce RTS tools
+   10. State research need
+   11. Formal problem
+   12. Thesis
+   13. Contributions
+   14. Scope of contributions / lay of land
+2.  Models
+    1.  Periodic Task Model
+    2.  Sporadic Task Model
+    3.  Notation Summary (common notations)
+3.  Related Work
+    1.  Look towards qual exam for related works
+4.  Work #1
+5.  Work #2
+6.  Future Work
 
+## Bo Dissertation Notes
+
+1. Intro
+   1. RTS
+   2. Motivation
+   3. Objective
+   4. Summary of Contributions
+   5. Organization
+2. Related Work
+3. Model and Notation
+4. Work #1
+5. Work #2
+6. Conclusion
+7. List of Pubs
+
+## My Outline
+
+1. Introduction
+   1. Increasing computational systems
+   2. Much of this computing is part of safety-critical systems
+   3. In safety critical systems where accurate and timely computation is required to maintain safety and avoid catastrphic failure, real-time systems are used.
+   4. Since the failed launch of columbia due to timing issues, real-time systems, where logical and temporal correctness are analyzed to guarantee safe system operation, and the analysis thereof have been on the rise.
+   5. Recent focus on CPS leads to integration of software and hardware (sensors, actuators, control laws, etc.)
+   6. Rising need for analysis of these CPS where tasks become less static and more dynamic.
+   7. Furthermore, analysis of systems where software depends hardware further complicates analysis.
+   8. In this work, we examine instances where known physical system dynamics may be leveraged to do X, Y, and Z.
+   9. Research Need statement
+   10. Formal problem
+   11. Thesis
+   12. Contributions
+   13. Scope of Contributions / Lay of Land
+   14. Organization
+2.  Models
+    1.  Real-Time Terminology
+    2.  Real-Time Task Models
+      1. Engine Control Unit (ECU)
+      2. Short Circuit Detection (SCD)
+    3.  Control System Terminology
+    4.  Control System Models
+      3. Switched Control System (SCS)
+3.  Related Work
+    1. AVR
+    2.  Mode Change
+    3.  Short Circuit
+4.  
