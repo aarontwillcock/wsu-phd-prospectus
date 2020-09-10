@@ -21,3 +21,6 @@ manuscript/*.pdf
 *gnuplottex*.gnuplot
 *gnuplottex*.tex
 *gnuploterrors
+*.lof
+*.toc
+*.lot
