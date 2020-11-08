@@ -128,9 +128,9 @@ The model proposed in Chapter \ref{chap:electronic system model} will rely on a 
 \end{figure}
 The figure describes a solenoid-style inductor where $N$ represents the number of complete turns, $A$ is the area of a coil, $\ell$ represents the length of the inductor. The relationship between these parameters and inductance can be constructed from fundamental electricity and magnetism equations found in \cite{uniphy}. This relationship is modeled as:
 \begin{equation}\label{eq:InductorSpatial}
-L = \frac{\mu N^{2}A}{\ell}
+L = \frac{\mu_0 N^{2}A}{\ell}
 \end{equation}
-where $\mu$ is the permeability of free space. For our purposes, we assume the spatial parameters are fixed -- i.e., $\ell$, $A$, and $N$ are static\footnote{In Chapter \ref{chap:model optimization}, we consider variable sized inductors as part of our hardware-software co-design optimization.}. Equation (\ref{eq:InductorSpatial}) will be referenced in Chapter \ref{chap:method of protection} to relate current-flow to inductor size and in Chapter \ref{chap:model optimization} to optimize hardware-software co-design solutions.
+where $\mu_0$ is the permeability of free space. For our purposes, we assume the spatial parameters are fixed -- i.e., $\ell$, $A$, and $N$ are static\footnote{In Chapter \ref{chap:model optimization}, we consider variable sized inductors as part of our hardware-software co-design optimization.}. Equation (\ref{eq:InductorSpatial}) will be referenced in Chapter \ref{chap:method of protection} to relate current-flow to inductor size and in Chapter \ref{chap:model optimization} to optimize hardware-software co-design solutions.
 \subsubsection{Assumption of Constant Turn Density} \label{ssec:Assumption of Constant}
 Equation (\ref{eq:InductorSpatial}) contains the term $\frac{N}{\ell}$, referred to as \textit{turn density}. \textit{Turn density} must remain constant with an increase in length for inductance to increase. Thus if an inductor is to be extended from length $\ell$ to $2\cdot \ell$, the number of turns $N$ should be doubled accordingly (to $2\cdot N$) to maintain constant \textit{turn density}. Doubling both $N$ and $\ell$ results in doubled inductance $L$. Whenever a change in inductor length $\ell$ is suggested, we assume the number of turns is doubled as well to maintain constant \textit{turn density}. We rely on this assumption throughout Chapter \ref{chap:model optimization}.
 \subsubsection{Inductor Core Composition}
@@ -315,7 +315,7 @@ U(\mathrm{T}_{scd}) = \frac{2 \cdot e_{scd}}{\delta(I_{max},V_{max})}
 \end{equation}
 Substituting in Equations (\ref{eq:TimeToDetect}) and (\ref{eq:InductorSpatial}) gives:
 \begin{equation}\label{eq:SCDSpatialUtilization}
-U(\mathrm{T}_{scd}) = (\frac{2 \cdot e_{scd}}{(I_{crit}-I_{max})} \cdot V_{max} \cdot \frac{\ell}{\mu N^{2}A})
+U(\mathrm{T}_{scd}) = (\frac{2 \cdot e_{scd}}{(I_{crit}-I_{max})} \cdot V_{max} \cdot \frac{\ell}{\mu_0 N^{2}A})
 \end{equation}
 Equation \ref{eq:SCDSpatialUtilization} relates the inductor spatial parameters to $\mathrm{T}_{scd}$ utilization.
 
@@ -362,7 +362,7 @@ A = \frac{\pi}{4} A_{consumed} = \frac{\pi}{4} \cdot median(P)^2 \nonumber
 \end{equation}
 By substitution of Equation \ref{eq:InductorAreaPrism} into Equation (\ref{eq:SCDSpatialUtilization}), the utilization requirement becomes:
 \begin{equation}\label{eq:MinUtilizationPrism}
-U(\mathrm{T}_{scd}) = \frac{2 \cdot e_{scd} \cdot V_{max} \cdot min(P)}{(I_{crit}-I_{max}) \cdot \mu \cdot N^{2} \cdot \frac{\pi}{4} \cdot median(P)^2}
+U(\mathrm{T}_{scd}) = \frac{2 \cdot e_{scd} \cdot V_{max} \cdot min(P)}{(I_{crit}-I_{max}) \cdot \mu_0 \cdot N^{2} \cdot \frac{\pi}{4} \cdot median(P)^2}
 \end{equation}
 The equation above gives us a minimum utilization requirement for meeting short-circuit protection requirements given the constrained board space and OCM - which provides $I_{crit}$ and $I_{max}$.
 
@@ -379,15 +379,15 @@ L = \frac{2 \cdot e_{scd} \cdot V_{max}}{u \cdot (I_{crit}-I_{max})} \nonumber
 Substituting Equation (\ref{eq:InductorSpatial}) in for $L$ 
 %gives:
 %\begin{equation}\label{eq:MinPrismUtilizationUnsolved}
-%\frac{\mu N^{2}A}{\ell} = \frac{2 \cdot e_{scd} \cdot V_{max}}{u \cdot (I_{crit}-I_{max})} \nonumber
+%\frac{\mu_0 N^{2}A}{\ell} = \frac{2 \cdot e_{scd} \cdot V_{max}}{u \cdot (I_{crit}-I_{max})} \nonumber
 %\end{equation}
 and isolating inductor spatial parameters results in:
 \begin{equation}\label{eq:MinPrismUtilizationUnsolved2}
-\frac{A}{\ell} = \frac{2 \cdot e_{scd} \cdot V_{max}}{u \cdot (I_{crit}-I_{max}) \cdot \mu \cdot N^{2}} \nonumber
+\frac{A}{\ell} = \frac{2 \cdot e_{scd} \cdot V_{max}}{u \cdot (I_{crit}-I_{max}) \cdot \mu_0 \cdot N^{2}} \nonumber
 \end{equation}
 Finally, substituting the prism area consumed (Equation \ref{eq:PrismAreaConsumed}) and prism length (Equation \ref{eq:PrismLength}) into Equation \ref{eq:MinPrismUtilizationUnsolved2} above gives:
 \begin{equation}\label{eq:MinPrismUtilization}
-\frac{median(P)^{2}}{min(P)} = \frac{4}{\pi} \cdot \frac{ 2 \cdot e_{scd} \cdot V_{max}}{u \cdot (I_{crit}-I_{max}) \cdot \mu \cdot N^{2}}
+\frac{median(P)^{2}}{min(P)} = \frac{4}{\pi} \cdot \frac{ 2 \cdot e_{scd} \cdot V_{max}}{u \cdot (I_{crit}-I_{max}) \cdot \mu_0 \cdot N^{2}}
 \end{equation}
 This result indicates the air core inductor used in the DC RL circuit must have a minimum allotted board space defined by P which satisfies the above equation.
 
