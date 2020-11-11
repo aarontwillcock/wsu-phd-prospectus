@@ -2,12 +2,39 @@
 
 \subsection{Hardware-Software Codesign}
 
-Internal Short Detection of Reconfigurable Software-Defined Batteries
-Battery Size Selection for Reconfigurable Software-Defined Batteries
+To further extend real-time anomaly detection in modern electronics, the codesign of batteries and Battery Management Systems (BMSs) are also in development:
 
+\subsubsection{Internal Short Detection of Reconfigurable Software-Defined Batteries}
+
+Summary: Reconfigurable, Software-Defined Batteries (RSDBs) = SDB + Reconfigurability. How to we detect anomalies in systems like this? How quickly can they be detected?
+
+\subsubsection{Battery Size Selection for Reconfigurable Software-Defined Batteries}
+
+Summary: Using load profiles to select battery size (and switching scheme?)
+Notes: I think this should be some other work that focuses on picking a reconfiguration routine.
 
 \subsection{Demand Characterization}
 
-Approximation of Knapsack AVR
-Worst-Case Demand of Asymptotically Stable Switched Control Systems
-Worst-Case Demand of Internal Combustion Engines with Variable Displacement
+To further exploit physical system dynamics in pursuit of faster, less pessimistic demand characterization and schedulability, the following works are in development:
+
+\subsubsection{Approximation of Knapsack AVR}
+
+The current approach to demand characterization of AVR tasks in ICEs does not leverage any approximation.
+Thus, this work may be extended by providing a Fully Polynomial Time Approximation Scheme (FPTAS) of the existing approach.
+Offering an FPTAS of the existing approach will allow faster demand approximation in situations where approximate and more pessimistic results are acceptable.
+Where the exact characterization may be suitable offline where computing power and time are not constraints, the FPTAS approximation may be useful in situations where demand characterization is performed online by systems which are reallocating tasks across ECUs and are limited to ECU computing hardware.
+
+\subsection{Worst-Case Demand of Multi-Frame Systems with Monotonically Ascending Execution time}
+
+For tasks with a repeatable sequences of WCETs, the Generalized Multi-Frame Model (GMF) can be used to characterize the demand of the task over time.
+Some repeatable sequences, however, demonstrate a monotonically ascending WCET which is not exploited by the GMF model.
+These sequences may be found in switched control systems or control systems where Analog to Digital Converter (ADC) resolution changes as a function of tracking error.
+
+\subsection{Worst-Case Demand of Internal Combustion Engines with Variable Displacement}
+
+The demand characterization offered by the Knapsack AVR approach is for a single AVR task which corresponds to a single piston in an ICE.
+In practice, ICEs, especially in automobiles with multiple passengers, have more than one cylinder.
+With increasing consumer interest in more efficient ICEs, manufacturers have made ICEs capable of disabling fuel injection into or changing the stroke length of particular cylinders.
+These techniques, along with others not mentioned here, are referred to as Variable Displacement (VD) as they change the total displacement of the ICE.
+VD techniques are engaged when engine load is low to conserve fuel but are disabled when engine load is high (under acceleration, for example).
+If each cylinder is associated with an AVR task, and cylinders are disabled (or max acceleration reduced) during low loads, a proper demand characterization of the engine must have one task per cylinder and incorporate the effects of VD.
