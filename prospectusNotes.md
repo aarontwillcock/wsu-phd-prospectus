@@ -199,4 +199,3 @@ More accurate or tractable demand characterization also yields more accurate and
     1. AVR
     2.  Mode Change
     3.  Short Circuit
-4.  
