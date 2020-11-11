@@ -53,15 +53,15 @@ To summarize, our contributions include\footnote{This work was published in the 
 
 %Outline of paper
 \paragraph{Outline}
-Chapter \ref{chap:related work} details the related work in both problem domains.
-Chapter \ref{chap:electronics background} provides an electronics background and nomenclature overview.
-Chapter \ref{chap:electronic system model} provides the first paper contribution, a model for identifying circuit properties.
-Chapter \ref{chap:method of protection} depicts short protection methods given the constraints provided in the circuit model.
-Chapter \ref{chap:real-time system model} formalizes the relation between real-time scheduling and short-circuit protection.
-Chapter \ref{chap:model optimization} provides the model optimization for both fixed board constraints and fixed real-time utilization as contributions from this paper.
-Chapter \ref{chap:experiments} details experiments conducted to validate the proposed relationship and theoretical utilization.
-Chapter \ref{chap:results} discusses the results of experimentation.
-Chapter \ref{chap:conclusion} identifies conclusions and future work.
+Section \ref{subsec:related work} details the related work in both problem domains.
+Section \ref{subsec:electronics background} provides an electronics background and nomenclature overview.
+Section \ref{subsec:electronic system model} provides the first paper contribution, a model for identifying circuit properties.
+Section \ref{subsec:method of protection} depicts short protection methods given the constraints provided in the circuit model.
+Section \ref{subsec:real-time system model} formalizes the relation between real-time scheduling and short-circuit protection.
+Section \ref{subsec:model optimization} provides the model optimization for both fixed board constraints and fixed real-time utilization as contributions from this paper.
+Section \ref{subsec:experiments} details experiments conducted to validate the proposed relationship and theoretical utilization.
+Section \ref{subsec:results} discusses the results of experimentation.
+Section \ref{subsec:conclusion} identifies conclusions and future work.
 
 %Intersection of EE and RTS
 %The problem of protecting electronics from short-circuits has traditionally been a concern of electrical engineering and has been addressed through several techniques including current mirrors and clamp circuits \cite{litRev}. With the application of real-time software to short protection, we shift the problem to the intersection of electrical engineering, cyber-physical, and real-time systems. Thus, solutions are subject to the physical, electronic, and real-time limitations of the system.
@@ -102,7 +102,7 @@ For the purposes of describing our approach, we rely on the following nomenclatu
 
 \paragraph{First-Order DC RL Circuits}
 %Define a DC circuit. Include Figure.
-Direct current (DC) circuits are circuits in which the direction of current flow does not change \cite{uniphy}. A DC circuit in which current passes through a resistor and an inductor is deemed a DC RL circuit where "R" represents the resistor and "L" the inductor. The model presented in Chapter \ref{chap:electronic system model} relies on a first-order DC RL circuit with the resistor and inductor in series. An example first-order DC RL circuit is provided in Figure \ref{fig:ModelDCRL} with two resistors and an inductor in series.
+Direct current (DC) circuits are circuits in which the direction of current flow does not change \cite{uniphy}. A DC circuit in which current passes through a resistor and an inductor is deemed a DC RL circuit where "R" represents the resistor and "L" the inductor. The model presented in Section \ref{subsec:electronic system model} relies on a first-order DC RL circuit with the resistor and inductor in series. An example first-order DC RL circuit is provided in Figure \ref{fig:ModelDCRL} with two resistors and an inductor in series.
 \begin{figure}
     \centering
     \includegraphics[width=0.25\linewidth]{img/Model_DC_RL_Circuit_General.pdf}
@@ -116,10 +116,10 @@ Direct current (DC) circuits are circuits in which the direction of current flow
 %    \label{fig:DCRL}
 %\end{figure}
 \paragraph{Inductors}
-An inductor is a passive electronic component typically illustrated as a coil or four- which resists change in current flow through itself. This property is useful as current through an inductor cannot change instantaneously. Equations describing these properties are provided in Chapter \ref{chap:method of protection}.
+An inductor is a passive electronic component typically illustrated as a coil or four- which resists change in current flow through itself. This property is useful as current through an inductor cannot change instantaneously. Equations describing these properties are provided in Section \ref{subsec:method of protection}.
 \subsubsection{Spatial Parameters}
 %Figure of inductor with associated variables. Derivations will be explained later.
-The model proposed in Chapter \ref{chap:electronic system model} will rely on a single, air-core inductor. The spatial properties of an inductor may be modeled as seen in Figure \ref{fig:InductorParams}.
+The model proposed in Section \ref{subsec:electronic system model} will rely on a single, air-core inductor. The spatial properties of an inductor may be modeled as seen in Figure \ref{fig:InductorParams}.
 \begin{figure}
     \centering
     \includegraphics[width=0.25\linewidth]{img/Inductor_Parameters.pdf}
@@ -130,9 +130,9 @@ The figure describes a solenoid-style inductor where $N$ represents the number o
 \begin{equation}\label{eq:InductorSpatial}
 L = \frac{\mu_0 N^{2}A}{\ell}
 \end{equation}
-where $\mu_0$ is the permeability of free space. For our purposes, we assume the spatial parameters are fixed -- i.e., $\ell$, $A$, and $N$ are static\footnote{In Chapter \ref{chap:model optimization}, we consider variable sized inductors as part of our hardware-software co-design optimization.}. Equation (\ref{eq:InductorSpatial}) will be referenced in Chapter \ref{chap:method of protection} to relate current-flow to inductor size and in Chapter \ref{chap:model optimization} to optimize hardware-software co-design solutions.
+where $\mu_0$ is the permeability of free space. For our purposes, we assume the spatial parameters are fixed -- i.e., $\ell$, $A$, and $N$ are static\footnote{In Section \ref{subsec:model optimization}, we consider variable sized inductors as part of our hardware-software co-design optimization.}. Equation (\ref{eq:InductorSpatial}) will be referenced in Section \ref{subsec:method of protection} to relate current-flow to inductor size and in Section \ref{subsec:model optimization} to optimize hardware-software co-design solutions.
 \subsubsection{Assumption of Constant Turn Density} \label{ssec:Assumption of Constant}
-Equation (\ref{eq:InductorSpatial}) contains the term $\frac{N}{\ell}$, referred to as \textit{turn density}. \textit{Turn density} must remain constant with an increase in length for inductance to increase. Thus if an inductor is to be extended from length $\ell$ to $2\cdot \ell$, the number of turns $N$ should be doubled accordingly (to $2\cdot N$) to maintain constant \textit{turn density}. Doubling both $N$ and $\ell$ results in doubled inductance $L$. Whenever a change in inductor length $\ell$ is suggested, we assume the number of turns is doubled as well to maintain constant \textit{turn density}. We rely on this assumption throughout Chapter \ref{chap:model optimization}.
+Equation (\ref{eq:InductorSpatial}) contains the term $\frac{N}{\ell}$, referred to as \textit{turn density}. \textit{Turn density} must remain constant with an increase in length for inductance to increase. Thus if an inductor is to be extended from length $\ell$ to $2\cdot \ell$, the number of turns $N$ should be doubled accordingly (to $2\cdot N$) to maintain constant \textit{turn density}. Doubling both $N$ and $\ell$ results in doubled inductance $L$. Whenever a change in inductor length $\ell$ is suggested, we assume the number of turns is doubled as well to maintain constant \textit{turn density}. We rely on this assumption throughout Section \ref{subsec:model optimization}.
 \subsubsection{Inductor Core Composition}
 The core of a solenoid-style inductor can be defined as the area within the coiled wire. In practice, many inductors are manufactured with ferromagnetic cores which increase the inductance for the same volume. In our model, we assume this core is empty and contains only air. Equation (\ref{eq:InductorSpatial}) reflects this assumption as it applies only to air-core inductors. We view this assumption as an upper bound on board space consumed since ferromagnetic core inductors provide a greater inductance by volume \cite{NiFe}.
 
@@ -150,7 +150,7 @@ In the context of short-circuit protection, a Fault Under Load is a short-circui
 In contrast, a Hard-Switching Fault is a short-circuit fault where the circuit does not have an active load at the time of the fault \cite{hiSpeedProtection}. In contrast to an FUL, an HSF does not have an initial operating current since there must be a short-circuit path before the circuit is "on".
 
 \paragraph{Current as a Function of Time}
-In the proposed system, a real-time task must be related to the change in current through an inductor. The following equation will provide such a relationship used Chapter \ref{chap:method of protection}:
+In the proposed system, a real-time task must be related to the change in current through an inductor. The following equation will provide such a relationship used Section \ref{subsec:method of protection}:
 \begin{equation}\label{eq:CurrentAtTime}
 I(t) = \frac{V}{R}(1-e^{-t \frac{R}{L}})
 \end{equation}
@@ -165,7 +165,7 @@ In the previous chapter, an electronics background was provided as context for o
 \item [4.] a real-time sporadic task for short protection.
 \end{description}
 
-The short-circuit detection methods will be discussed in Chapter \ref{chap:method of protection} and the real-time model (and its utilization analysis under uniprocessor EDF scheduling) will be discussed in Chapter \ref{chap:real-time system model}.
+The short-circuit detection methods will be discussed in Section \ref{subsec:method of protection} and the real-time model (and its utilization analysis under uniprocessor EDF scheduling) will be discussed in Section \ref{subsec:real-time system model}.
 
 \paragraph{DC RL Short-Circuit Schematic}
 Figure \ref{fig:ModelDCRL} is a model DC RL circuit with a switch for simulating a short-circuit. This schematic provides the requirements for the monitored, short-protected circuit: a voltage supply $V_{in}$, circuit load $R_{0}$, inductor $L_{0}$, and the optional, low-value resistor $R_{1}$ used for sensing current. If $R_{1}$ is not used, the resistance through inductor $L_{0}$ may be used to calculate current. Note that the short occurs via the switch around $R_{0}$.
@@ -189,7 +189,7 @@ For ease of analysis, we assume the axis of the inductor is mounted perpendicula
 \begin{equation}\label{eq:AreaConsumed}
 A_{consumed} = \frac{4}{\pi}A
 \end{equation}
-This definition of board space consumed will be referenced in Chapter \ref{chap:model optimization} where the provided model is optimized for minimum board space consumption and volume.
+This definition of board space consumed will be referenced in Section \ref{subsec:model optimization} where the provided model is optimized for minimum board space consumption and volume.
 \paragraph{Operating Current Model}
 To simplify the analysis of DC RL circuits, we propose an Operating Current Model (OCM) for characterizing the circuit's maximum current, maximum voltage, and critical current. Hereafter, we model DC RL circuits as:
 \begin{equation}\label{eq:OCM}
@@ -421,7 +421,7 @@ Experiment 4 demonstrates the same relationship but with varying utilization and
 
 \paragraph{Setup}
 Aside from the variations described above, all experiments were conducted as described here. Short-circuit protection for each experiment was performed on Microchip's DM164103-4 demo board with a PIC18F45K20 CPU. The demo board and programmer were selected for their relatively low cost to encourage reproducibility. 
-Figure \ref{fig:ExperimentSetup} depicts the experimental circuit schematic. In the schematic, subscripts \textit{DM} refer to connections made to the Microchip demo board. The setup also requires attaching oscilloscope probes to ports RA2 in Figure \ref{fig:ExperimentSetup} and RA1 on the demo board. Figure \ref{fig:Experiment1Setup} depicts the proper connection of all materials in Experiment 1. All probe connections route off-camera to the oscilloscope. An extended list of non-trivial materials used in the experiments can be found in Appendix \ref{appendix:materials}.
+Figure \ref{fig:ExperimentSetup} depicts the experimental circuit schematic. In the schematic, subscripts \textit{DM} refer to connections made to the Microchip demo board. The setup also requires attaching oscilloscope probes to ports RA2 in Figure \ref{fig:ExperimentSetup} and RA1 on the demo board. Figure \ref{fig:Experiment1Setup} depicts the proper connection of all materials in Experiment 1. All probe connections route off-camera to the oscilloscope. An extended list of non-trivial materials used in the experiments can be found in Appendix \ref{appendix:scd-materials}.
 \begin{figure}
     \centering
     \includegraphics[width=0.45\linewidth]{img/Experiment_Setup.pdf}
@@ -577,7 +577,7 @@ The results of Experiment 3 and Experiment 4 indicate that $U(\mathrm{T}_{scd})$
     \label{fig:ScalingUtilization}
 \end{figure}
 
-\clearpage \subsection{Conclusion} \label{subs:conclusion}
+\clearpage \subsection{Conclusion} \label{subsec:conclusion}
 %The conclusion goes here: use hypothesis from proposal as basis
 This work provides a novel solution for hardware-software co-design of real-time software-based short-circuit protection systems -- cyber-physical systems in which the inductive properties of a DC RL circuit are leveraged to construct a sporadic, real-time short-circuit protection task. We established a relationship between utilization and board space consumed by the air-core, solenoid-style inductor placed in-circuit which can be optimized for both fixed inductor volume and fixed uniprocessor utilization.
 
