@@ -1,4 +1,4 @@
-\section{Codesign of Software}   \label{chap:demandCharacterization}
+\section{Short Circuit Detection Hardware-Software Codesign}   \label{chap:scd}
 
 \subsection{Introduction}   \label{subsec:hardwareSoftwarreCodesign}
 
@@ -13,7 +13,7 @@ This potential for damage creates a need for short-circuit protection.
 
 The need for short protection can be seen in a variety of applications relying on power semiconductors including power converters and inverters \cite{hiSpeedProtection}.
 In an industrial setting, this can include photovoltaic systems and hybrid fuel cells \cite{photoVoltaic}. 
-In a consumer setting, this can include cell phones and other portable electronics like the recent Samsung Galaxy Note 7 which was recalled due to fires caused by short-circuits in the device battery \cite{explodingPhone}.
+In a consumer setting, this can include electric vehicles, laptops, and cell phones like the recent Samsung Galaxy Note 7 which was recalled due to fires caused by short-circuits in the device battery \cite{explodingPhone}.
 
 To mitigate the risk of short-circuits, devices using power-semiconductors can be constructed with short-circuit protection in the form of a fuse, thermal breaker, or other hardware designated to prevent the high current responsible for circuit damage. 
 This short-circuit protection, however, is often fixed circuitry dedicated solely to short detection. In such systems, little flexibility is afforded to circuits which operate at varying voltages and currents over their lifetime as designers must protect against short-circuits at the highest currents and voltages, even if they are not the most frequently used. Moreover, the rise in semiconductor power density continues to reduce the required latency for detecting and halting shorts \cite{gateChargeChara}.
