@@ -1,36 +1,82 @@
 \section{Introduction}   \label{chap:introduction}
 
-> Goals:
-Introduce the history of RTS, real-time control.
-Introduce CPS
-Introduce SWaP
-Introduce growing need for research that combines RTS and Control.
+% > Goals:
+% Introduce the history of RTS, real-time control.
+% Introduce CPS
+% Introduce SWaP
+% Introduce growing need for research that combines RTS and Control.
 
-Summary Statement: Real-time systems are systems which require logical and temporal correctness. Informally, the result of a requested computation must be correct (logical correctness) and it must be completed before the associated deadline.
+Real-time systems are systems in which the utility of computation depends on logical and temporal correctness.
+Specifically, real-time systems must provide results that are computationally correct (logical correctness) and completed before the associated deadline (temporal correctness).
+Real-time systems are often present in safety-critical systems where incorrect or untimely operation leads to catastrophy.
+Consider, for example, the Electronic Control Unit (ECU) in a vehicle responsible for deploying airbags in the event of a crash.
+The ECU is an on-board computer that must correctly calculate acceleration from the vehicle's accelerometers or Inertial Measurement Units (IMUs) to identify rapid acceleration associated with an automobile crash.
+Failure to correctly calculate acceleration could result in airbag deployment when there is no need (possibly causing a crash) or worse: no airbag deployment when there is, in fact, a crash resulting in the injury or death of the driver (and/or other occupants).
+Suppose, however, that the ECU correctly determines when the airbags must deploy.
+If the ECU's acceleration and accident calculation takes too long (say, longer than the time required for the driver to collide with the steering column), deploying the airbag will be useless at best as the driver has already been injured or killed.
+The ECU responsible for deploying airbags, the sensors the ECU relies on, and even the airbag mechanisms themselves are all part of a real-time system in which logical and temporal correctness are required.
+Consider, now, that accident detection and airbag deployment is just one of many tasks the ECU needs to repeatedly execute.
+Each task on the ECU has some computation that must be peformed (fuel injection, spark ignition timing, throttle position sensing, wheel speed sensing, anti-lock braking, or traction control, for example).
+Each task must also be executed at some particular frequency.
+Ane each tasks' computed results must be known by some particular deadline.
+The study of real-time systems, therefore, involves determining whether some set of tasks, each with their own computation times, frequencies, and deadlines, can be scheduled on a set of processors such that all computations are completed before their respective deadlines.
+The analysis described above, called schedulability, is one of many kinds of anaylsis performed on real-time systems to guarantee correctness in safety-critical systems.
+
+\subsection{The Benefits of Real-Time Systems}
+
+
 
 \subsection{The Rise of Real-Time Systems}
 
-Summary: Real-time systems are the follow up to real-time simulations. Post WWII simulations gave rise to real-time simulation. Managing telecommunications required real-time system modeling - the need for timely switching and routing of telephone signals to requested destination numbers. Eventually real-time systems were applied to industrial process control - the earliest of which was isomerization of butane in the chemical sector. In short, real-time systems began as a natural consequence of three things: simulating real-world control systems for military aircraft, serving user requests for telecommunications, and executing control of chemical process control.
+% Summary: Real-time systems are the follow up to real-time simulations. Post WWII simulations gave rise to real-time simulation. Managing telecommunications required real-time system modeling - the need for timely switching and routing of telephone signals to requested destination numbers. Eventually real-time systems were applied to industrial process control - the earliest of which was isomerization of butane in the chemical sector. In short, real-time systems began as a natural consequence of three things: simulating real-world control systems for military aircraft, serving user requests for telecommunications, and executing control of chemical process control.
+
+Real-time systems came about in the 1950s as the natural next step from real-time simulations CITE.
+After World War II, the United States invested in real-time flight control simulators to train pilots to fly bombers CITE.
+The need for responsive computing lead to the creation of CITE COMPUTER which aimed at guaranteeing responsive calculation of control laws behind bombers (and thus simulation for pilots-to-be).
+Furthermore, the rise of telecommunications lead to Bell Lab's engineers recognizing the importance of timely switching and routing of phone calls.
+Real-time systems were also first applied to industrial control processes in the chemical sector where an IBM CITE COMPUTER was used in the isomerization of butane.
+In each setting, real-time systems met the need of correct computation in a timely manner to avoid otherwise catastrophic outcomes: overloading of the telecommunications network and uncontrolled chemical reaction.
 
 \subsection{Modern Real-Time Systems}
 
-Summary: Modern RTS are now found in the same areas they began: aircraft, simulators, telecommunications, and industrial processes and have extended into more spaces.
-Real-time systems are found in autonomous (and non-autonomous vehicles), passenger aircraft, spacecraft, medical devices, and critical infrastructure.
-Modern RTS are not only concerned with safely executing control systems but also with reducing the Size, Weight and Power (SWaP) of devices.
-Modern RTS are also becoming more integrated with real-world dynamics by introducing .
-With the advent of CPS, RTS and Control Systems are further integrated.
-Modern RTS are not only converned with scheduling but also with SWaP.
+% Summary: Modern RTS are now found in the same areas they began: aircraft, simulators, telecommunications, and industrial processes and have extended into more spaces.
+% Real-time systems are found in autonomous (and non-autonomous vehicles), passenger aircraft, spacecraft, medical devices, and critical infrastructure.
+% Modern RTS are not only concerned with safely executing control systems but also with reducing the Size, Weight and Power (SWaP) of devices.
+% Modern RTS are also becoming more integrated with real-world dynamics by introducing .
+% With the advent of CPS, RTS and Control Systems are further integrated.
+% Modern RTS are not only converned with scheduling but also with SWaP.
+
+Modern real-time systems are found in the same areas where they began: passenger and military aircraft, telecommunications, and chemical process control.
+Real-time systems have also extended into autonomous (and non-autonomous) vehicles, spacecraft, medical devices, and critical infrastructure like dams, power stations, and water treatment plants.
+Where a microcontroller can be found, so can a real-time system.
+With ever smaller transistors, microcontrollers, and printed circuit boards, computing and control hardware is proliferating rapidly and becoming more intertwined with physical systems.
+These systems where physical dynamics, hardware, and software are so closely integrated are known as Cyber-Physical Systems (CPS).
+% CPSs are the foundation of "smart" infrastructure such as smart grids and smart homes and other connected dev
+%given rise to new concepts like the Internet of Things, Cloud Computing, Edge Computing, and Cyber-Physical Systems.
+The advent of CPSs has thus brought real-time systems and control systems closer together, magnifying the impact of advances in either either field on the other.
+Current real-time systems are now closely tied to the Size, Weight, and Power (SWaP)
+
 
 \subsection{Research Need}
-Growing number of devices, desire to lower SWaP, desire to integrate closely with physical world (CPS) require less pessimistic, more efficient, and more inclusive analysis.
+% Summary: Growing number of devices, desire to lower SWaP, desire to integrate closely with physical world (CPS) require less pessimistic, more efficient, and more inclusive analysis.
+The integration of Real-Time Systems and control in Cyber-Physical Systems combined with the desire to lower SWaP creates a need for less pessimistic and more efficient analysis.
+Consider the airbag deployment ECU example above.
+If the real-time schedulability analysis is too pessimistic, a system may be declared unschedulable (and thus, unsafe) when, in fact, it is schedulable and safe.
+This pessimistic analysis may cause designers to purchase faster or more powerful processors than necessary - wasting processor time and increasing the price of the system (for both the designer and the customer).
+Similarly, if the real-time schedulability analysis is too inefficient, moving tasks between processes online may be impossible (something something you can only computer schedulabilioty offline... blah blah blah)
 
 \subsection{Approach}
-Incorporate physical dynamics of the systems whose workloads are being scheduled so that physical dynamics may be leveraged for more efficient demand characterization and schedulability analysis.
-Furthermore, incorporating physical dynamics will allow system designers to visualize tradeoffs between real-time metrics and physical system dynamics.
+% > Incorporate physical dynamics of the systems whose workloads are being scheduled so that physical dynamics may be leveraged for more efficient demand characterization and schedulability analysis.
+% Furthermore, incorporating physical dynamics will allow system designers to visualize tradeoffs between real-time metrics and physical system dynamics.
+In addressing the need for less pessimistic and more efficient analysis, this work aims to incorporate physical system dynamics into real-time analysis to produce more efficient demand characterization and schedulability analysis while also enabling the codesign of hardware and software.
+Specifically, this work aims to show how limitations on physical dynamics can be leveraged to reduce computational complexity of real-time analysis (increasing efficiency) and provide more accurate bounds on computation time (decreasing pessimism).
+Furthermore, this work aims to demonstrate how physical system dynamics may be traded off with real-time system properties such as utilization, worst-case demand, and worst-case execution time.
 
 \subsection{Thesis}
 
-> Pull from NSF/NDSEG
+The main thesis of this work is:
+
+"Incorporating physical dynamics into real-time system analysis can reduce pessimism and increase efficiency of demand characterization and schedulability analysis while enabling codesign of physical and real-time systems." 
 
 \subsection{Contributions}
 
