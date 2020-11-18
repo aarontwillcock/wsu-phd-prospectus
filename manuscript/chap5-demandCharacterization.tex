@@ -1,13 +1,15 @@
-\section{Worst-Case Demand of Engine Control Tasks}   \label{chap:codesign}
+\section{Demand Characterization of an Engine Control Tasks}   \label{chap:codesign}
 
 \subsection{Introduction}
 
-Resource management is a key consideration in any real-time system. Pessimistic assumptions lead to overestimation of workload, which results in underutilization of the resources. On the other hand, workload underestimation can cause deadline misses.
-For a system with hard real-time requirements, missing deadlines can be catastrophic. An example is the powertrain control module (PCM) of a car. 
-The ignition system and fuel injection tasks, which are
-managed by the PCM, are initiated based on the crankshaft's relative position with respect to fixed points in its path of rotation. 
+Resource management is a key consideration in any real-time system.
+Pessimistic assumptions lead to overestimation of workload, which results in underutilization of the resources. On the other hand, workload underestimation can cause deadline misses.
+For a system with hard real-time requirements, missing deadlines can be catastrophic.
+An example is the powertrain control module (PCM) of a car \cite{noauthor_electricalelectronic_2008}. 
+The ignition system and fuel injection tasks, which are managed by the PCM, are initiated based on the crankshaft's relative position with respect to fixed points in its path of rotation. 
 %A task can have one or multiple job releases in a single rotation. 
-As the crankshaft's angular speed increases, the crankshaft reaches a given angle faster, hence increasing the number of job releases in a given time interval. As a result, at higher speeds, a larger number of jobs are released, and if not properly scheduled, some jobs could miss their deadlines.
+As the crankshaft's angular speed increases, the crankshaft reaches a given angle faster, hence increasing the number of job releases in a given time interval.
+As a result, at higher speeds, a larger number of jobs are released, and if not properly scheduled, some jobs could miss their deadlines.
 
 An engine's behavior is generally more stable at higher speeds due to frequent sensor and actuation updates. Hence, jobs released at higher speeds may have lower execution times~\cite{buttleKeynote}.
 To reflect this, the so-called engine-triggered tasks are modeled to have smaller execution times as the speed increases.
