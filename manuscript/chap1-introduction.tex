@@ -9,6 +9,7 @@
 Real-time systems are systems in which the utility of computation depends on logical and temporal correctness.
 Specifically, real-time systems must provide results that are computationally correct (logical correctness) and completed before the associated deadline (temporal correctness).
 Real-time systems are often present in safety-critical systems where incorrect or untimely operation leads to catastrophe.
+Consider, for example, the Electronic Control Unit (ECU) in a vehicle responsible for deploying airbags in the event of a crash \cite{hartl_airbag_1990}.
 The ECU is an on-board computer that must correctly calculate acceleration from the vehicle's accelerometers or Inertial Measurement Units (IMUs) to identify rapid acceleration associated with an automobile crash.
 Failure to correctly calculate acceleration could result in airbag deployment when there is no need (possibly causing a crash) or worse: no airbag deployment when there is, in fact, a crash resulting in the injury or death of the driver (and/or other occupants).
 Suppose, however, that the ECU correctly determines when the airbags must deploy.
