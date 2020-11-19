@@ -46,25 +46,6 @@ In Section~\ref{sec:knapsack}, we present a knapsack-based approach to find the 
 We provide some necessary conditions to reduce the search space in Section~\ref{sec:filterSeq} and describe the dominant sequence set in Section~\ref{sec:Summary}.
 Experimental results are presented in Section~\ref{sec:experimental} and the paper concludes in Section~\ref{sec:conclusion}.
 
-\subsection{Related Work}
-\label{sec:relatedWork}
-
-Usage of multiple worst-case execution times and periods for engine-controlled tasks was first studied by Kim et al. \cite{Rhythmictask}, where the authors proposed the rhythmic task model and obtained schedulability results assuming the dependency of a task's attributes on external physical events. However, the analysis is limited to a single AVR task scheduled along with periodic tasks using rate monotonic scheduling algorithm in which the AVR task has the highest priority.
-
-Biondi et al. \cite{2014Biondi} presented the calculation of the worst-case demand as a search problem in the speed domain and the infinite number of paths in the search tree was narrowed down by identifying certain paths that met a given criteria. A similar method was applied using rate monotonic~\cite{reponseTime} and EDF scheduling~\cite{Feasibility}.
-However, these works assume a constant acceleration between two jobs releases, which does not always result in the worst-case demand, as shown by Mohaqeqi et al. \cite{DRTPaper}.
-In one of the first works on EDF scheduling of AVR tasks, Guo and Baruah~\cite{guoPaper} developed a sufficient schedulability test based on a speed-up factor analysis. %\sandeep{Remove the description of [9] and [11] if needed for space.}
-
-Identifying the fact that the exact speed of rotation of the crankshaft may not be known, Biondi et al. \cite{realTimeAnalysis} proposed two methods to estimate the angular speed of the crankshaft.
-In a recent paper~\cite{schedTestBiondi}, Biondi et al. proposed a task model for expressing some practical features of engine control tasks and presented schedulability tests for engine control applications under EDF scheduling. 
-
-A complementary direction of research on AVR tasks was undertaken by Biondi et al.~\cite{BiondiOptim}, and focused on finding the boundary speeds of the modes to maximize the performance of the engine using an optimization based approach.
-
-Mohaqeqi et al. \cite{DRTPaper} partitioned the speed domain and constructed the corresponding digraph real-time (DRT) task graph to determine the worst-case demand of the AVR task by searching from each of the nodes of the DRT graph. Though such an approach gives the exact value of the worst-case demand of the AVR task, it considers many unnecessary paths, resulting in long computation times. 
-In this paper, we propose an algorithm to obtain the speed partitioning and to select a smaller subset of the paths considered by Mohaqeqi et al.~\cite{DRTPaper} to significantly reduce the computation time.
-
-%Though knapsack-based algorithms are used in other areas of research~\cite{cloudKnapsack,loadKnapsack,mobileKnapsack}, to the best knowledge of the authors, this is the first instance of its application to calculate the maximum demand of AVR tasks.
-
 \subsection{Preliminaries}
 \label{sec:prelims}
 
