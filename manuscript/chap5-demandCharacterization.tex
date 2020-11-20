@@ -200,7 +200,7 @@ In other words, the minimum inter-arrival time from a job released at $\omega(t_
 Let $\mathbb{W}$ be the set of all possible speed functions $\omega(t)$ that are feasible (i.e., $\omega(t)$ is any continuous function with acceleration between $\alpha_{\min}$ and $\alpha_{\max}$ and speeds between $\omega_{\min}$ and $\omega_{\max}$).
  For any such $\omega(t)$, considering that a computational job of an AVR task is released at time $t'$, we assume that the processor must successfully complete execution of this job by time $t' + \widetilde{T}(\omega(t'), \min(\Omega_1(\omega(t'), \alpha_{\max}),\omega_{max}))$; that is, the absolute deadline of this job coincides with the minimum time to complete a single rotation from a given speed $\omega(t')$. 
 % \aaron{Is this deadline assumption problematic? We claim to use implicit deadline but the above implies that any non-maximally accelerated task would be constrained deadline. Thoughts?} 
-We refer to an AVR task that sets deadlines in this way as a {\bf minimum angular deadline AVR task}~\cite{schedTestBiondi} and refer to the relative deadline of a job released at speed $\omega$ as 
+We refer to an AVR task that sets deadlines in this way as a {\bf minimum angular deadline AVR task}~\cite{biondi_modeling_2018} and refer to the relative deadline of a job released at speed $\omega$ as 
 %{\bf minimum relative deadline}, 
 $\tilde{d}(\omega) = \widetilde{T}(\omega(t'), \min(\Omega_1(\omega(t'), \alpha_{\max}),\omega_{max}))$.
 We may denote the {\em demand} of $\omega(t)$ over any $\delta$-length interval $[t_a, t_b]$ as $D_{\omega(t)}(t_a, t_b)$.
@@ -270,7 +270,7 @@ The goal, then, is to maximize demand (i.e., profit) over a time interval ($\del
 
 Since a dominant speed sequence is non-decreasing (Lemma~\ref{lemma:non-decreasing}), a job's execution time may contribute to the demand bound function $\dbf(\delta)$ more than once.
 As such, our knapsack problem is, in fact, a bounded knapsack problem.
-In addition, since  adjacent speeds in a dominant speed sequence must be reachable from one another (Definition \ref{def:reachable-speeds}), once an item, i.e., job, has been included in the knapsack, there is a finite number of jobs that can follow, making our problem a bounded precedence constraint knapsack problem (BPCKP)~\cite{PCKP_paper,PCKPpaper2}.
+In addition, since  adjacent speeds in a dominant speed sequence must be reachable from one another (Definition \ref{def:reachable-speeds}), once an item, i.e., job, has been included in the knapsack, there is a finite number of jobs that can follow, making our problem a bounded precedence constraint knapsack problem (BPCKP)~\cite{cho_depth-first_1997,johnson_knapsacks_1983}.
 Fig.~\ref{fig:Knapsack1} provides a visual example representation of our problem as a BPCKP.
 For clarity, the subscripts of the speeds are used to denote the precedence constraints.
 \begin{figure}
