@@ -11,12 +11,12 @@ The ignition system and fuel injection tasks, which are managed by the PCM, are 
 As the crankshaft's angular speed increases, the crankshaft reaches a given angle faster, hence increasing the number of job releases in a given time interval.
 As a result, at higher speeds, a larger number of jobs are released, and if not properly scheduled, some jobs could miss their deadlines.
 
-An engine's behavior is generally more stable at higher speeds due to frequent sensor and actuation updates. Hence, jobs released at higher speeds may have lower execution times~\cite{buttleKeynote}.
+An engine's behavior is generally more stable at higher speeds due to frequent sensor and actuation updates. Hence, jobs released at higher speeds may have lower execution times~\cite{dbuttle_real-time_nodate}.
 To reflect this, the so-called engine-triggered tasks are modeled to have smaller execution times as the speed increases.
 In addition, as the speed increases, the time taken to complete a rotation decreases and hence the inter-arrival time between two consecutive jobs also decreases.
 Since the traditional periodic task model~\cite{liu_scheduling_1973} assumes a constant time period for a task, applying it to define systems such as a vehicle with PCM would result in overly pessimistic utilization.
 To tackle this, a model called the adaptive variable rate (AVR) task model has been proposed to capture the behavior of engine-triggered tasks.
-An AVR task is defined by a set of modes, each of which is expressed by a range of speeds~\cite{buttleKeynote} and a constant execution time as shown in Fig.~\ref{fig:AVRImage}.
+An AVR task is defined by a set of modes, each of which is expressed by a range of speeds~\cite{dbuttle_real-time_nodate} and a constant execution time as shown in Fig.~\ref{fig:AVRImage}.
 
 To determine whether an AVR task is schedulable using EDF, the demand bound function (\dbf) is often used~\cite{biondi_response-time_2015,biondi_feasibility_2015} to measure the resource requirement over a given time interval. In a nutshell, \dbf~ determines the worst-case aggregate execution time of the jobs that have both the arrivals and deadlines within a time interval $[t_1,t_2]$.
 In general, the calculation of the worst-case demand of an AVR task is not straightforward.
@@ -70,7 +70,7 @@ As the rate of arrival of the crankshaft at a given angle varies with its angula
 Rather, at a higher speed, a larger number of instances (i.e., jobs) of each task occur, potentially increasing the resource requirement.
 
 While it is possible to determine the schedulability of a task set assuming that this increased resource requirement of an AVR task is its steady-state demand, doing so would lead to pessimistic analyses and hence resource underutilization.
-Moreover, the engine is more stable at higher speeds~\cite{buttleKeynote}.
+Moreover, the engine is more stable at higher speeds~\cite{dbuttle_real-time_nodate}.
 This allows jobs to have shorter execution times at higher crankshaft speeds.
 Hence, the execution time of AVR tasks is modeled as a function of the speed at which the jobs are released, as shown in Fig.~\ref{fig:AVRImage}.
 
