@@ -14,11 +14,11 @@ As a result, at higher speeds, a larger number of jobs are released, and if not 
 An engine's behavior is generally more stable at higher speeds due to frequent sensor and actuation updates. Hence, jobs released at higher speeds may have lower execution times~\cite{buttleKeynote}.
 To reflect this, the so-called engine-triggered tasks are modeled to have smaller execution times as the speed increases.
 In addition, as the speed increases, the time taken to complete a rotation decreases and hence the inter-arrival time between two consecutive jobs also decreases.
-Since the traditional periodic task model~\cite{Liu&Leyland} assumes a constant time period for a task, applying it to define systems such as a vehicle with PCM would result in overly pessimistic utilization.
+Since the traditional periodic task model~\cite{liu_scheduling_1973} assumes a constant time period for a task, applying it to define systems such as a vehicle with PCM would result in overly pessimistic utilization.
 To tackle this, a model called the adaptive variable rate (AVR) task model has been proposed to capture the behavior of engine-triggered tasks.
 An AVR task is defined by a set of modes, each of which is expressed by a range of speeds~\cite{buttleKeynote} and a constant execution time as shown in Fig.~\ref{fig:AVRImage}.
 
-To determine whether an AVR task is schedulable using EDF, the demand bound function (\dbf) is often used~\cite{reponseTime,Feasibility} to measure the resource requirement over a given time interval. In a nutshell, \dbf~ determines the worst-case aggregate execution time of the jobs that have both the arrivals and deadlines within a time interval $[t_1,t_2]$.
+To determine whether an AVR task is schedulable using EDF, the demand bound function (\dbf) is often used~\cite{biondi_response-time_2015,biondi_feasibility_2015} to measure the resource requirement over a given time interval. In a nutshell, \dbf~ determines the worst-case aggregate execution time of the jobs that have both the arrivals and deadlines within a time interval $[t_1,t_2]$.
 In general, the calculation of the worst-case demand of an AVR task is not straightforward.
 %Let us consider the example in Fig.~\ref{fig:AVRImage}. 
 Let us consider an example.
@@ -38,7 +38,7 @@ Hence, the demand depends on the relationship between the task's execution times
 \end{figure}
 
 Several methods have been proposed to calculate the \dbf~of an AVR task.
-Mohaqeqi et al.~\cite{DRTPaper} proposed an exact analysis, using the Digraph model~\cite{Digraph_Paper}, to transform an AVR task into a digraph to calculate the exact worst-case demand assuming that the crankshaft can have multiple acceleration values during a rotation.
+Mohaqeqi et al.~\cite{mohaqeqi_refinement_2017} proposed an exact analysis, using the Digraph model~\cite{stigge_digraph_2011}, to transform an AVR task into a digraph to calculate the exact worst-case demand assuming that the crankshaft can have multiple acceleration values during a rotation.
 While this approach represents the state-of-the-art technique, it is computationally intensive and unlikely to be suitable for large problem instances.
 In this paper, we propose a knapsack-based method to efficiently calculate the exact worst-case demand of an AVR task.
 
@@ -47,7 +47,7 @@ In this paper, we propose a knapsack-based method to efficiently calculate the e
 \item To determine the worst-case demand of an AVR task, the search for the dominant job sequence, i.e., one that results in the maximum demand over a given time interval, is modeled as a bounded precedence constraint knapsack problem.
 A dynamic programming based approach is presented to exactly and efficiently solve the problem.
 \item  The number of job sequences that need to be considered when calculating the worst-case demand of an AVR task is significantly reduced by exploiting the kinematic properties of the engine.
-\item Experimental results based on existing AVR task sets as well as randomly generated AVR task sets reveal that the proposed approach significantly outperforms the state-of-the-art technique~\cite{DRTPaper} in terms of computation time.
+\item Experimental results based on existing AVR task sets as well as randomly generated AVR task sets reveal that the proposed approach significantly outperforms the state-of-the-art technique~\cite{mohaqeqi_refinement_2017} in terms of computation time.
 \end{enumerate}
 
 The rest of the paper is organized as follows.
@@ -120,9 +120,9 @@ is~\cite{hcVerma, 2014Biondi}
     \Omega(\omega(t),\alpha, \Delta \theta) = \sqrt[]{\omega(t)^2+2\alpha \Delta \theta}.
 \end{equation}
 
-Similar to the work by Mohaqeqi et al.~\cite{DRTPaper} we assume that $\Delta \theta$ specifies the crankshaft revolution in terms of the number of rotations, i.e., $ \Delta \theta = 1$ indicates a complete rotation.
+Similar to the work by Mohaqeqi et al.~\cite{mohaqeqi_refinement_2017} we assume that $\Delta \theta$ specifies the crankshaft revolution in terms of the number of rotations, i.e., $ \Delta \theta = 1$ indicates a complete rotation.
 Hence, according to Equation~\ref{eqn:rotation}, assuming an initial speed of $\omega(t)$ at time $t$, and a constant acceleration of $\alpha$, the speed after one complete rotation is $\Omega_1(\omega(t),\alpha) = \sqrt[]{\omega(t)^2+2\alpha}$.
-In general, the speed after $n$ complete rotations is~\cite{DRTPaper},
+In general, the speed after $n$ complete rotations is~\cite{mohaqeqi_refinement_2017},
 \begin{equation}
 \label{eqn:rotation-n}
     \Omega_n(\omega(t),\alpha) = \sqrt[]{\omega(t)^2+2 n \alpha}.
@@ -130,16 +130,16 @@ In general, the speed after $n$ complete rotations is~\cite{DRTPaper},
 \end{property}
 
 
-Biondi et al. \cite{reponseTime} showed that multiple AVR tasks activated by the same source and, which have the same angular phase and period can be modeled as a single AVR task, called the representative AVR task.
+Biondi et al. \cite{biondi_response-time_2015} showed that multiple AVR tasks activated by the same source and, which have the same angular phase and period can be modeled as a single AVR task, called the representative AVR task.
 Hence, the analysis in this paper can also be extended to multiple AVR tasks.
 
 
 \paragraph{Minimum Job Inter-arrival Times}
 
 The minimum inter-arrival time is the minimum time duration from the release of a job at $t_1$ when the speed is $\omega(t_1)$ to the next job release at $t_2$ and speed $\omega(t_2)$. We denote minimum inter-arrival time by $\widetilde{T}(\omega(t_1),\omega(t_2))$.
-In order to overcome the drawback of using constant acceleration between job releases as was assumed in most existing work~\cite{reponseTime,Feasibility,2014Biondi}, we consider the possibility of acceleration variations between two job releases similar to the work by Mohaqeqi et al.~\cite{DRTPaper}.
+In order to overcome the drawback of using constant acceleration between job releases as was assumed in most existing work~\cite{biondi_response-time_2015,biondi_feasibility_2015,2014Biondi}, we consider the possibility of acceleration variations between two job releases similar to the work by Mohaqeqi et al.~\cite{mohaqeqi_refinement_2017}.
 
-The minimum inter-arrival time equation by Mohaqeqi et al.~\cite{DRTPaper} is briefly presented here using simplified notation for readability.
+The minimum inter-arrival time equation by Mohaqeqi et al.~\cite{mohaqeqi_refinement_2017} is briefly presented here using simplified notation for readability.
 To get the minimum inter-arrival time from any speed $\omega$, the crankshaft has to be maximally accelerated from $\omega$ to reach $\omega_{p}$, the peak speed, and then maximally decelerated to reach a target speed $f$ in a single rotation,
 % \begin{equation}\label{eq:peakSpeed}
 % \omega_{peak} = \sqrt{\frac{2\alpha_{\min}\alpha_{\max}+\alpha_{\min}\omega(t_1)^2-\alpha_{\max}\omega(t_2)^2}{\alpha_{\min} - \alpha_{\max}}}.
@@ -223,7 +223,7 @@ We may denote the {\em demand} of $\omega(t)$ over any $\delta$-length interval 
 \end{equation}
 Considering any speed function $\omega(t)$ with job releases at speeds/times $\omega(t_1),\omega(t_2),\ldots$ in some interval $[t_a, t_b]$, it is clear that if we modify the function so that the crankshaft traverses one rotation in the minimum time (by Equation~\ref{eq:minTime}), then this will only lead to demand that exceeds or equals the original demand of $\omega(t)$.
 Therefore, without loss of generality, we can restrict $\mathbb{W}$ to speed functions that traverse the rotation between job releases in the minimum possible time.
- This is essentially the observation made by Mohaqeqi et al.~\cite{DRTPaper} to reduce the problem of finding the worst-case $\omega(t) \in \mathbb{W}$ to the problem of identifying \emph{sequences of job release speeds}; i.e., the speed of the job releases entirely characterizes the speed function.
+ This is essentially the observation made by Mohaqeqi et al.~\cite{mohaqeqi_refinement_2017} to reduce the problem of finding the worst-case $\omega(t) \in \mathbb{W}$ to the problem of identifying \emph{sequences of job release speeds}; i.e., the speed of the job releases entirely characterizes the speed function.
 That is, we can completely describe any speed function $\omega(t)$ with job releases at times $t_1, t_2, \ldots$ instead by a sequence of speeds $(\omega_1 = \omega(t_1), \omega_2 = \omega(t_2), \ldots)$.
  Thus, after this point, we drop the speed-time function $\omega(t)$ and focus only on sequences of speeds.
 
@@ -398,7 +398,7 @@ This section formally defines Lemma \ref{lemma:non-decreasing} and Lemma \ref{le
 referenced in the above BPCKP approach.
 
 The main challenge in determining the worst-case demand of an AVR task is the variation in the execution time, which varies as a function of the angular speed. 
-Earlier work, e.g., Mohaqeqi et al.~\cite{DRTPaper} showed that the speed sequences that maximize demand contain only speeds from some finite set.
+Earlier work, e.g., Mohaqeqi et al.~\cite{mohaqeqi_refinement_2017} showed that the speed sequences that maximize demand contain only speeds from some finite set.
  Mohaqeqi et al. used this set to design a DRT task which considers all possible feasible sequences of speeds.
  However, this can still lead to a large number of speed permutations to check when searching for the worst-case demand.
  As mentioned in the related work section, we show that we can greatly limit the sequences that need to be considered in the \emph{dominant speed sequence set} when we consider minimum angular deadline AVR tasks with $\alpha_{max} = |\alpha_{min}|$.
@@ -409,7 +409,7 @@ In this section, we derive the necessary characteristics of a dominant speed seq
 \paragraph{Properties of Minimum Inter-arrival Times and Deadlines}\label{subsec:min-arrival-times}
 
 We begin by establishing some useful properties regarding the minimum inter-arrival time function $\widetilde{T}(\omega, f)$ (Equation~\ref{eq:minTime}) that will be used to prove some characteristics of dominant speed sequences.
- The first property is that $\widetilde{T}(\omega, f)$ is always positive, which was already proved in previous work on AVR tasks~\cite{DRTPaper}.
+ The first property is that $\widetilde{T}(\omega, f)$ is always positive, which was already proved in previous work on AVR tasks~\cite{mohaqeqi_refinement_2017}.
 We abuse terminology and refer to some lemmas as properties to make supporting concepts easier to read.
 
 \begin{property}[Positive Minimum Inter-arrival Times] \label{prop:pos-min-interarrival}
@@ -983,7 +983,7 @@ Together, Lemmas \ref{lemma:non-decreasing}, \ref{lemma:startSpeed}, and \ref{le
 \label{sec:experimental}
 
 
-In this section, we compare our algorithm against the DRT algorithm~\cite{DRTPaper}, which is the state-of-the-art technique for solving the problem under consideration. Our approach explores a subset of speeds considered by Mohaqeqi et al.~\cite{DRTPaper}, and so we inherit the same upper bound on number of speeds: $O\left(m\cdot\frac{\omega_{max}^2-\omega_{min}^2}{2\cdot\alpha_{max}}\right)$. Even though our algorithm shares similar complexity with the DRT algorithm with respect to the speeds, we eliminate several unnecessary traversals through these speeds, which significantly reduces the computational complexity of our algorithm. We compare the accuracy and runtime of the algorithms using two experiments. For all experiments, a maximum acceleration of \unit[600,000]$\text{rev/min}^2$ and maximum deceleration of \unit[-600,000]$\text{rev/min}^2$ were assumed as in previous work~\cite{reponseTime,Feasibility,DRTPaper,Davis}. In each experiment, the worst-case demand is calculated for 100 time intervals in $[0,1s]$
+In this section, we compare our algorithm against the DRT algorithm~\cite{mohaqeqi_refinement_2017}, which is the state-of-the-art technique for solving the problem under consideration. Our approach explores a subset of speeds considered by Mohaqeqi et al.~\cite{mohaqeqi_refinement_2017}, and so we inherit the same upper bound on number of speeds: $O\left(m\cdot\frac{\omega_{max}^2-\omega_{min}^2}{2\cdot\alpha_{max}}\right)$. Even though our algorithm shares similar complexity with the DRT algorithm with respect to the speeds, we eliminate several unnecessary traversals through these speeds, which significantly reduces the computational complexity of our algorithm. We compare the accuracy and runtime of the algorithms using two experiments. For all experiments, a maximum acceleration of \unit[600,000]$\text{rev/min}^2$ and maximum deceleration of \unit[-600,000]$\text{rev/min}^2$ were assumed as in previous work~\cite{biondi_response-time_2015,biondi_feasibility_2015,mohaqeqi_refinement_2017,davis_schedulability_2014}. In each experiment, the worst-case demand is calculated for 100 time intervals in $[0,1s]$
 %$[0,10ms]$ to $[0,1s]$
 in steps of \unit[10]{ms}. %, i.e., $\delta = 10, 20, \ldots, 1000 ms$. 
 %Please note this takes longer than calculating demand over only $[0,1s]$. This is because the inter-arrival times ($\widetilde{T}$) are in decimals and it is not necessary that the time left in the recursion loop in Alg.~\ref{algo} is in multiples of \unit[10]{$ms$}.  
@@ -991,11 +991,11 @@ The experiments were performed using Python 3.6.5 on a 3.40 GHz, quad-core proce
 While the results are platform dependent, the general trend showing the relative performance of the proposed approach against the DRT algorithm should be representative.
 Each experiment is run 10 times and the average values are reported. The code and the original data used for this publication can be found on the artifact evaluation page~\cite{githubLink}.
 
-In the first experiment, two task sets were used. The first task set appeared in existing publications~\cite{2014Biondi,DRTPaper} (Table~\ref{fig:taskset-1}). Note that this task set is not ideal, as some boundary speeds can be reached from the others in an integer number of rotations using maximum acceleration, which simplifies the search for the worst-case demand. The results are shown in Table~\ref{fig:Exp1Comp}(a). Though both approaches were able to find the worst-case demand, our algorithm is 13.5 times faster.
+In the first experiment, two task sets were used. The first task set appeared in existing publications~\cite{2014Biondi,mohaqeqi_refinement_2017} (Table~\ref{fig:taskset-1}). Note that this task set is not ideal, as some boundary speeds can be reached from the others in an integer number of rotations using maximum acceleration, which simplifies the search for the worst-case demand. The results are shown in Table~\ref{fig:Exp1Comp}(a). Though both approaches were able to find the worst-case demand, our algorithm is 13.5 times faster.
 
 \begin{table}
   \begin{center}
-  \caption{Task set used by existing work~\cite{2014Biondi,DRTPaper}}
+  \caption{Task set used by existing work~\cite{2014Biondi,mohaqeqi_refinement_2017}}
   \label{fig:taskset-1}
   \resizebox{\linewidth}{!}{%
       \begin{tabular}{r | l l l l l l | l} \hline
@@ -1064,7 +1064,7 @@ The results are shown in Table~\ref{fig:Exp1Comp}(b). As before both approaches 
 \label{fig:finalgraph}
 \end{figure}
 
-For the second experiment, we generated multiple AVR tasks using an algorithm presented by Biondi et al.~\cite{reponseTime}. In this algorithm, multiple AVR tasks are modeled as a single task, called the representative AVR task, by combining the execution times and the boundaries speeds. The modes of the representative AVR task are generated by assuming a fixed value of 0.25 for the maximum utilization factor of the modes. Again, the same worst-case demands were found by both algorithm, but overall, our approach is 146 times faster on average and up to 250 times faster, as shown in Fig.~\ref{fig:finalgraph}.
+For the second experiment, we generated multiple AVR tasks using an algorithm presented by Biondi et al.~\cite{biondi_response-time_2015}. In this algorithm, multiple AVR tasks are modeled as a single task, called the representative AVR task, by combining the execution times and the boundaries speeds. The modes of the representative AVR task are generated by assuming a fixed value of 0.25 for the maximum utilization factor of the modes. Again, the same worst-case demands were found by both algorithm, but overall, our approach is 146 times faster on average and up to 250 times faster, as shown in Fig.~\ref{fig:finalgraph}.
 
 %  \sandeep{This is how I calculated the confidence intervals and runtime averages:
 %  For tasksets-1 and 2, run both the algorithms on each of the tasksets 10 times and calculate the average runtime of an algorithm per taskset. The improvement in runtime over a taskset is the ratio of the runtime average of the DRT algorithm on the given taskset and the runtime average of our algorithm on the same taskset. I do this because we have a table showing the average runtimes of our algorithm and the DRT algorithm over each of the tasksets.
