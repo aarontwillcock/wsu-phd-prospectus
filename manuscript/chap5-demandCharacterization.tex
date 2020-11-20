@@ -14,12 +14,19 @@ As a result, at higher speeds, a larger number of jobs are released, and if not 
 An engine's behavior is generally more stable at higher speeds due to frequent sensor and actuation updates. Hence, jobs released at higher speeds may have lower execution times~\cite{buttleKeynote}.
 To reflect this, the so-called engine-triggered tasks are modeled to have smaller execution times as the speed increases.
 In addition, as the speed increases, the time taken to complete a rotation decreases and hence the inter-arrival time between two consecutive jobs also decreases.
-Since the traditional periodic task model~\cite{Liu&Leyland} assumes a constant time period for a task, applying it to define systems such as a vehicle with PCM would result in overly pessimistic utilization. To tackle this, a model called the adaptive variable rate (AVR) task model has been proposed to capture the behavior of engine-triggered tasks. An AVR task is defined by a set of modes, each of which is expressed by a range of speeds~\cite{buttleKeynote} and a constant execution time as shown in Fig.~\ref{fig:AVRImage}.
+Since the traditional periodic task model~\cite{Liu&Leyland} assumes a constant time period for a task, applying it to define systems such as a vehicle with PCM would result in overly pessimistic utilization.
+To tackle this, a model called the adaptive variable rate (AVR) task model has been proposed to capture the behavior of engine-triggered tasks.
+An AVR task is defined by a set of modes, each of which is expressed by a range of speeds~\cite{buttleKeynote} and a constant execution time as shown in Fig.~\ref{fig:AVRImage}.
 
 To determine whether an AVR task is schedulable using EDF, the demand bound function (\dbf) is often used~\cite{reponseTime,Feasibility} to measure the resource requirement over a given time interval. In a nutshell, \dbf~ determines the worst-case aggregate execution time of the jobs that have both the arrivals and deadlines within a time interval $[t_1,t_2]$.
 In general, the calculation of the worst-case demand of an AVR task is not straightforward.
 %Let us consider the example in Fig.~\ref{fig:AVRImage}. 
-Let us consider an example. In a time interval $[t_1,t_2]$, assume 15 jobs are released at the highest allowable speed with each job having an execution time of \unit[50]{$\mu s$}. On the other hand, during the same duration, assume 10 job releases are possible at the lowest speed with each job having an execution time of \unit[100]{$\mu$s}. The demand when the jobs are released at the lowest speed (\unit[1,000]{$\mu$s}) is greater than when the jobs are released at the highest speed (\unit[750]{$\mu s$}). Suppose instead that the jobs that are released at the highest speed have an execution time of \unit[70]{$\mu s$}. In this case, the demand of these jobs is greater than the demand of the jobs that are released at the lowest speed. 
+Let us consider an example.
+In a time interval $[t_1,t_2]$, assume 15 jobs are released at the highest allowable speed with each job having an execution time of \unit[50]{$\mu s$}.
+On the other hand, during the same duration, assume 10 job releases are possible at the lowest speed with each job having an execution time of \unit[100]{$\mu$s}.
+The demand when the jobs are released at the lowest speed (\unit[1,000]{$\mu$s}) is greater than when the jobs are released at the highest speed (\unit[750]{$\mu s$}).
+Suppose instead that the jobs that are released at the highest speed have an execution time of \unit[70]{$\mu s$}.
+In this case, the demand of these jobs is greater than the demand of the jobs that are released at the lowest speed. 
 %10 jobs are released at the highest speed and 4 job releases are possible at the lowest speed, during the same time interval, the demand is higher in the former case. 
 Hence, the demand depends on the relationship between the task's execution times and speeds, as well as the acceleration profiles of the engine.  
 
@@ -30,11 +37,15 @@ Hence, the demand depends on the relationship between the task's execution times
 \label{fig:AVRImage}
 \end{figure}
 
-Several methods have been proposed to calculate the \dbf~of an AVR task. Mohaqeqi et al.~\cite{DRTPaper} proposed an exact analysis, using the Digraph model~\cite{Digraph_Paper}, to transform an AVR task into a digraph to calculate the exact worst-case demand assuming that the crankshaft can have multiple acceleration values during a rotation. While this approach represents the state-of-the-art technique, it is computationally intensive and unlikely to be suitable for large problem instances. In this paper, we propose a knapsack-based method to efficiently calculate the exact worst-case demand of an AVR task.
+Several methods have been proposed to calculate the \dbf~of an AVR task.
+Mohaqeqi et al.~\cite{DRTPaper} proposed an exact analysis, using the Digraph model~\cite{Digraph_Paper}, to transform an AVR task into a digraph to calculate the exact worst-case demand assuming that the crankshaft can have multiple acceleration values during a rotation.
+While this approach represents the state-of-the-art technique, it is computationally intensive and unlikely to be suitable for large problem instances.
+In this paper, we propose a knapsack-based method to efficiently calculate the exact worst-case demand of an AVR task.
 
 \noindent \textbf{Contributions}: The main contributions of this paper are:
 \begin{enumerate}
-\item To determine the worst-case demand of an AVR task, the search for the dominant job sequence, i.e., one that results in the maximum demand over a given time interval, is modeled as a bounded precedence constraint knapsack problem. A dynamic programming based approach is presented to exactly and efficiently solve the problem.
+\item To determine the worst-case demand of an AVR task, the search for the dominant job sequence, i.e., one that results in the maximum demand over a given time interval, is modeled as a bounded precedence constraint knapsack problem.
+A dynamic programming based approach is presented to exactly and efficiently solve the problem.
 \item  The number of job sequences that need to be considered when calculating the worst-case demand of an AVR task is significantly reduced by exploiting the kinematic properties of the engine.
 \item Experimental results based on existing AVR task sets as well as randomly generated AVR task sets reveal that the proposed approach significantly outperforms the state-of-the-art technique~\cite{DRTPaper} in terms of computation time.
 \end{enumerate}
@@ -49,13 +60,19 @@ Experimental results are presented in Section~\ref{sec:experimental} and the pap
 \subsection{Preliminaries}
 \label{sec:prelims}
 
-In this section, we provide some background materials on the engine and its properties and introduce our task model. We also formally define the problem.
+In this section, we provide some background materials on the engine and its properties and introduce our task model.
+We also formally define the problem.
 \paragraph{Task Model}
 Adaptive variable rate (AVR) tasks are triggered at certain angles with respect to the top dead center position of the crankshaft, unlike periodic tasks which release jobs at regular time intervals.
-For example, consider the different stages of fuel ignition in a vehicle as shown in Fig.~\ref{fig:Engine}. For optimal performance of the engine, fuel injection should occur at a precise angle. As the rate of arrival of the crankshaft at a given angle varies with its angular speed, AVR tasks do not have a fixed period. Rather, at a higher speed, a larger number of instances (i.e., jobs) of each task occur, potentially increasing the resource requirement.
+For example, consider the different stages of fuel ignition in a vehicle as shown in Fig.~\ref{fig:Engine}.
+For optimal performance of the engine, fuel injection should occur at a precise angle.
+As the rate of arrival of the crankshaft at a given angle varies with its angular speed, AVR tasks do not have a fixed period.
+Rather, at a higher speed, a larger number of instances (i.e., jobs) of each task occur, potentially increasing the resource requirement.
 
 While it is possible to determine the schedulability of a task set assuming that this increased resource requirement of an AVR task is its steady-state demand, doing so would lead to pessimistic analyses and hence resource underutilization.
-Moreover, the engine is more stable at higher speeds~\cite{buttleKeynote}. This allows jobs to have shorter execution times at higher crankshaft speeds. Hence, the execution time of AVR tasks is modeled as a function of the speed at which the jobs are released, as shown in Fig.~\ref{fig:AVRImage}.
+Moreover, the engine is more stable at higher speeds~\cite{buttleKeynote}.
+This allows jobs to have shorter execution times at higher crankshaft speeds.
+Hence, the execution time of AVR tasks is modeled as a function of the speed at which the jobs are released, as shown in Fig.~\ref{fig:AVRImage}.
 
 %PNG Graphic
 %\begin{figure}
@@ -81,13 +98,18 @@ $\forall \omega \in (\omega_{rb_{i-1}},\omega_{rb_i}]$, speed $\omega$ is in the
 We further define $\mathbf{\Omega_{rb}}(\omega)$ to be all the right boundary speeds larger than $\omega$ that are reachable (defined later in Section~\ref{sec:prelims}). 
 %As the staircase function is made of a series of steps, we use the terms steps and modes interchangeably. 
 %\sandeep{If we don't use steps , we can remove this.}
-The minimum and maximum allowable speeds of rotation of the crankshaft are represented by \(\omega_{rb_0}\) and \(\omega_{rb_m}\) respectively.  For convenience, we refer to %these special right boundary speeds 
+The minimum and maximum allowable speeds of rotation of the crankshaft are represented by \(\omega_{rb_0}\) and \(\omega_{rb_m}\) respectively.
+ For convenience, we refer to %these special right boundary speeds 
 them as $\omega_{\min}$ and $\omega_{\max}$, respectively and assume $\omega \geq 0, \, \forall \omega \in [\omega_{\min},\omega_{\max}]$, where $\omega$ is assumed to be in $\text{rev/min}$.
 In addition, the instantaneous speed at a given time $t$ is denoted as $\omega(t)$. %Alternatively, we also use the notation $\omega_\ell$ to represent the crankshaft speed at time $t_\ell$.
 A table of notations can be found in Appendix \ref{appendix:engCtrl-table-of-notation}.
 
-The maximum allowable acceleration and deceleration are denoted by \(\alpha_{\max}\) and \(\alpha_{\min}\), respectively, both assumed to be in $\text{rev/min}^2$. In this paper, we assume $\alpha_{max}=|\alpha_{min}|$.
-The execution time of the $i^{\rm th}$ mode is represented by $c_i$. Additionally, the execution time corresponding to a speed $\omega(t)$, is denoted by $c(\omega(t))$. We assume that a job is released at the top dead center position, which we consider as the beginning of the rotation. Thus, a job's execution time is determined by the speed of the crankshaft at the beginning of its the rotation.
+The maximum allowable acceleration and deceleration are denoted by \(\alpha_{\max}\) and \(\alpha_{\min}\), respectively, both assumed to be in $\text{rev/min}^2$.
+In this paper, we assume $\alpha_{max}=|\alpha_{min}|$.
+The execution time of the $i^{\rm th}$ mode is represented by $c_i$.
+Additionally, the execution time corresponding to a speed $\omega(t)$, is denoted by $c(\omega(t))$.
+We assume that a job is released at the top dead center position, which we consider as the beginning of the rotation.
+Thus, a job's execution time is determined by the speed of the crankshaft at the beginning of its the rotation.
 
 \begin{property}[Speed After $n$ Rotations]
 Given an initial speed of $\omega(t)$ at time $t$ and a constant acceleration $\alpha$,
@@ -98,7 +120,9 @@ is~\cite{hcVerma, 2014Biondi}
     \Omega(\omega(t),\alpha, \Delta \theta) = \sqrt[]{\omega(t)^2+2\alpha \Delta \theta}.
 \end{equation}
 
-Similar to the work by Mohaqeqi et al.~\cite{DRTPaper} we assume that $\Delta \theta$ specifies the crankshaft revolution in terms of the number of rotations, i.e., $ \Delta \theta = 1$ indicates a complete rotation. Hence, according to Equation~\ref{eqn:rotation}, assuming an initial speed of $\omega(t)$ at time $t$, and a constant acceleration of $\alpha$, the speed after one complete rotation is $\Omega_1(\omega(t),\alpha) = \sqrt[]{\omega(t)^2+2\alpha}$. In general, the speed after $n$ complete rotations is~\cite{DRTPaper},
+Similar to the work by Mohaqeqi et al.~\cite{DRTPaper} we assume that $\Delta \theta$ specifies the crankshaft revolution in terms of the number of rotations, i.e., $ \Delta \theta = 1$ indicates a complete rotation.
+Hence, according to Equation~\ref{eqn:rotation}, assuming an initial speed of $\omega(t)$ at time $t$, and a constant acceleration of $\alpha$, the speed after one complete rotation is $\Omega_1(\omega(t),\alpha) = \sqrt[]{\omega(t)^2+2\alpha}$.
+In general, the speed after $n$ complete rotations is~\cite{DRTPaper},
 \begin{equation}
 \label{eqn:rotation-n}
     \Omega_n(\omega(t),\alpha) = \sqrt[]{\omega(t)^2+2 n \alpha}.
@@ -106,14 +130,17 @@ Similar to the work by Mohaqeqi et al.~\cite{DRTPaper} we assume that $\Delta \t
 \end{property}
 
 
-Biondi et al. \cite{reponseTime} showed that multiple AVR tasks activated by the same source and, which have the same angular phase and period can be modeled as a single AVR task, called the representative AVR task. Hence, the analysis in this paper can also be extended to multiple AVR tasks.
+Biondi et al. \cite{reponseTime} showed that multiple AVR tasks activated by the same source and, which have the same angular phase and period can be modeled as a single AVR task, called the representative AVR task.
+Hence, the analysis in this paper can also be extended to multiple AVR tasks.
 
 
 \paragraph{Minimum Job Inter-arrival Times}
 
-The minimum inter-arrival time is the minimum time duration from the release of a job at $t_1$ when the speed is $\omega(t_1)$ to the next job release at $t_2$ and speed $\omega(t_2)$. We denote minimum inter-arrival time by $\widetilde{T}(\omega(t_1),\omega(t_2))$. In order to overcome the drawback of using constant acceleration between job releases as was assumed in most existing work~\cite{reponseTime,Feasibility,2014Biondi}, we consider the possibility of acceleration variations between two job releases similar to the work by Mohaqeqi et al.~\cite{DRTPaper}.
+The minimum inter-arrival time is the minimum time duration from the release of a job at $t_1$ when the speed is $\omega(t_1)$ to the next job release at $t_2$ and speed $\omega(t_2)$. We denote minimum inter-arrival time by $\widetilde{T}(\omega(t_1),\omega(t_2))$.
+In order to overcome the drawback of using constant acceleration between job releases as was assumed in most existing work~\cite{reponseTime,Feasibility,2014Biondi}, we consider the possibility of acceleration variations between two job releases similar to the work by Mohaqeqi et al.~\cite{DRTPaper}.
 
-The minimum inter-arrival time equation by Mohaqeqi et al.~\cite{DRTPaper} is briefly presented here using simplified notation for readability. To get the minimum inter-arrival time from any speed $\omega$, the crankshaft has to be maximally accelerated from $\omega$ to reach $\omega_{p}$, the peak speed, and then maximally decelerated to reach a target speed $f$ in a single rotation,
+The minimum inter-arrival time equation by Mohaqeqi et al.~\cite{DRTPaper} is briefly presented here using simplified notation for readability.
+To get the minimum inter-arrival time from any speed $\omega$, the crankshaft has to be maximally accelerated from $\omega$ to reach $\omega_{p}$, the peak speed, and then maximally decelerated to reach a target speed $f$ in a single rotation,
 % \begin{equation}\label{eq:peakSpeed}
 % \omega_{peak} = \sqrt{\frac{2\alpha_{\min}\alpha_{\max}+\alpha_{\min}\omega(t_1)^2-\alpha_{\max}\omega(t_2)^2}{\alpha_{\min} - \alpha_{\max}}}.
 % \end{equation}
@@ -121,7 +148,8 @@ The minimum inter-arrival time equation by Mohaqeqi et al.~\cite{DRTPaper} is br
 \omega_p(\omega,f) = \frac{\sqrt{2\omega^2 + 2f^2 + 2\alpha_{\max}}}{2}.
 \end{equation}
 
-However, if $\omega_{p}>\omega_{max}$, the crankshaft has to maximally accelerate from $\omega$ to $\omega_{max}$, stay at that speed for some time and then maximally decelerate to $f$. The two cases are defined below and presented in Figure \ref{fig:mint}:
+However, if $\omega_{p}>\omega_{max}$, the crankshaft has to maximally accelerate from $\omega$ to $\omega_{max}$, stay at that speed for some time and then maximally decelerate to $f$.
+The two cases are defined below and presented in Figure \ref{fig:mint}:
 % \begin{alignat}{3}\label{minTime}
 %     &\widetilde{T}(\omega(t_2),\omega(t_1)) = \nonumber &\\
 %     &\left\{
@@ -156,23 +184,28 @@ However, if $\omega_{p}>\omega_{max}$, the crankshaft has to maximally accelerat
       \label{fig:mintMax}
   \label{mintMax}
 %\caption{Minimum interarrival time $\widetilde{T}(\omega,f)$ between speeds $\omega$ and $f$ where (a) $\omega_p(\omega,f) \leq \omega_{\max}$ and (b) $\omega_p(\omega,f) > \omega_{\max}$. Green, ascending lines represent periods of maximum acceleration, $\alpha_{\max}$, yellow, flat lines represent periods of zero acceleration, $\alpha = 0$, and red, descending lines represent periods of maximum deceleration, $\alpha_{\min}$.}
-\caption{Minimum interarrival time $\widetilde{T}(\omega,f)$ between speeds $\omega$ and $f$ where (a) $\omega_p(\omega,f) \leq \omega_{\max}$ and (b) $\omega_p(\omega,f) > \omega_{\max}$. Ascending, flat, and descending lines represent periods of maximum ($\alpha_{\max}$), zero, and  minimum ($\alpha_{\min}$) acceleration, respectively.}
+\caption{Minimum interarrival time $\widetilde{T}(\omega,f)$ between speeds $\omega$ and $f$ where (a) $\omega_p(\omega,f) \leq \omega_{\max}$ and (b) $\omega_p(\omega,f) > \omega_{\max}$.
+Ascending, flat, and descending lines represent periods of maximum ($\alpha_{\max}$), zero, and  minimum ($\alpha_{\min}$) acceleration, respectively.}
 \label{fig:mint}
 \end{figure}
 
 \begin{property}[Reversability of Inter-Arrival Times]
 \label{T-reversal}
-$\widetilde{T}(\omega(t_1),\omega(t_2)) = \widetilde{T}(\omega(t_2),\omega(t_1))$. In other words, the minimum inter-arrival time from a job released at $\omega(t_1)$ to a job released at $\omega(t_2)$ is equal to the inter-arrival time when the speeds are in the reverse order.
+$\widetilde{T}(\omega(t_1),\omega(t_2)) = \widetilde{T}(\omega(t_2),\omega(t_1))$.
+In other words, the minimum inter-arrival time from a job released at $\omega(t_1)$ to a job released at $\omega(t_2)$ is equal to the inter-arrival time when the speeds are in the reverse order.
 \end{property} 
 
 
 \paragraph{AVR Task Demand}
-Let $\mathbb{W}$ be the set of all possible speed functions $\omega(t)$ that are feasible (i.e., $\omega(t)$ is any continuous function with acceleration between $\alpha_{\min}$ and $\alpha_{\max}$ and speeds between $\omega_{\min}$ and $\omega_{\max}$).  For any such $\omega(t)$, considering that a computational job of an AVR task is released at time $t'$, we assume that the processor must successfully complete execution of this job by time $t' + \widetilde{T}(\omega(t'), \min(\Omega_1(\omega(t'), \alpha_{\max}),\omega_{max}))$; that is, the absolute deadline of this job coincides with the minimum time to complete a single rotation from a given speed $\omega(t')$. 
+Let $\mathbb{W}$ be the set of all possible speed functions $\omega(t)$ that are feasible (i.e., $\omega(t)$ is any continuous function with acceleration between $\alpha_{\min}$ and $\alpha_{\max}$ and speeds between $\omega_{\min}$ and $\omega_{\max}$).
+ For any such $\omega(t)$, considering that a computational job of an AVR task is released at time $t'$, we assume that the processor must successfully complete execution of this job by time $t' + \widetilde{T}(\omega(t'), \min(\Omega_1(\omega(t'), \alpha_{\max}),\omega_{max}))$; that is, the absolute deadline of this job coincides with the minimum time to complete a single rotation from a given speed $\omega(t')$. 
 % \aaron{Is this deadline assumption problematic? We claim to use implicit deadline but the above implies that any non-maximally accelerated task would be constrained deadline. Thoughts?} 
 We refer to an AVR task that sets deadlines in this way as a {\bf minimum angular deadline AVR task}~\cite{schedTestBiondi} and refer to the relative deadline of a job released at speed $\omega$ as 
 %{\bf minimum relative deadline}, 
 $\tilde{d}(\omega) = \widetilde{T}(\omega(t'), \min(\Omega_1(\omega(t'), \alpha_{\max}),\omega_{max}))$.
-We may denote the {\em demand} of $\omega(t)$ over any $\delta$-length interval $[t_a, t_b]$ as $D_{\omega(t)}(t_a, t_b)$.  $D_{\omega(t)}(t_a, t_b)$ represents the total execution requirement of jobs released by the speed function with both arrival times and absolute deadline in the interval $[t_a, t_b]$.  More formally, if $\{t_1, t_2, \ldots\}$ is the set of times (in order) where the crankshaft triggers job releases following the speed function $\omega(t)$, then:
+We may denote the {\em demand} of $\omega(t)$ over any $\delta$-length interval $[t_a, t_b]$ as $D_{\omega(t)}(t_a, t_b)$.
+ $D_{\omega(t)}(t_a, t_b)$ represents the total execution requirement of jobs released by the speed function with both arrival times and absolute deadline in the interval $[t_a, t_b]$.
+ More formally, if $\{t_1, t_2, \ldots\}$ is the set of times (in order) where the crankshaft triggers job releases following the speed function $\omega(t)$, then:
 \begin{equation}
 \label{eqn:d}
     D_{\omega(t)}(t_a, t_b) = \hspace{-.2in}\sum_{i: (t_i \geq t_a) 
@@ -189,13 +222,16 @@ We may denote the {\em demand} of $\omega(t)$ over any $\delta$-length interval 
     \dbf(\delta) = \max_{\omega(t) \in \mathbb{W}} \{\dbf_{\omega(t)}(\delta)\}.
 \end{equation}
 Considering any speed function $\omega(t)$ with job releases at speeds/times $\omega(t_1),\omega(t_2),\ldots$ in some interval $[t_a, t_b]$, it is clear that if we modify the function so that the crankshaft traverses one rotation in the minimum time (by Equation~\ref{eq:minTime}), then this will only lead to demand that exceeds or equals the original demand of $\omega(t)$.
-Therefore, without loss of generality, we can restrict $\mathbb{W}$ to speed functions that traverse the rotation between job releases in the minimum possible time.  This is essentially the observation made by Mohaqeqi et al.~\cite{DRTPaper} to reduce the problem of finding the worst-case $\omega(t) \in \mathbb{W}$ to the problem of identifying \emph{sequences of job release speeds}; i.e., the speed of the job releases entirely characterizes the speed function.
-That is, we can completely describe any speed function $\omega(t)$ with job releases at times $t_1, t_2, \ldots$ instead by a sequence of speeds $(\omega_1 = \omega(t_1), \omega_2 = \omega(t_2), \ldots)$.  Thus, after this point, we drop the speed-time function $\omega(t)$ and focus only on sequences of speeds.
+Therefore, without loss of generality, we can restrict $\mathbb{W}$ to speed functions that traverse the rotation between job releases in the minimum possible time.
+ This is essentially the observation made by Mohaqeqi et al.~\cite{DRTPaper} to reduce the problem of finding the worst-case $\omega(t) \in \mathbb{W}$ to the problem of identifying \emph{sequences of job release speeds}; i.e., the speed of the job releases entirely characterizes the speed function.
+That is, we can completely describe any speed function $\omega(t)$ with job releases at times $t_1, t_2, \ldots$ instead by a sequence of speeds $(\omega_1 = \omega(t_1), \omega_2 = \omega(t_2), \ldots)$.
+ Thus, after this point, we drop the speed-time function $\omega(t)$ and focus only on sequences of speeds.
 
 \noindent The objective of this paper is to find an efficient way to calculate the worst-case AVR task demand defined in Equation~\ref{eqn:AVR-dbf}.
 
 \begin{definition}[Reachable Speeds]\label{def:reachable-speeds}
-Consider two speeds $\omega_1$ and $\omega_2$ such that $\omega_2\geq\omega_1$. $\omega_2$ is said to be \emph{reachable} from $\omega_1$ if $\Omega_1(\omega_1,\alpha_{max})\geq \omega_2$.
+Consider two speeds $\omega_1$ and $\omega_2$ such that $\omega_2\geq\omega_1$.
+$\omega_2$ is said to be \emph{reachable} from $\omega_1$ if $\Omega_1(\omega_1,\alpha_{max})\geq \omega_2$.
 \end{definition}
 
 \begin{definition}[Valid Sequence]\label{def:valid-sequence}
@@ -214,7 +250,9 @@ The objective is to find $\dbf(\delta)$ (Equation~\ref{eqn:AVR-dbf}), the worst-
 \subsection{Knapsack-based approach for deriving the worst-case demand}
 \label{sec:knapsack}
 
-We now describe the problem transformation from calculating $\dbf(\delta)$ to a variant of the knapsack problem. This section both provides context for and relies upon several  properties and  lemmas defined in Sections \ref{sec:filterSeq} and \ref{sec:Summary}. Briefly, \textit{dominant speed sequences} are sequences of job release speeds whose demand %is equivalent to the maximum demand of a task over a given interval length (i.e., the demand of a dominant speed sequence 
+We now describe the problem transformation from calculating $\dbf(\delta)$ to a variant of the knapsack problem.
+This section both provides context for and relies upon several  properties and  lemmas defined in Sections \ref{sec:filterSeq} and \ref{sec:Summary}.
+Briefly, \textit{dominant speed sequences} are sequences of job release speeds whose demand %is equivalent to the maximum demand of a task over a given interval length (i.e., the demand of a dominant speed sequence 
 coincides with the value of Equation \ref{eqn:AVR-dbf}.
 These dominant speed sequences are non-decreasing (see Section \ref{subsec:seq-transform}, Lemma \ref{lemma:non-decreasing}) and start at right boundary speeds (see Section \ref{sec:dominant-start}, Lemma \ref{lemma:startSpeed}).
 
@@ -227,9 +265,14 @@ In the traditional knapsack problem, the aim is to maximize the total profit fro
 Our goal is to transform the problem of finding $\dbf(\delta)$ into a variant of the knapsack problem.
 In our case, a job is equivalent to an item.
 %and is characterized by: the speed at the beginning of the rotation, the corresponding execution time, and the minimum inter-arrival time given the speed at the beginning of the rotation (Equation~\ref{eq:minTime}) -- which depends on the initial speed of the subsequent job.
-As such, the ``weight" of a job (i.e., item) is the minimum inter-arrival time, and the ``profit" is its execution time. The goal, then, is to maximize demand (i.e., profit) over a time interval ($\delta$).
+As such, the ``weight" of a job (i.e., item) is the minimum inter-arrival time, and the ``profit" is its execution time.
+The goal, then, is to maximize demand (i.e., profit) over a time interval ($\delta$).
 
-Since a dominant speed sequence is non-decreasing (Lemma~\ref{lemma:non-decreasing}), a job's execution time may contribute to the demand bound function $\dbf(\delta)$ more than once. As such, our knapsack problem is, in fact, a bounded knapsack problem. In addition, since  adjacent speeds in a dominant speed sequence must be reachable from one another (Definition \ref{def:reachable-speeds}), once an item, i.e., job, has been included in the knapsack, there is a finite number of jobs that can follow, making our problem a bounded precedence constraint knapsack problem (BPCKP)~\cite{PCKP_paper,PCKPpaper2}. Fig.~\ref{fig:Knapsack1} provides a visual example representation of our problem as a BPCKP. For clarity, the subscripts of the speeds are used to denote the precedence constraints.
+Since a dominant speed sequence is non-decreasing (Lemma~\ref{lemma:non-decreasing}), a job's execution time may contribute to the demand bound function $\dbf(\delta)$ more than once.
+As such, our knapsack problem is, in fact, a bounded knapsack problem.
+In addition, since  adjacent speeds in a dominant speed sequence must be reachable from one another (Definition \ref{def:reachable-speeds}), once an item, i.e., job, has been included in the knapsack, there is a finite number of jobs that can follow, making our problem a bounded precedence constraint knapsack problem (BPCKP)~\cite{PCKP_paper,PCKPpaper2}.
+Fig.~\ref{fig:Knapsack1} provides a visual example representation of our problem as a BPCKP.
+For clarity, the subscripts of the speeds are used to denote the precedence constraints.
 \begin{figure}
 \centering
 \includegraphics[width=1.0\linewidth]{Figures/vectorKnapsackv2.pdf}
@@ -261,7 +304,12 @@ Since a dominant speed sequence is non-decreasing (Lemma~\ref{lemma:non-decreasi
     \label{fig:KnapsackTree}
 \end{figure}
 
-An effective way to model the precedence constraints among jobs is by using out-trees. The sequences beginning at each of the source nodes are independent of each other (i.e., sequences beginning at each of the right boundary speeds according to Lemma~\ref{lemma:startSpeed}). An example out-tree is shown in Fig. \ref{fig:KnapsackTree}. To represent the trees in a knapsack problem, we define a dependency graph $G_I=(V_I, A_I)$, where $V_I$ denotes the set of vertices (i.e., items) in the out-tree $G_I$~\cite{KnapsackBook}. An edge between any two vertices denotes that the two speeds are reachable from one another and is represented by $(j,k)\in A_I$. Formally, our BPCKP can be expressed as follows:
+An effective way to model the precedence constraints among jobs is by using out-trees.
+The sequences beginning at each of the source nodes are independent of each other (i.e., sequences beginning at each of the right boundary speeds according to Lemma~\ref{lemma:startSpeed}).
+An example out-tree is shown in Fig. \ref{fig:KnapsackTree}.
+To represent the trees in a knapsack problem, we define a dependency graph $G_I=(V_I, A_I)$, where $V_I$ denotes the set of vertices (i.e., items) in the out-tree $G_I$~\cite{KnapsackBook}.
+An edge between any two vertices denotes that the two speeds are reachable from one another and is represented by $(j,k)\in A_I$.
+Formally, our BPCKP can be expressed as follows:
 \begin{alignat}{3}
     & \underset{x}{\text{maximize}}
     & \quad & \sum_{j}\sum_{r=1}^{M_\delta} c(\omega_j) \cdot x_j^{r} \label{eqn:maxDemand}\\
@@ -292,7 +340,12 @@ An effective way to model the precedence constraints among jobs is by using out-
 % \begin{equation}\label{eq:kp3}
 % x_j^\eta \geq x_k^\eta, \,\, (j,k)\epsilon A_I
 % \end{equation}
-\noindent where $M_\delta$ represents an upper bound on the number of job releases in a $\delta$-length interval and  $x_j^r$ is a binary variable: $x_j^r$ is one if there are at least $r$ jobs released at speed $\omega_j$ in the knapsack; otherwise, $x_j^r$ is zero. Equation \ref{eqn:maxDemand}  maximizes total demand. Equation \ref{eqn:kp-cons} requires all deadlines of selected jobs fall within the $\delta$-length interval. Equation \ref{eqn:singleKnapsackPath} permits at most one child node of each parent node to be added to the knapsack. Equation \ref{eqn:precedenceConstraint} enforces the precedence constraint such that no child node may be added without its parent. Equation \ref{eqn:multipleJobRestriction} ensures repeated jobs of a particular speed $\omega_j$ are added incrementally to (and do not skip indices of) $x_j^r$ (i.e, if $x_j^\ell = 0$, then for all $s > \ell: x_j^s = 0$). 
+\noindent where $M_\delta$ represents an upper bound on the number of job releases in a $\delta$-length interval and  $x_j^r$ is a binary variable: $x_j^r$ is one if there are at least $r$ jobs released at speed $\omega_j$ in the knapsack; otherwise, $x_j^r$ is zero.
+Equation \ref{eqn:maxDemand}  maximizes total demand.
+Equation \ref{eqn:kp-cons} requires all deadlines of selected jobs fall within the $\delta$-length interval.
+Equation \ref{eqn:singleKnapsackPath} permits at most one child node of each parent node to be added to the knapsack.
+Equation \ref{eqn:precedenceConstraint} enforces the precedence constraint such that no child node may be added without its parent.
+Equation \ref{eqn:multipleJobRestriction} ensures repeated jobs of a particular speed $\omega_j$ are added incrementally to (and do not skip indices of) $x_j^r$ (i.e, if $x_j^\ell = 0$, then for all $s > \ell: x_j^s = 0$). 
 
 %Original Paragraph (20180928)
 % Original Paragraph (20180928):
@@ -300,8 +353,12 @@ An effective way to model the precedence constraints among jobs is by using out-
 
 % \subsection{Algorithm}
 %{\color{blue}Placed the algorithm below knapsack based on Friday's meeting.}
-Algorithm~\ref{algo} shows our pseudocode for the dynamic programming approach to solve the bounded precedence constraint knapsack problem. The \emph{CalculateDemand} function is initially called with the parameters $\omega \in \mathbf{\Omega_{rb}}$ and $\delta$, the total time length. The \emph{maxDemand} parameter keeps track of the highest demand computed until the current instance of the recursive loop. In each recursive instance, the next speed is chosen from the list of %the speeds possible for the next job release
-possible next job release speeds according to Theorem~\ref{thm:dominant-set} (Section \ref{sec:Summary}). The variable $D_w$ (Equation~\ref{eqn:d}) tracks the accumulated demand of the current sequence.
+Algorithm~\ref{algo} shows our pseudocode for the dynamic programming approach to solve the bounded precedence constraint knapsack problem.
+The \emph{CalculateDemand} function is initially called with the parameters $\omega \in \mathbf{\Omega_{rb}}$ and $\delta$, the total time length.
+The \emph{maxDemand} parameter keeps track of the highest demand computed until the current instance of the recursive loop.
+In each recursive instance, the next speed is chosen from the list of %the speeds possible for the next job release
+possible next job release speeds according to Theorem~\ref{thm:dominant-set} (Section \ref{sec:Summary}).
+The variable $D_w$ (Equation~\ref{eqn:d}) tracks the accumulated demand of the current sequence.
 
 
 \begin{algorithm}
@@ -335,16 +392,24 @@ possible next job release speeds according to Theorem~\ref{thm:dominant-set} (Se
 
 \subsection{Dominant Speed Sequences}
 \label{sec:filterSeq}
-The previous section outlined how dominant speed sequences facilitate the problem transformation from calculating $\dbf(\delta)$ to a variant of the knapsack problem. This section formally defines Lemma \ref{lemma:non-decreasing} and Lemma \ref{lemma:startSpeed}
+The previous section outlined how dominant speed sequences facilitate the problem transformation from calculating $\dbf(\delta)$ to a variant of the knapsack problem.
+This section formally defines Lemma \ref{lemma:non-decreasing} and Lemma \ref{lemma:startSpeed}
 %, and Theorem \ref{thm:dominant-set} 
 referenced in the above BPCKP approach.
 
 The main challenge in determining the worst-case demand of an AVR task is the variation in the execution time, which varies as a function of the angular speed. 
-Earlier work, e.g., Mohaqeqi et al.~\cite{DRTPaper} showed that the speed sequences that maximize demand contain only speeds from some finite set.  Mohaqeqi et al. used this set to design a DRT task which considers all possible feasible sequences of speeds.  However, this can still lead to a large number of speed permutations to check when searching for the worst-case demand.  As mentioned in the related work section, we show that we can greatly limit the sequences that need to be considered in the \emph{dominant speed sequence set} when we consider minimum angular deadline AVR tasks with $\alpha_{max} = |\alpha_{min}|$.   A \emph{dominant speed sequence} is  a speed sequence whose demand is equivalent to the maximum demand of a task over a given interval length (i.e., its demand coincides with the value of Equation~\ref{eqn:AVR-dbf}).  A \textit{dominant speed sequence set} is a set of speed sequences that must contain the dominant speed sequence. In this section, we derive the necessary characteristics of a dominant speed sequence.
+Earlier work, e.g., Mohaqeqi et al.~\cite{DRTPaper} showed that the speed sequences that maximize demand contain only speeds from some finite set.
+ Mohaqeqi et al. used this set to design a DRT task which considers all possible feasible sequences of speeds.
+ However, this can still lead to a large number of speed permutations to check when searching for the worst-case demand.
+ As mentioned in the related work section, we show that we can greatly limit the sequences that need to be considered in the \emph{dominant speed sequence set} when we consider minimum angular deadline AVR tasks with $\alpha_{max} = |\alpha_{min}|$.
+  A \emph{dominant speed sequence} is  a speed sequence whose demand is equivalent to the maximum demand of a task over a given interval length (i.e., its demand coincides with the value of Equation~\ref{eqn:AVR-dbf}).
+ A \textit{dominant speed sequence set} is a set of speed sequences that must contain the dominant speed sequence.
+In this section, we derive the necessary characteristics of a dominant speed sequence.
 \vspace{-1mm}
 \paragraph{Properties of Minimum Inter-arrival Times and Deadlines}\label{subsec:min-arrival-times}
 
-We begin by establishing some useful properties regarding the minimum inter-arrival time function $\widetilde{T}(\omega, f)$ (Equation~\ref{eq:minTime}) that will be used to prove some characteristics of dominant speed sequences.  The first property is that $\widetilde{T}(\omega, f)$ is always positive, which was already proved in previous work on AVR tasks~\cite{DRTPaper}.
+We begin by establishing some useful properties regarding the minimum inter-arrival time function $\widetilde{T}(\omega, f)$ (Equation~\ref{eq:minTime}) that will be used to prove some characteristics of dominant speed sequences.
+ The first property is that $\widetilde{T}(\omega, f)$ is always positive, which was already proved in previous work on AVR tasks~\cite{DRTPaper}.
 We abuse terminology and refer to some lemmas as properties to make supporting concepts easier to read.
 
 \begin{property}[Positive Minimum Inter-arrival Times] \label{prop:pos-min-interarrival}
@@ -407,7 +472,9 @@ Observe that the partial derivative of $\widetilde{T}$ with respect to $\omega$ 
 The above partial derivatives are clearly always non-positive for any $\omega, f \in [\omega_{\min}, \omega_{\max}]$.
 \end{proof}
 
-We now focus upon the relative deadline of a job released at speed $\omega$  (i.e., $\Tilde{d}(\omega))$.  We can show that the relative deadline decreases as we increase the speed the job is released at.  Furthermore, the rate of decrease for the relative deadline of a job is faster than the rate of decrease in the minimum inter-arrival time of the next job.
+We now focus upon the relative deadline of a job released at speed $\omega$  (i.e., $\Tilde{d}(\omega))$.
+ We can show that the relative deadline decreases as we increase the speed the job is released at.
+ Furthermore, the rate of decrease for the relative deadline of a job is faster than the rate of decrease in the minimum inter-arrival time of the next job.
 
 \begin{property}[Rate of Change of Relative Deadline] \label{prop:deadline-derivative}
 For all $\omega, f \in [\omega_{\min}, \omega_{\max}]$ where $f$ is reachable from $\omega$:
@@ -416,7 +483,8 @@ For all $\omega, f \in [\omega_{\min}, \omega_{\max}]$ where $f$ is reachable fr
 \end{equation}
 \end{property}
 \begin{proof}
-First, consider the partial derivative of $\Tilde{d}(\omega)$, given below.  It is clear from the expression that it is always negative for all $\omega \in [\omega_{\min}, \omega_{\max}]$.
+First, consider the partial derivative of $\Tilde{d}(\omega)$, given below.
+ It is clear from the expression that it is always negative for all $\omega \in [\omega_{\min}, \omega_{\max}]$.
 
 % \begin{equation} \label{eq:minTimeFinalJobDerivative}
 %     \frac{\partial \Tilde{d}(\omega)}{\partial \omega} = \frac{\frac{\omega}{\sqrt{\omega^2+2\alpha_{\max}}}-1}{\alpha_{\max}} < 0
@@ -445,7 +513,8 @@ where $\Tilde{d}(\omega)$ is derived from Equation \ref{eqn:rotation} such that 
     \end{array}
 \right.
 \end{equation}
-where $\Tilde{d}$ is derived by replacing $f$ with Equation~\ref{eqn:rotation} in the definition of minimum angular deadline AVR task when $\Tilde{d}_p(w) < \omega_{\max}$. By supposition, $f$ is reachable from $\omega$; thus by definition of reachable,
+where $\Tilde{d}$ is derived by replacing $f$ with Equation~\ref{eqn:rotation} in the definition of minimum angular deadline AVR task when $\Tilde{d}_p(w) < \omega_{\max}$.
+By supposition, $f$ is reachable from $\omega$; thus by definition of reachable,
 \begin{equation} \label{eq:partialEpartialwCompare}
 \begin{array}{ll}
           { } & f  \leq  \Omega_1(\omega, \alpha_{\max})\nonumber\\
@@ -466,11 +535,13 @@ where $\Tilde{d}$ is derived by replacing $f$ with Equation~\ref{eqn:rotation} i
 \paragraph{Speed Sequence Order Transformations}
 \label{subsec:seq-transform}
 
-In this subsection, we describe how given a valid speed sequence $S = (\omega_1, \omega_2, \ldots, \omega_n)$, we may transform it to one in non-decreasing order without reducing the total demand of the sequence.  We begin with some notation that will be employed in describing the transformations.
+In this subsection, we describe how given a valid speed sequence $S = (\omega_1, \omega_2, \ldots, \omega_n)$, we may transform it to one in non-decreasing order without reducing the total demand of the sequence.
+ We begin with some notation that will be employed in describing the transformations.
 
 
 \begin{definition}[Non-Decreasing Speed Sequence]\label{def:seq-ascending}
-Given any valid, finite speed sequence $S = \{\omega_1, \omega_2, \ldots, \omega_n\}$, we define $S_A = (s_1, s_2, \ldots, s_n)$ to be the sequence obtained from reordering the speeds of $S$ in a non-decreasing order (i.e., $s_1$ is the smallest $\omega_i$ in $S$ and $s_n$ is the largest).  We call $S_A$ a \emph{non-decreasing speed sequence} of $S$.
+Given any valid, finite speed sequence $S = \{\omega_1, \omega_2, \ldots, \omega_n\}$, we define $S_A = (s_1, s_2, \ldots, s_n)$ to be the sequence obtained from reordering the speeds of $S$ in a non-decreasing order (i.e., $s_1$ is the smallest $\omega_i$ in $S$ and $s_n$ is the largest).
+ We call $S_A$ a \emph{non-decreasing speed sequence} of $S$.
 \end{definition}
 
 We can show that for any valid sequence $S$ (in arbitrary speed order) the corresponding non-decreasing sequence $S_A$ must also be valid.
@@ -479,24 +550,31 @@ We can show that for any valid sequence $S$ (in arbitrary speed order) the corre
 If $S= (\omega_1, \omega_2, \ldots, \omega_n)$ is a valid sequence, then the non-decreasing sequence $S_A$ is also valid.
 \end{property}
 \begin{proof}
-For the sake of contradiction, assume that $S$ is valid, but $S_A$ is not.  That means there exists some $s_i \in S_A$ such that $s_{i+1} > \Omega_1(s_i, \alpha_{\max})$.  Furthermore, this also implies that the following must be true $\forall \, \ell, \, k \, | \, 1 \leq \ell \leq i < k \leq n$:
+For the sake of contradiction, assume that $S$ is valid, but $S_A$ is not.
+ That means there exists some $s_i \in S_A$ such that $s_{i+1} > \Omega_1(s_i, \alpha_{\max})$.  Furthermore, this also implies that the following must be true $\forall \, \ell, \, k \, | \, 1 \leq \ell \leq i < k \leq n$:
 \begin{equation}
     s_k > \Omega_1(s_\ell, \alpha_{\max}).
 \end{equation}
 %Original
 %\noindent However, this contradicts the validity of $S$ as the above equation implies there is no way to reach an $\omega_i$ corresponding to an $s_k$ from an $\omega_j$ corresponding to an $s_\ell$.  Thus, there must be some point when such a $\omega_i$ and $\omega_j$ must be adjacent which would imply the sequence is not valid.
-\noindent This is to say that the ascending sequence, $S_A$, is split between indices $s_i$ and $s_{i+1}$ which are not reachable from one another such that it is impossible to reach speed $s_{i+1}$ or higher from any speed $s_i$ or lower. However, this contradicts the validity of $S$. Since $S_A$ has non-decreasing order, no rearrangement of $S_A$ will make the speeds any closer to one another and therefore will not make previously unreachable speeds reachable. Thus, $S$ is also invalid.
+\noindent This is to say that the ascending sequence, $S_A$, is split between indices $s_i$ and $s_{i+1}$ which are not reachable from one another such that it is impossible to reach speed $s_{i+1}$ or higher from any speed $s_i$ or lower.
+However, this contradicts the validity of $S$.
+Since $S_A$ has non-decreasing order, no rearrangement of $S_A$ will make the speeds any closer to one another and therefore will not make previously unreachable speeds reachable.
+Thus, $S$ is also invalid.
 \end{proof}
 
 We now provide some definitions that will be used to compare $S$ and $S_A$.
 
 \begin{definition}[$k$-Subsequence of $S$]\label{def:k-subsequence}
-Given any valid, finite speed sequence $S = \{\omega_1, \omega_2, \ldots, \omega_n\}$, for any $k \in \mathbb{N}_1^n$, we define $S(k) = (\omega^{(k)}_1, \omega^{(k)}_2, \ldots, \omega^{(k)}_k)$ to be the $k$-subsequence of $S$ containing the $k$ smallest elements of $S$ in the same order that they originally appear in $S$.  (For example, $S= (4, 3, 1)$ would have $S(2) = (3,1)$).  Note that a $k$-subsequence of a valid subsequence must also be valid itself.
+Given any valid, finite speed sequence $S = \{\omega_1, \omega_2, \ldots, \omega_n\}$, for any $k \in \mathbb{N}_1^n$, we define $S(k) = (\omega^{(k)}_1, \omega^{(k)}_2, \ldots, \omega^{(k)}_k)$ to be the $k$-subsequence of $S$ containing the $k$ smallest elements of $S$ in the same order that they originally appear in $S$.
+ (For example, $S= (4, 3, 1)$ would have $S(2) = (3,1)$).
+ Note that a $k$-subsequence of a valid subsequence must also be valid itself.
 Similarly, $S_A(k)$ has the $k^{th}$ smallest elements of $S$ in non-decreasing order.
 \end{definition}
 
 \begin{definition}[Injection into a Subsequence]\label{def:subseq-injection}
-Given a $k$-subsequence $S(k)$ of an original sequence $S$, we consider the addition of the $(k+1)^{th}$ smallest element of $S$ into $S(k)$ to create $S(k+1)$.  We categorize the three possible injection types as follows:
+Given a $k$-subsequence $S(k)$ of an original sequence $S$, we consider the addition of the $(k+1)^{th}$ smallest element of $S$ into $S(k)$ to create $S(k+1)$.
+ We categorize the three possible injection types as follows:
 \begin{enumerate}
     \item \emph{Leading Injection}:  If $\omega$ is the $(k+1)^{th}$ smallest item of $S$ and it becomes the first element of $S(k+1)$.  That is, $\omega^{(k+1)}_1$ equals $\omega$ and $\omega^{(k+1)}_{\ell+1}$ equals $\omega^{(k)}_{\ell}$ for all $\ell = 1,\ldots, k$. Figure \ref{fig:injections}(a) shows an example leading injection.
 %
