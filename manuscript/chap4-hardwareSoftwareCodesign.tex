@@ -40,7 +40,13 @@ This approach is intended to allow existing systems with microprocessors to migr
 
 \paragraph{Contributions}
 %Contributions: Long-form writing
-The software-based protection methods depicted herein provide an alternative short-circuit protection technique to circuit designers. By relating utilization to the volume of (and board space consumed by) an inductor, system designers may trade short-protection circuitry for real-time task utilization on the microcontroller, leveraging either end of the relationship to meet fault-tolerance and space requirements. For example, applications with little available board space may opt for smaller inductors (minimizing board space) and greater utilization. Example applications include smaller IGBT modules as found in electric vehicles or applications where minimizing weight is import\cite{IGBTvehicle}. In contrast, larger applications with more available board space or a greater real-time task set may opt for a larger inductor and thus a smaller utilization for the short-protection task. Example applications include high power IGBT modules in photovoltaic and wind turbine inverters \cite{zhang_model-based_2011}\cite{busca_overview_2011}. Perhaps most importantly, the established relationship between board space and processor utilization acts as a conduit through which advancements in electrical engineering may improve real-time system efficiency and vice versa.
+The software-based protection methods depicted herein provide an alternative short-circuit protection technique to circuit designers.
+By relating utilization to the volume of (and board space consumed by) an inductor, system designers may trade short-protection circuitry for real-time task utilization on the microcontroller, leveraging either end of the relationship to meet fault-tolerance and space requirements.
+For example, applications with little available board space may opt for smaller inductors (minimizing board space) and greater utilization.
+Example applications include smaller IGBT modules as found in electric vehicles or applications where minimizing weight is import\cite{ji_situ_2013}.
+In contrast, larger applications with more available board space or a greater real-time task set may opt for a larger inductor and thus a smaller utilization for the short-protection task.
+Example applications include high power IGBT modules in photovoltaic and wind turbine inverters \cite{zhang_model-based_2011}\cite{busca_overview_2011}.
+Perhaps most importantly, the established relationship between board space and processor utilization acts as a conduit through which advancements in electrical engineering may improve real-time system efficiency and vice versa.
 To summarize, our contributions include\footnote{This work was published in the 2017 IEEE 23rd International Conference on Embedded and Real-Time Computing Systems and Applications (RTCSA) under the same title \cite{willcock_trading_2017-1} and is an extension upon the related senior thesis by Willcock \cite{willcock_short_2016}.}:%Contributions: Bullet-point summary
 \begin{description}
 \item [1.] a software-based short protection method for Direct Current Resistor-Inductor circuits,
@@ -69,7 +75,7 @@ Section \ref{subsec:conclusion} identifies conclusions and future work.
 %The proposed software-based short-circuit protection approach aims to reduce dedicated circuitry on platforms already using a microprocessor and provide an alternative method to short protection. The motivation behind this hardware-software co-design approach is the flexibility and ubiquity of microprocessors. The potential for movement of protection systems from dedicated circuitry to software implementations. [OLD]
 
 \clearpage \subsection{Electronics Background}\label{subsec:electronics background}
-The following chapter covers background required for constructing the proposed circuit model. It includes an overview of nomenclature, DC RL circuits, inductors, and short-circuits. These electronics fundamentals can be found in a typical collegiate physics textbook \cite{uniphy}.
+The following chapter covers background required for constructing the proposed circuit model. It includes an overview of nomenclature, DC RL circuits, inductors, and short-circuits. These electronics fundamentals can be found in a typical collegiate physics textbook \cite{young_sears_2012}.
 
 \paragraph{Nomenclature}
 %Define all terms (voltage, current, etc.) and the symbols that represent them.
@@ -91,7 +97,7 @@ For the purposes of describing our approach, we rely on the following nomenclatu
 
 \paragraph{First-Order DC RL Circuits}
 %Define a DC circuit. Include Figure.
-Direct current (DC) circuits are circuits in which the direction of current flow does not change \cite{uniphy}. A DC circuit in which current passes through a resistor and an inductor is deemed a DC RL circuit where "R" represents the resistor and "L" the inductor. The model presented in Section \ref{subsec:electronic system model} relies on a first-order DC RL circuit with the resistor and inductor in series. An example first-order DC RL circuit is provided in Figure \ref{fig:ModelDCRL} with two resistors and an inductor in series.
+Direct current (DC) circuits are circuits in which the direction of current flow does not change \cite{young_sears_2012}. A DC circuit in which current passes through a resistor and an inductor is deemed a DC RL circuit where "R" represents the resistor and "L" the inductor. The model presented in Section \ref{subsec:electronic system model} relies on a first-order DC RL circuit with the resistor and inductor in series. An example first-order DC RL circuit is provided in Figure \ref{fig:ModelDCRL} with two resistors and an inductor in series.
 \begin{figure}
     \centering
     \includegraphics[width=0.25\linewidth]{img/Model_DC_RL_Circuit_General.pdf}
@@ -115,7 +121,7 @@ The model proposed in Section \ref{subsec:electronic system model} will rely on 
     \caption[Air Core Inductor Spatial Parameters]{Spatial parameters of an air core inductor}
     \label{fig:InductorParams}
 \end{figure}
-The figure describes a solenoid-style inductor where $N$ represents the number of complete turns, $A$ is the area of a coil, $\ell$ represents the length of the inductor. The relationship between these parameters and inductance can be constructed from fundamental electricity and magnetism equations found in \cite{uniphy}. This relationship is modeled as:
+The figure describes a solenoid-style inductor where $N$ represents the number of complete turns, $A$ is the area of a coil, $\ell$ represents the length of the inductor. The relationship between these parameters and inductance can be constructed from fundamental electricity and magnetism equations found in \cite{young_sears_2012}. This relationship is modeled as:
 \begin{equation}\label{eq:InductorSpatial}
 L = \frac{\mu_0 N^{2}A}{\ell}
 \end{equation}
@@ -123,7 +129,7 @@ where $\mu_0$ is the permeability of free space. For our purposes, we assume the
 \subsubsection{Assumption of Constant Turn Density} \label{ssec:Assumption of Constant}
 Equation (\ref{eq:InductorSpatial}) contains the term $\frac{N}{\ell}$, referred to as \textit{turn density}. \textit{Turn density} must remain constant with an increase in length for inductance to increase. Thus if an inductor is to be extended from length $\ell$ to $2\cdot \ell$, the number of turns $N$ should be doubled accordingly (to $2\cdot N$) to maintain constant \textit{turn density}. Doubling both $N$ and $\ell$ results in doubled inductance $L$. Whenever a change in inductor length $\ell$ is suggested, we assume the number of turns is doubled as well to maintain constant \textit{turn density}. We rely on this assumption throughout Section \ref{subsec:model optimization}.
 \subsubsection{Inductor Core Composition}
-The core of a solenoid-style inductor can be defined as the area within the coiled wire. In practice, many inductors are manufactured with ferromagnetic cores which increase the inductance for the same volume. In our model, we assume this core is empty and contains only air. Equation (\ref{eq:InductorSpatial}) reflects this assumption as it applies only to air-core inductors. We view this assumption as an upper bound on board space consumed since ferromagnetic core inductors provide a greater inductance by volume \cite{NiFe}.
+The core of a solenoid-style inductor can be defined as the area within the coiled wire. In practice, many inductors are manufactured with ferromagnetic cores which increase the inductance for the same volume. In our model, we assume this core is empty and contains only air. Equation (\ref{eq:InductorSpatial}) reflects this assumption as it applies only to air-core inductors. We view this assumption as an upper bound on board space consumed since ferromagnetic core inductors provide a greater inductance by volume \cite{gao_fabrication_2006}.
 
 \paragraph{Definition of Short and Fault Types}
 %Define short in the context of this paper
@@ -131,12 +137,12 @@ For the purposes of this model, a short is defined as the flow of current throug
 \begin{equation}\label{eq:JouleHeating}
 \text{Heat} \propto R I^{2} t
 \end{equation}
-Here, $R$ is resistance, $I$ is current, and $t$ is time \cite{uniphy}. The thermal buildup from joule heating is responsible for the permanent damage that can result from a short and therefore serves as motivation for short-circuit protection. Protection from damage, however, requires catching two short-circuit fault types: the Fault under Load (FUL) and the Hard-Switching Fault (HSF).
+Here, $R$ is resistance, $I$ is current, and $t$ is time \cite{young_sears_2012}. The thermal buildup from joule heating is responsible for the permanent damage that can result from a short and therefore serves as motivation for short-circuit protection. Protection from damage, however, requires catching two short-circuit fault types: the Fault under Load (FUL) and the Hard-Switching Fault (HSF).
 
 \subsubsection{Fault Under Load vs Hard-Switching Fault}
-In the context of short-circuit protection, a Fault Under Load is a short-circuit fault where a circuit has an active load at the time of the fault. In this type of fault, the current and impedance are both non-zero. Intuitively, this means the circuit is "on" at the instant the short-circuit occurs. The short forces current to rise, often above desired operating ranges. This fault type, commonly analyzed in IGBTs, has been studied in \cite{scanalysis}.
+In the context of short-circuit protection, a Fault Under Load is a short-circuit fault where a circuit has an active load at the time of the fault. In this type of fault, the current and impedance are both non-zero. Intuitively, this means the circuit is "on" at the instant the short-circuit occurs. The short forces current to rise, often above desired operating ranges. This fault type, commonly analyzed in IGBTs, has been studied in \cite{pagano_short_2005}.
 
-In contrast, a Hard-Switching Fault is a short-circuit fault where the circuit does not have an active load at the time of the fault \cite{hiSpeedProtection}. In contrast to an FUL, an HSF does not have an initial operating current since there must be a short-circuit path before the circuit is "on".
+In contrast, a Hard-Switching Fault is a short-circuit fault where the circuit does not have an active load at the time of the fault \cite{horiguchi_high-speed_2015}. In contrast to an FUL, an HSF does not have an initial operating current since there must be a short-circuit path before the circuit is "on".
 
 \paragraph{Current as a Function of Time}
 In the proposed system, a real-time task must be related to the change in current through an inductor. The following equation will provide such a relationship used Section \ref{subsec:method of protection}:
@@ -570,7 +576,7 @@ The results of Experiment 3 and Experiment 4 indicate that $U(\mathrm{T}_{scd})$
 %The conclusion goes here: use hypothesis from proposal as basis
 This work provides a novel solution for hardware-software co-design of real-time software-based short-circuit protection systems -- cyber-physical systems in which the inductive properties of a DC RL circuit are leveraged to construct a sporadic, real-time short-circuit protection task. We established a relationship between utilization and board space consumed by the air-core, solenoid-style inductor placed in-circuit which can be optimized for both fixed inductor volume and fixed uniprocessor utilization.
 
-Like preceding works on engine control \cite{engineCtrl} and thermal-aware systems \cite{thermalAware}, this work demands further investigation into the real-time control of physical systems demonstrating dynamic behavior. Further study on the energy and performance trade-off between hardware, software, and physical system dynamics is reserved for future work.
+Like preceding works on engine control \cite{biondi_engine_2015} and thermal-aware systems \cite{hettiarachchi_design_2014}, this work demands further investigation into the real-time control of physical systems demonstrating dynamic behavior. Further study on the energy and performance trade-off between hardware, software, and physical system dynamics is reserved for future work.
 
 
 
