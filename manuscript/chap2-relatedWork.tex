@@ -10,7 +10,7 @@ To the best of our knowledge, current approaches to short-circuit protection are
 Modern methodologies include Zone Selective Interlocking on systems with alternating current (AC) which, while successful, cannot be directly applied to DC \cite{du_new_2014}.
 Other methods use the Rogowski coil in conjunction with differential and integral signals from the coil to detect a short \cite{wang_new_2011}.
 While feasible, the Rogowski coil implementation is large and does not slow current rise in the system.
-Some methods only require sampling of gate emitter voltage and a reference voltage \cite{horiguchi_short_2014}.
+\textbf{TODO: Double check that "reference" here isn't the PIC ref.} Some methods only require sampling of gate emitter voltage and a reference voltage \cite{horiguchi_short_2014}.
 Krone et al. use the gate emitter voltage, but also reference the DC link capacitors to assist in protection \cite{krone_fast_2015}.
 Each method, while different, relies solely on dedicated circuitry for short protection.
 Although variations exist in the components used and the design of the circuits, we sought an alternative where required circuitry was minimized.
