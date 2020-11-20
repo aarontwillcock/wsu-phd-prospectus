@@ -269,7 +269,7 @@ This time frame represents time taken for current to rise from the maximum opera
 Thus far, the spatial properties of an inductor have been related to its inductance. Thereafter, inductance is found to determine the maximum possible current rise at any given time, $\frac{V}{L}$ Amperes per second. This leads to the shortest time span over which a short would need to be detected, the \textit{minimum time-to-detection} $\delta_{min}$. Using $\delta_{min}$, we provide a real-time system short-circuit protection task and its timing requirements. Before doing so, we present a real-time background on the sporadic task model and uniprocessor EDF scheduling.
 
 \paragraph{Sporadic Task Model}
-In real-time systems, \textit{sporadic tasks} are defined by a \textit{worst-case execution time} (WCET) $e_{i}$, relative deadline $d_{i}$, and minimum period $p_{i}$. The relative deadline is the time between each job arrival and its deadline. The minimum period is the smallest time between successive job arrivals. We use a sporadic task to model the short-circuit protection task \cite{sporadicTaskModel}. The proposed sporadic task will have an \textit{implicit deadline} where a new job of the short-circuit task $\mathrm{T}_{scd}$ may arrive at the absolute deadline of the previous job.
+In real-time systems, \textit{sporadic tasks} are defined by a \textit{worst-case execution time} (WCET) $e_{i}$, relative deadline $d_{i}$, and minimum period $p_{i}$. The relative deadline is the time between each job arrival and its deadline. The minimum period is the smallest time between successive job arrivals. We use a sporadic task to model the short-circuit protection task \cite{mok_fundamental_1983}. The proposed sporadic task will have an \textit{implicit deadline} where a new job of the short-circuit task $\mathrm{T}_{scd}$ may arrive at the absolute deadline of the previous job.
 
 For our short-circuit task $\mathrm{T}_{scd}$, the execution time depends on the short-circuit protection algorithm used, processor speed, and ADC conversion time. Thus, the execution time is not assessed here but modeled as $e_{scd}$.
 
@@ -296,7 +296,7 @@ p_{scd} = \frac{\delta(I_{max},V_{max})}{2}
 \paragraph{Preemptive Uniprocessor EDF Scheduling}
 %Cite optimality of uniprocessor preemptive EDF scheduling
 %Cite utilization calculation for uniprocessor preemptive EDF scheduling.
-With $\mathrm{T}_{scd}$ defined, we derive its utilization under preemptive uniprocessor EDF scheduling. According to \cite{LiuLayland}, a set of implicit-deadline sporadic tasks is schedulable with EDF if and only if:
+With $\mathrm{T}_{scd}$ defined, we derive its utilization under preemptive uniprocessor EDF scheduling. According to \cite{liu_scheduling_1973}, a set of implicit-deadline sporadic tasks is schedulable with EDF if and only if:
 \begin{equation}\label{eq:EDFUtilization}
 \sum_{i=1}^{n} \frac{e_{i}}{p_{i}} \leq 1
 \end{equation}
