@@ -1,40 +1,60 @@
 \section{Introduction}   \label{chap:introduction}
 
 % > Goals:
+% Hook
 % What defines a real time system?
 % What's an example of a real-time system?
 % Where did RTS come from?
 % What do they look like now?
 % Why do we care about studying them?
-
-% Introduce growing need for research that combines RTS and Control.
-\subsection{Real-Time Air Bags}
-Real-time systems are systems in which the utility of computation depends on logical and temporal correctness CITE.
-Specifically, real-time systems must provide results that are computationally correct (logical correctness) and completed before the associated deadline (temporal correctness).
-Real-time systems are often present in safety-critical systems where incorrect or untimely operation leads to catastrophe.
+\subsection{Timing is Everything}
+In 2018, an estimated 6.7 million car accidents in the US were reported - over 12 car accidents per minute.
+In vehicles sold in the US since 1998, an Electronic Control Unit (ECU) in the vehicle is responsible for determining if airbags should be deployed.
+The ECU uses wheel speed sensors, accelerometers, and Inertial Measurement Units (IMUs), to identify acceleration or vehicle speed sufficient to warrant deploying airbags. 
+If needed, airbags are deployed in under 50 milliseconds CITE.
+Since inception, the system of ECUs, sensors, and airbags have saved over 50,000 lives from car accidents and reduced the chance of fatality to drivers and front seat passangers by nearly 30\% CITE.
+In this system, the improper calculation of acceleration or vehicle speed could result in deploying an airbag unnecessarily or worse - not deploying during a severe crash.
+Even if the calculation is correct, however, deploying the airbag too late (after the driver or passenger have collided with the steering wheel or dashboard) could result in fatalities.
+Airbag systems demonstrate the need for two types of correctness: logical and temporal.
+The computation performed by the ECU must produce the correct signal to fire (or not fire) the airbags (logical correctness) \textbf{and} must produce the correct signal fast enough to save the occupants (temporal correctness).
+Failure to guarantee either can result in death.
+These systems, where logical and temporal correctness must be guaranteed to avoid catastrophe, are known as Real-Time Systems.
 
 TODO: AIRBAG ARTWORK
 
-Consider, for example, the Electronic Control Unit (ECU) in a vehicle responsible for deploying airbags in the event of a crash \cite{hartl_airbag_1990}.
-An airbag ECU is an on-board computer that must correctly calculate acceleration from the vehicle's accelerometers or Inertial Measurement Units (IMUs) to identify rapid acceleration associated with an automobile crash.
-Failure to correctly calculate acceleration could result in airbag deployment when there is no need (possibly causing a crash) or worse: no airbag deployment when there is, in fact, a crash resulting in the injury or death of the driver (and/or other occupants).
-Suppose, however, that the ECU correctly determines when the airbags must deploy.
-If the ECU's acceleration and accident calculation takes too long (say, longer than the time required for the driver to collide with the steering column), deploying the airbag will be useless at best as the driver has already been injured or killed.
-The ECU responsible for deploying airbags, the sensors the ECU relies on, and even the airbag mechanisms themselves are all part of a real-time system in which logical and temporal correctness are required.
-Consider, now, that accident detection and airbag deployment is just one of many tasks the ECU needs to repeatedly execute.
-Each task on the ECU has some computation that must be performed (fuel injection, spark ignition timing, throttle position sensing, wheel speed sensing, anti-lock braking, or traction control, for example).
-Each task must also be executed at some particular frequency.
-Ane each tasks' computed results must be known by some particular deadline.
-This combination of a task's computation time, execution frequency, and deadline may be used to characterize the demand of the task.
-The study of real-time systems, therefore, involves determining whether some set of tasks, each with their own computation times, frequencies, and deadlines, can be scheduled on a set of processors such that all computations are completed before their respective deadlines.
-The analysis described above, called schedulability, is one kind of analysis performed on real-time systems to guarantee logical and temporal correctness.
+% Introduce growing need for research that combines RTS and Control.
+\subsection{What is a Real-Time System?}
+In general, real-time systems are systems in which the utility of a computation depends on logical correctness of the result and timeliness of the computation CITE.
+As illustrated by the airbag example, real-time systems are often present in safety-critical applications where incorrect or untimely operation leads to catastrophe.
+% Example systems include TODO 
+
+Consider, now, that accident detection and airbag deployment is not a calculation the ECU performs once but is calculated repeatedly.
+This repeated calculation over time is referred to as a \textit{task}.
+Note, formal definitions will be provided in Chapter \ref{sec:systemModel}.
+Furthermore, the ECU may be responsible for more than airbag deployment - that is, the ECU may have more than one task to execute.
+For each task on the ECU, some computation must be performed (fuel injection, spark ignition timing, throttle position sensing, wheel speed sensing, anti-lock braking, or traction control, for example).
+Through code analysis, the time required to perform each task's computation can be upper bounded to give a \textit{Worst-Case Execution Time} (WCET).
+Each task must also be executed at some particular frequency, known as a \textit{period}.
+And each tasks' computed results must be known by some particular \textit{deadline}.
+This combination of a task's WCET, period, and deadline is used to calculate \textit{demand} - the amount of processor time a task needs over time to guarantee calculations are completed before their respective deadlines.
+This process of calculating demand is known as \textit{demand characterization}.
+The study of real-time systems, therefore, involves characterizing the demand of some set of tasks, each with their own WCET, period, and deadline, to determine if they can be scheduled on a set of processors such that all computations are completed before their respective deadlines.
+The analysis described above, called \textit{schedulability}, is one kind of analysis performed on real-time systems to guarantee logical and temporal correctness.
+To better understand how real-time systems came to be, we now look toward the end of World War II.
+% Consider, for example, the Electronic Control Unit (ECU) in a vehicle responsible for deploying airbags in the event of a crash \cite{hartl_airbag_1990}.
+% An airbag ECU is an on-board computer that must correctly calculate acceleration from the vehicle's accelerometers or Inertial Measurement Units (IMUs) to identify rapid acceleration associated with an automobile crash.
+% Failure to correctly calculate acceleration could result in airbag deployment when there is no need (possibly causing a crash) or worse: no airbag deployment when there is, in fact, a crash resulting in the injury or death of the driver (and/or other occupants).
+% Suppose, however, that the ECU correctly determines when the airbags must deploy.
+% If the ECU's acceleration and accident calculation takes too long (say, longer than the time required for the driver to collide with the steering column), deploying the airbag will be useless at best as the driver has already been injured or killed.
+% The ECU responsible for deploying airbags, the sensors the ECU relies on, and even the airbag mechanisms themselves are all part of a real-time system in which logical and temporal correctness are required.
 
 \subsection{The Rise of Real-Time Systems}
 
 % Summary: Real-time systems are the follow up to real-time simulations. Post WWII simulations gave rise to real-time simulation. Managing telecommunications required real-time system modeling - the need for timely switching and routing of telephone signals to requested destination numbers. Eventually real-time systems were applied to industrial process control - the earliest of which was isomerization of butane in the chemical sector. In short, real-time systems began as a natural consequence of three things: simulating real-world control systems for military aircraft, serving user requests for telecommunications, and executing control of chemical process control.
 
-The need for real-time systems began in 1944, at the end of World War II, when the US Navy initiated the development of Project Whirlwind, arguably the first American Real-Time System \cite{laplante_historical_1995}.
-Project Whirlwind aimed to develop a real-time flight control simulator for pilot training \cite{forrester_whirlwind_1990}.
+The need for real-time systems began in 1944, at the close of World War II, when the US Navy initiated the development of Project Whirlwind, arguably the first American Real-Time System \cite{laplante_historical_1995}.
+Driven by the need for pilots, Project Whirlwind aimed to develop a real-time flight control simulator \cite{forrester_whirlwind_1990}.
+The project resulted in the first real-time computer, the Whirlwind Computer, which 
 From the late 1940s to the 1950s, the Whirlwind Computer evolved into the Semi-Automatic Ground Environment (SAGE) air-defense system - a collection of radar stations. \cite{noauthor_tales_nodate}.
 In the late 1950s, SAGE systems were installed by Canada and the United States as a joint effort under the North American Air Defense Command (now known as NORAD) to defend North American airspace on the verge of the Cold War\cite{lacomia_brief_nodate}.
 In the 1950s, Bell Lab's engineers, recognizing the importance of timely switching and routing of phone calls, began treating telecom switching computers as real-time systems \cite{joel_communication_1957}.
