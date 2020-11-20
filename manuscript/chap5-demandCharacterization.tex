@@ -114,7 +114,7 @@ Thus, a job's execution time is determined by the speed of the crankshaft at the
 \begin{property}[Speed After $n$ Rotations]
 Given an initial speed of $\omega(t)$ at time $t$ and a constant acceleration $\alpha$,
 the speed after an angular displacement of $\Delta \theta$
-is~\cite{hcVerma, 2014Biondi}
+is~\cite{verma_concepts_nodate, biondi_exact_2014}
 \begin{equation}
 \label{eqn:rotation}
     \Omega(\omega(t),\alpha, \Delta \theta) = \sqrt[]{\omega(t)^2+2\alpha \Delta \theta}.
@@ -137,7 +137,7 @@ Hence, the analysis in this paper can also be extended to multiple AVR tasks.
 \paragraph{Minimum Job Inter-arrival Times}
 
 The minimum inter-arrival time is the minimum time duration from the release of a job at $t_1$ when the speed is $\omega(t_1)$ to the next job release at $t_2$ and speed $\omega(t_2)$. We denote minimum inter-arrival time by $\widetilde{T}(\omega(t_1),\omega(t_2))$.
-In order to overcome the drawback of using constant acceleration between job releases as was assumed in most existing work~\cite{biondi_response-time_2015,biondi_feasibility_2015,2014Biondi}, we consider the possibility of acceleration variations between two job releases similar to the work by Mohaqeqi et al.~\cite{mohaqeqi_refinement_2017}.
+In order to overcome the drawback of using constant acceleration between job releases as was assumed in most existing work~\cite{biondi_response-time_2015,biondi_feasibility_2015,biondi_exact_2014}, we consider the possibility of acceleration variations between two job releases similar to the work by Mohaqeqi et al.~\cite{mohaqeqi_refinement_2017}.
 
 The minimum inter-arrival time equation by Mohaqeqi et al.~\cite{mohaqeqi_refinement_2017} is briefly presented here using simplified notation for readability.
 To get the minimum inter-arrival time from any speed $\omega$, the crankshaft has to be maximally accelerated from $\omega$ to reach $\omega_{p}$, the peak speed, and then maximally decelerated to reach a target speed $f$ in a single rotation,
@@ -991,11 +991,11 @@ The experiments were performed using Python 3.6.5 on a 3.40 GHz, quad-core proce
 While the results are platform dependent, the general trend showing the relative performance of the proposed approach against the DRT algorithm should be representative.
 Each experiment is run 10 times and the average values are reported. The code and the original data used for this publication can be found on the artifact evaluation page~\cite{githubLink}.
 
-In the first experiment, two task sets were used. The first task set appeared in existing publications~\cite{2014Biondi,mohaqeqi_refinement_2017} (Table~\ref{fig:taskset-1}). Note that this task set is not ideal, as some boundary speeds can be reached from the others in an integer number of rotations using maximum acceleration, which simplifies the search for the worst-case demand. The results are shown in Table~\ref{fig:Exp1Comp}(a). Though both approaches were able to find the worst-case demand, our algorithm is 13.5 times faster.
+In the first experiment, two task sets were used. The first task set appeared in existing publications~\cite{biondi_exact_2014,mohaqeqi_refinement_2017} (Table~\ref{fig:taskset-1}). Note that this task set is not ideal, as some boundary speeds can be reached from the others in an integer number of rotations using maximum acceleration, which simplifies the search for the worst-case demand. The results are shown in Table~\ref{fig:Exp1Comp}(a). Though both approaches were able to find the worst-case demand, our algorithm is 13.5 times faster.
 
 \begin{table}
   \begin{center}
-  \caption{Task set used by existing work~\cite{2014Biondi,mohaqeqi_refinement_2017}}
+  \caption{Task set used by existing work~\cite{biondi_exact_2014,mohaqeqi_refinement_2017}}
   \label{fig:taskset-1}
   \resizebox{\linewidth}{!}{%
       \begin{tabular}{r | l l l l l l | l} \hline
