@@ -307,7 +307,7 @@ For clarity, the subscripts of the speeds are used to denote the precedence cons
 An effective way to model the precedence constraints among jobs is by using out-trees.
 The sequences beginning at each of the source nodes are independent of each other (i.e., sequences beginning at each of the right boundary speeds according to Lemma~\ref{lemma:startSpeed}).
 An example out-tree is shown in Fig. \ref{fig:KnapsackTree}.
-To represent the trees in a knapsack problem, we define a dependency graph $G_I=(V_I, A_I)$, where $V_I$ denotes the set of vertices (i.e., items) in the out-tree $G_I$~\cite{KnapsackBook}.
+To represent the trees in a knapsack problem, we define a dependency graph $G_I=(V_I, A_I)$, where $V_I$ denotes the set of vertices (i.e., items) in the out-tree $G_I$~\cite{kellerer_knapsack_2004}.
 An edge between any two vertices denotes that the two speeds are reachable from one another and is represented by $(j,k)\in A_I$.
 Formally, our BPCKP can be expressed as follows:
 \begin{alignat}{3}
