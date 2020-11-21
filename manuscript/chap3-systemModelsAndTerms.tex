@@ -8,12 +8,12 @@ Note that any terminology or notation specific to individual systems (for exampl
 To properly characterize demand or perform schedulability analysis, the computational load of a real-time system must be described.
 The combination of \textit{jobs} and \textit{tasks} allow us to do so.
 
-\subsubsection{Job}
+\subsubsection{Jobs}
 
 A job, $j_i$, is the smallest unit for modeling real-time computation characterized by the tuple $j = (a,e,d)$ where $a$ is the release time, the earliest time at which the processor time may be allocated to the job, $d$ is the relative deadline, the time by which $e$ units of processor time must be allocated to the job to avoid missing the deadline.
 Figure \ref{fig:rt-job} illustrates a single job and its typical parameters.
 
-\subsubsection{Task}
+\subsubsection{Tasks}
 
 A task, $\tau_i$, is an infinite series of jobs characterized by the tuple $\tau_i = (a,p,c,d)$ where $a$ is the offset of the task, the time after $t=0$ at which the first job of the task is released, $p$ is either the period or minimum interarrival time of the task (described below), $c$ is the WCET of all jobs the task may release, and $d$ is the relative deadline for all jobs of the task such that a job released at time $t$ is due at time $t+d$.
 
@@ -50,7 +50,7 @@ Note that while utilization describes the ratio of time consumed to time availab
 To provide a more precise bound on computation over time, demand is used.
 The demand over some time interval $[t_1,t_2]$ is the sum of all WCETs of jobs with release time and deadline in the interval.
 Demand, however, only reflects a particular interval and not any possible interval.
-The Demand Bound Function (DBF), introduced by Baruah et al. \cite{baruah_preemptively_1990}, is a function which characterizes demand by providing the maximum cumulative execution time a set of tasks may require from a processor over any interval of size $\delta$. 
+The Demand Bound Function (DBF), introduced by Baruah et al. \cite{baruah_preemptively_1990}, is a function which characterizes demand by providing the maximum cumulative execution time a set of tasks may require from a processor over any interval of size $\delta$.
 The definition presented in Baruah et al. \cite{baruah_preemptively_1990} is used here.
 \begin{definition}[Demand bound Function]\label{def:dbf}
     The \textit{demand bound function}, $DBF(\tau,\delta)$, gives the cumulative WCET of all jobs of $\tau$ with both release times and deadlines within any time interval of length $\delta$.
