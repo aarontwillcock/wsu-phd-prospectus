@@ -33,7 +33,7 @@ Hence, the demand depends on the relationship between the task's execution times
 \begin{figure}
 \centering
 \includegraphics[width=\linewidth]{fig/AVRImage.pdf}
-\caption{Different modes of an AVR task where $c_i$ and $\omega_{rb_i}$ are the execution time and the right boundary speed of the $i^{\rm th}$ mode, respectively.}
+\caption{Adaptive Variable Rate (AVR) Task WCET versus Engine Speed}Different modes of an AVR task where $c_i$ and $\omega_{rb_i}$ are the execution time and the right boundary speed of the $i^{\rm th}$ mode, respectively.
 \label{fig:AVRImage}
 \end{figure}
 
@@ -86,7 +86,7 @@ Hence, the execution time of AVR tasks is modeled as a function of the speed at 
 \begin{figure}
     \centering
     \includegraphics[width=0.9\linewidth]{fig/vectorEngineIsolated.pdf}
-    \caption{Different stages of fuel ignition in a vehicle.}
+    \caption{Stages of Ignition a Spark Ignition Internal Combustion Engine (ICE)}
     \label{fig:Engine}
 \end{figure}
 
@@ -184,8 +184,8 @@ The two cases are defined below and presented in Figure \ref{fig:mint}:
       \label{fig:mintMax}
   \label{mintMax}
 %\caption{Minimum interarrival time $\widetilde{T}(\omega,f)$ between speeds $\omega$ and $f$ where (a) $\omega_p(\omega,f) \leq \omega_{\max}$ and (b) $\omega_p(\omega,f) > \omega_{\max}$. Green, ascending lines represent periods of maximum acceleration, $\alpha_{\max}$, yellow, flat lines represent periods of zero acceleration, $\alpha = 0$, and red, descending lines represent periods of maximum deceleration, $\alpha_{\min}$.}
-\caption{Minimum interarrival time $\widetilde{T}(\omega,f)$ between speeds $\omega$ and $f$ where (a) $\omega_p(\omega,f) \leq \omega_{\max}$ and (b) $\omega_p(\omega,f) > \omega_{\max}$.
-Ascending, flat, and descending lines represent periods of maximum ($\alpha_{\max}$), zero, and  minimum ($\alpha_{\min}$) acceleration, respectively.}
+\caption{Minimum Interarrival Time Graphs: With and Without $\omega_{max}$}Minimum interarrival time $\widetilde{T}(\omega,f)$ between speeds $\omega$ and $f$ where (a) $\omega_p(\omega,f) \leq \omega_{\max}$ and (b) $\omega_p(\omega,f) > \omega_{\max}$.
+Ascending, flat, and descending lines represent periods of maximum ($\alpha_{\max}$), zero, and  minimum ($\alpha_{\min}$) acceleration, respectively.
 \label{fig:mint}
 \end{figure}
 
@@ -276,7 +276,7 @@ For clarity, the subscripts of the speeds are used to denote the precedence cons
 \begin{figure}
 \centering
 \includegraphics[width=1.0\linewidth]{fig/vectorKnapsackv2.pdf}
-\caption{Example items for our knapsack problem. A job that is higher in the precedence relation is preceded by a job lower in the relation.}
+\caption{Example Knapsack Item Visualization} Example knapsack items for calculating worst case demand of an AVR task. A job that is higher in the precedence relation is preceded by a job lower in the relation.
 \label{fig:Knapsack1}
 \end{figure}
 
@@ -300,7 +300,7 @@ For clarity, the subscripts of the speeds are used to denote the precedence cons
 \begin{figure}
     \centering
     \includegraphics[width=1.0\linewidth]{fig/vectorKnapsackTreeShortenedv5.pdf}
-    \caption{Precedence constraints among jobs are expressed using out-trees. Nodes represent WCETs for the initial speeds and arrows represent minimum inter-arrival times. The tree demonstrates the various precedence relations and possible paths. Leaves represent completion of the parent job without adding subsequent jobs (i.e. items). Furthermore, each of the leaves has zero execution since its parent is the final job included in the knapsack.}
+    \caption{Example Out Tree of Knapsack Items}Precedence constraints among jobs are expressed using out-trees. Nodes represent WCETs for the initial speeds and arrows represent minimum inter-arrival times. The tree demonstrates the various precedence relations and possible paths. Leaves represent completion of the parent job without adding subsequent jobs (i.e. items). Furthermore, each of the leaves has zero execution since its parent is the final job included in the knapsack.
     \label{fig:KnapsackTree}
 \end{figure}
 
@@ -386,7 +386,7 @@ The variable $D_w$ (Equation~\ref{eqn:d}) tracks the accumulated demand of the c
 \State return maxDemand
 \EndFunction
 \end{algorithmic}
-\caption{DP for Calculating $\dbf(\delta)$}
+\caption{Dynamic Programming Algorithm for Calculating $\dbf(\delta)$}
 \label{algo}
 \end{algorithm}
 
@@ -604,7 +604,7 @@ Note that by definition, final injections of $s_{k+1}$ into $S_A(k)$ will mainta
       \label{fig:injFEI}
   \label{injFEI}
 %\caption{A two-speed sequence, $\omega_1, \omega_2$, shown in blue dots, receives a(n) (a) leading injection, (b) internal injection, and (c) final injection by $\omega_3$ (green square). Dashed green lines, dotted red lines, and solid black lines represent the added minimum inter-arrival times, removed minimum inter-arrival times, and unchanged minimum inter-arrival times, respectively. Green squares represent the injected speed $\omega_3$.}
-\caption{A two-speed sequence, $\omega_1, \omega_2$, shown as dots, receives the (a) leading, (b) internal, and (c) final, injection of $\omega_3$ shown as a square. Dashed, dotted, and solid lines represent the added, removed, and unchanged minimum inter-arrival times, respectively.}
+\caption{Speed Injection Visualizations} A two-speed sequence, $\omega_1, \omega_2$, shown as dots, receives the (a) leading, (b) internal, and (c) final, injection of $\omega_3$ shown as a square. Dashed, dotted, and solid lines represent the added, removed, and unchanged minimum inter-arrival times, respectively.
 \label{fig:injections}
 \end{figure}
 
@@ -995,7 +995,7 @@ In the first experiment, two task sets were used. The first task set appeared in
 
 \begin{table}
   \begin{center}
-  \caption{Task set used by existing work~\cite{biondi_exact_2014,mohaqeqi_refinement_2017}}
+  \caption{AVR Task set used by Biondi et. al \cite{biondi_exact_2014} and Mohaqeqi et. al \cite{mohaqeqi_refinement_2017}}
   \label{fig:taskset-1}
   \resizebox{\linewidth}{!}{%
       \begin{tabular}{r | l l l l l l | l} \hline
@@ -1010,7 +1010,7 @@ In the first experiment, two task sets were used. The first task set appeared in
 
 \begin{table}
   \begin{center}
-  \caption{A more general task set.}
+  \caption{A More General AVR Task Set}
   \label{fig:taskset-2}
   \resizebox{\linewidth}{!}{%
   \begin{tabular}{r | l l l l l l | l} 
@@ -1025,7 +1025,7 @@ In the first experiment, two task sets were used. The first task set appeared in
 
 \begin{table}
 \begin{center}
-\caption{Run time comparison of different algorithms}
+\caption{Runtime Comparison of Digraph Real-Time and Knapsack AVR Algorithm: DBF over 1$s$}
 \label{fig:Exp1Comp}
 \subfloat[An existing task set]{
     \begin{tabular}{r|ll}
@@ -1060,7 +1060,7 @@ The results are shown in Table~\ref{fig:Exp1Comp}(b). As before both approaches 
 \begin{figure}
 \centering
 \includegraphics[width=1.0\linewidth]{fig/runtimePlot-confidence_intervals.png}
-\caption{Graph depicting the runtime of different algorithms as a function of the number of modes of randomly generated AVR task sets. For each mode, the 95\% confidence interval is shown.}
+\caption{Runtime Comparison of Digraph Real-Time and Knapsack AVR Algorithm: Number of Modes}Graph depicting the runtime of different algorithms as a function of the number of modes of randomly generated AVR task sets. For each mode, the 95\% confidence interval is shown.
 \label{fig:finalgraph}
 \end{figure}
 
