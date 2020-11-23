@@ -1,7 +1,8 @@
 \section{System Models and Terms}   \label{chap:systemModel}
 
-This chapter will describe common terminology for describing computation, timing, and analysis in the context of real-time systems.
-Note that any terminology or notation specific to individual systems (for example, engine control) are not covered here but will be covered in their respective chapters.
+This chapter will describe common terms for describing computation, timing, and analysis in the context of real-time systems.
+Note that chapter-specific terms and notation (for example, engine control) are not covered here.
+Chapter-specific terms will be covered in the relevant chapter.
 
 \subsection{Modeling Computation: Jobs and Tasks}
 
@@ -10,17 +11,43 @@ The combination of \textit{jobs} and \textit{tasks} allow us to do so.
 
 \subsubsection{Job}
 
-A job, $j_i$, is the smallest unit for modeling real-time computation characterized by the tuple $j = (a,e,d)$ where $a$ is the release time, the earliest time at which the processor time may be allocated to the job, $d$ is the relative deadline, the time by which $e$ units of processor time must be allocated to the job to avoid missing the deadline.
+A job, $j_i$, is the smallest unit for modeling real-time computation characterized by the tuple $j = (a,e,d)$ where $a$ is the release time, $d$ is the relative deadline, and $e$ is the execution time.
+The release time, $a$, is the earliest time at which the processor time may be allocated to the job.
+The relative deadline, $d$, is the time by which $e$ units of processor time must be allocated to the job to avoid a \textit{deadline miss}.
+In the context of the airbag ECU, a \textit{deadline miss} is when the ECU calculation is not completed early enough and the passenger collides with the steering wheel or dashboard. 
+The execution time, $e$, is the amount of processor time required to complete the requested computation. 
+
 Figure \ref{fig:rt-job} illustrates a single job and its typical parameters.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.50\linewidth]{fig/singleJob.pdf}
+    \caption{Single Job Parameters} A single job of task $\tau$ with release time $a$, execution time $e$, and deadline $d$.
+    \label{fig:rt-job}
+\end{figure}
 
 \subsubsection{Task}
 
-A task, $\tau_i$, is an infinite series of jobs characterized by the tuple $\tau_i = (a,p,c,d)$ where $a$ is the offset of the task, the time after $t=0$ at which the first job of the task is released, $p$ is either the period or minimum interarrival time of the task (described below), $c$ is the WCET of all jobs the task may release, and $d$ is the relative deadline for all jobs of the task such that a job released at time $t$ is due at time $t+d$.
-
+A task, $\tau_i$, is an infinite series of jobs characterized by the tuple $\tau_i = (a,p,c,d)$ where $a$ is the offset of the task, $p$ is either the period or minimum interarrival, $c$ is the WCET, and $d$ is the relative deadline.
+The offset, $a$, is the time after $t=0$ at which the first job of the task is released.
 Tasks may be either aperiodic (also known as sporadic) or periodic.
-Sporadic tasks release jobs at irregular intervals in which case $p$ represents the minimum interarrival time between successive jobs.
-Periodic tasks release jobs at regular intervals in which case $p$ represents the fixed interarrival time between successive jobs.
+Sporadic tasks release jobs at irregular intervals.
+If $\tau$ is a sporadic task, $p$ represents the minimum interarrival time between successive jobs.
+Periodic tasks release jobs at regular intervals.
+If $\tau$ is a periodic task, $p$ represents the fixed interarrival time between successive jobs.
+The WCET, $c$, is the upper bound on execution time for all jobs the task may release.
+The relative deadline, $d$, is the relative deadline for all jobs of the task such that a job released at time $t$ is has a deadline at time $t+d$.
 Figure \ref{fig:rt-task} illustrates a two tasks, one sporadic and one periodic, and their typical parameters.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.75\linewidth]{fig/taskParameters.pdf}
+    \caption{Task Parameters: Periodic and Sporadic} Task $\tau_1 = (a_1=2, p_1 = 5, c_1=2, d_1=4)$ is a periodic task.
+    Task $\tau_2 = (a_2=1,p_2=5,c_2=2,d_2=4)$ is an aperiodic task.
+    Note that $p_1$ is a period and each job of $\tau_1$ is released on a fixed interval.
+    $p_2$ is a minimum interarrival time and each job of $\tau_2$ may have $p_2$ units of time or more between consecutive releases.
+    \label{fig:rt-task}
+\end{figure}
 
 \subsubsection{Task Set}
 
