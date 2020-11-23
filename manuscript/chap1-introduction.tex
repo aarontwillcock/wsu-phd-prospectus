@@ -26,20 +26,21 @@ These systems, where logical and temporal correctness must be guaranteed to avoi
     \caption{Airbag Deployment in a Crash Test} Two crash test dummies sit in a 2017 Chevrolet Volt after a frontal crash.
     The airbag deployment in the Chevrolet Volt is controlled by its Air Bag Control Module \cite{noauthor_2014-2018_nodate}.
     The airbag deployment system is an example of a real-time system.
-    
+
     Picture Credit: National Highway Transportation Safety Administration \cite{noauthor_nhtsa_nodate}.
     \label{fig:whirlwindComputer}
 \end{figure}
 
 % Introduce growing need for research that combines RTS and Control.
 \subsection{What is a Real-Time System?}
+
 In general, real-time systems are systems in which the utility of a computation depends on logical correctness of the result and timeliness of the computation CITE.
 As illustrated by the airbag example, real-time systems are often present in safety-critical applications where incorrect or untimely operation leads to catastrophe.
 % Example systems include TODO 
 
 Consider, now, that accident detection and airbag deployment is not a calculation the ECU performs once but is calculated repeatedly.
 This repeated calculation over time is referred to as a \textit{task}.
-Note, formal definitions will be provided in Chapter \ref{sec:systemModel}.
+Note, formal definitions will be provided in Chapter \ref{chap:systemModel}.
 Furthermore, the ECU may be responsible for more than airbag deployment - that is, the ECU may have more than one task to execute.
 For each task on the ECU, some computation must be performed (fuel injection, spark ignition timing, throttle position sensing, wheel speed sensing, anti-lock braking, or traction control, for example).
 Through code analysis, the time required to perform each task's computation can be upper bounded to give a \textit{Worst-Case Execution Time} (WCET).
@@ -47,9 +48,11 @@ Each task must also be executed at some particular frequency, known as a \textit
 And each tasks' computed results must be known by some particular \textit{deadline}.
 This combination of a task's WCET, period, and deadline is used to calculate \textit{demand} - the amount of processor time a task needs over time to guarantee calculations are completed before their respective deadlines.
 This process of calculating demand is known as \textit{demand characterization}.
-The study of real-time systems, therefore, involves characterizing the demand of some set of tasks, each with their own WCET, period, and deadline, to determine if they can be scheduled on a set of processors such that all computations are completed before their respective deadlines.
+The study of real-time systems, therefore, involves characterizing the demand of some set of tasks, each with their own WCET, period, and deadline, to determine if a \textit{schedule}can be made for executing the tasks on a set of processors such that all computations are completed before their respective deadlines.
 The analysis described above, called \textit{schedulability}, is one kind of analysis performed on real-time systems to guarantee logical and temporal correctness.
 To better understand how real-time systems came to be, we now look toward the end of World War II.
+
+
 % Consider, for example, the Electronic Control Unit (ECU) in a vehicle responsible for deploying airbags in the event of a crash \cite{hartl_airbag_1990}.
 % An airbag ECU is an on-board computer that must correctly calculate acceleration from the vehicle's accelerometers or Inertial Measurement Units (IMUs) to identify rapid acceleration associated with an automobile crash.
 % Failure to correctly calculate acceleration could result in airbag deployment when there is no need (possibly causing a crash) or worse: no airbag deployment when there is, in fact, a crash resulting in the injury or death of the driver (and/or other occupants).
@@ -73,7 +76,8 @@ In each setting, real-time systems meet the need for correct computation in a ti
 \begin{figure}
     \centering
     \includegraphics[width=0.75\linewidth]{fig/whirlwindComputer.JPG}
-    \caption{Whirlwind Computer} Whirlwind Computer in the Museum of Science, Boston, Massachusetts, USA
+    \caption{Whirlwind} Segments of the Whirlwind Computer in the Museum of Science, Boston, Massachusetts, USA.
+    Credit: 
     \label{fig:whirlwindComputer}
 \end{figure}
 
@@ -111,22 +115,38 @@ In the worst case, the system may need an additional processor entirely.
 In a vehicle, this extra processor may mean an additional ECU complete with its own communication wiring, power wiring, enclosure, mounting brackets, and any space or weight consumed.
 Clearly, the cost of the extra (possibly unnecessary) processor is more than just the processor itself.
 
-TODO:Similarly, if the real-time schedulability analysis is too inefficient, moving tasks between processes online may be impossible (something something you can only computer schedulabilioty offline... blah blah blah)
+Similarly, if the real-time schedulability analysis is too inefficient, providing real-time guarantees may be limited to offline settings where all tasks and computing hardware are known and fixed in advance.
+This is problematic for real-world systems where hardware can fail (reducing the number of processors, for example), mistakes in modeling lead to jobs exceeding their WCET (meaning temporal correctness is no longer guaranteed), or when system workloads will change quickly with the addition and removal of tasks (changing the demand).
+To adapt the schedule online, a real-time system must be able to recharacterize the demand and re-evaluate schedulability quickly.
+Furthermore, in systems where online schedulability analysis is required the schedulability test itself reduces the processor availability for computing that tasks that are being scheduled!
+In the pursuit of integrating real-time systems and control in Cyber-Physical Systems more realistic models of demand and more adaptive real-time systems require less pessimistic demand characterization and more efficient schedulability analysis. 
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.7\linewidth]{fig/515.jpg}
+    \caption{Scheduling Takes Time} A cartoon highlighting how scheduling itself takes time... sometimes too much time.
+
+    Credit: Cartoon \copyright Glasbergen, used with special permission from \url{www.glasbergen.com}
+\end{figure}
 
 \subsection{Approach}
 % > Incorporate physical dynamics of the systems whose workloads are being scheduled so that physical dynamics may be leveraged for more efficient demand characterization and schedulability analysis.
 % Furthermore, incorporating physical dynamics will allow system designers to visualize tradeoffs between real-time metrics and physical system dynamics.
-While the close integration of real-time systems with physical dynamics complicates analysis, it also presents the opportunity to leverage known properties of the physical system to mitigate the impact of the inherent complexity.
-To address the need for less pessimistic and more efficient analysis in real-time cyber-physical systems, this work uses limitations on physical system dynamics to characterize demand and perform schedulability analysis more efficiently while also enabling the codesign of hardware and software.
-Specifically, this work aims to show how limitations on physical dynamics can reduce the search space during demand characterization and schedulability analysis.
+While the close integration of real-time systems with physical dynamics complicates analysis, it also presents an opportunity.
+Physical systems have limitations set by physics.
+In mechanical systems, these limitations may manifest as bounds on speed or acceleration.
+In electrical systems, the limits may be on changes in current or voltage.
+Thus, there is an opportunity to use the known properties of the physical system to mitigate the impact of the inherent complexity.
+To address the need for less pessimistic and more efficient analysis in real-time cyber-physical systems, this work leverages limitations on physical system dynamics to characterize demand and perform schedulability analysis more efficiently while also enabling the codesign of hardware and software.
+Specifically, this work aims to show how such limitations on physical dynamics can reduce the search space during demand characterization and schedulability analysis.
 Similarly, this work aims to show how those same physical limitations and their relationship to real-time demand may be traded off with real-time system properties such as utilization and worst-case execution time.
-This relationship allows system designers to directly relate physical system properties to system schedulability. 
+This relationship allows system designers to directly relate physical system properties to system schedulability.
 
 \subsection{Thesis}
 
-The main thesis of this work is:
+In light of this opportunity, the main thesis of this work is:
 
-"Incorporating physical dynamics into real-time system analysis can reduce pessimism and increase efficiency of demand characterization and schedulability analysis while enabling codesign of real-time, cyber-physical systems." 
+"Incorporating physical dynamics into real-time system analysis can reduce pessimism and increase efficiency of demand characterization and schedulability analysis while enabling the codesign of real-time, cyber-physical systems." 
 
 \subsection{Contributions}
 
