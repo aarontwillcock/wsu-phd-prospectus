@@ -1,13 +1,11 @@
 \section{System Models and Terms}   \label{chap:systemModel}
 
-This chapter will describe common terms for describing computation, timing, and analysis in the context of real-time systems.
-Note that chapter-specific terms and notation (for example, engine control) are not covered here.
-Chapter-specific terms will be covered in the relevant chapter.
+This chapter will cover common terms for describing computation, timing, and analysis in the context of real-time systems.
+Note that chapter-specific terms and notation (for example, engine control) will be covered in the relevant chapter.
 
 \subsection{Modeling Computation: Jobs and Tasks}
 
-To properly characterize demand or perform schedulability analysis, the computational load of a real-time system must be described.
-The combination of \textit{jobs} and \textit{tasks} allow us to do so.
+% \textit{Jobs} and \textit{tasks} are two tools used to characterize demand and help perform schedulability analysis.
 
 \subsubsection{Job}
 
@@ -16,13 +14,14 @@ The release time, $a$, is the earliest time at which the processor time may be a
 The relative deadline, $d$, is the time by which $e$ units of processor time must be allocated to the job to avoid a \textit{deadline miss}.
 In the context of the airbag ECU, a \textit{deadline miss} is when the ECU calculation is not completed early enough and the passenger collides with the steering wheel or dashboard. 
 The execution time, $e$, is the amount of processor time required to complete the requested computation. 
-
 Figure \ref{fig:rt-job} illustrates a single job and its typical parameters.
 
-\begin{figure}
+\begin{figure}[!htbp]
     \centering
     \includegraphics[width=0.50\linewidth]{fig/singleJob.pdf}
-    \caption{Single Job Parameters} A single job of task $\tau$ with release time $a$, execution time $e$, and deadline $d$.
+    \caption{Real-Time Job Parameters} A single job of task $\tau$ with release time $a$, execution time $e$, and deadline $d$.
+    The x-axis is time where an upward arrow indicate the release of a job and a downward arrow represents the deadline of the job.
+    The box represents execution time allocated to task $\tau$.
     \label{fig:rt-job}
 \end{figure}
 
@@ -39,13 +38,13 @@ The WCET, $c$, is the upper bound on execution time for all jobs the task may re
 The relative deadline, $d$, is the relative deadline for all jobs of the task such that a job released at time $t$ is has a deadline at time $t+d$.
 Figure \ref{fig:rt-task} illustrates a two tasks, one sporadic and one periodic, and their typical parameters.
 
-\begin{figure}
+\begin{figure}[!htbp]
     \centering
     \includegraphics[width=0.75\linewidth]{fig/taskParameters.pdf}
-    \caption{Task Parameters: Periodic and Sporadic} Task $\tau_1 = (a_1=2, p_1 = 5, c_1=2, d_1=4)$ is a periodic task.
-    Task $\tau_2 = (a_2=1,p_2=5,c_2=2,d_2=4)$ is an aperiodic task.
-    Note that $p_1$ is a period and each job of $\tau_1$ is released on a fixed interval.
-    $p_2$ is a minimum interarrival time and each job of $\tau_2$ may have $p_2$ units of time or more between consecutive releases.
+    \caption{Real-Time Task Parameters: Periodic and Sporadic}
+    Task $\tau_1 = (a_1=2, p_1 = 5, c_1=2, d_1=4)$ is a periodic task.\\
+    Task $\tau_2 = (a_2=1,p_2=5,c_2=2,d_2=4)$ is an aperiodic task.\\
+    Note that $\tau_1$, being periodic, has fixed releases $p_1$ units of time apart whereas $\tau_2$, being aperiodic, has releases \textit{at least} $p_2$ units apart.
     \label{fig:rt-task}
 \end{figure}
 
@@ -55,7 +54,7 @@ When more than one task is needed to describe all computational loads, tasks are
 From this task set, an additional parameter, the Hyperperiod $H$, can be derived.
 The hyperperiod $H$ represents the least common multiple (LCM) of all periods (or minimum interarrival times) in  the task set.
 Formally, $H = \text{LCM}(p_1, p_2, \dots, p_n)$.
-This hyperperiod represents when pattern of computation repeats.
+This hyperperiod represents when the pattern of computation repeats.
 
 \subsection{Bounding Computation: Utilization and Demand}
 
