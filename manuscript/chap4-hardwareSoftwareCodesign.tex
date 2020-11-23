@@ -100,13 +100,13 @@ For the purposes of describing our approach, we rely on the following nomenclatu
 Direct current (DC) circuits are circuits in which the direction of current flow does not change \cite{young_sears_2012}. A DC circuit in which current passes through a resistor and an inductor is deemed a DC RL circuit where "R" represents the resistor and "L" the inductor. The model presented in Section \ref{subsec:electronic system model} relies on a first-order DC RL circuit with the resistor and inductor in series. An example first-order DC RL circuit is provided in Figure \ref{fig:ModelDCRL} with two resistors and an inductor in series.
 \begin{figure}
     \centering
-    \includegraphics[width=0.25\linewidth]{img/Model_DC_RL_Circuit_General.pdf}
+    \includegraphics[width=0.25\linewidth]{fig/Model_DC_RL_Circuit_General.pdf}
     \caption{Model DC RL Circuit} A DC RL circuit with load $R_0$, inductor $L_0$, resistor $R_1$, and switch for inducing shorts.
     \label{fig:ModelDCRL}
 \end{figure}
 %\begin{figure}[!htbp]
 %	\centering
-%    \includegraphics[scale=2.0]{img/DC_RL_Circuit_General.pdf}
+%    \includegraphics[scale=2.0]{fig/DC_RL_Circuit_General.pdf}
 %    \caption{An Example DC RL Circuit}
 %    \label{fig:DCRL}
 %\end{figure}
@@ -117,7 +117,7 @@ An inductor is a passive electronic component typically illustrated as a coil or
 The model proposed in Section \ref{subsec:electronic system model} will rely on a single, air-core inductor. The spatial properties of an inductor may be modeled as seen in Figure \ref{fig:InductorParams}.
 \begin{figure}
     \centering
-    \includegraphics[width=0.25\linewidth]{img/Inductor_Parameters.pdf}
+    \includegraphics[width=0.25\linewidth]{fig/Inductor_Parameters.pdf}
     \caption[Air Core Inductor Spatial Parameters]{Spatial parameters of an air core inductor}
     \label{fig:InductorParams}
 \end{figure}
@@ -166,7 +166,7 @@ The short-circuit detection methods will be discussed in Section \ref{subsec:met
 Figure \ref{fig:ModelDCRL} is a model DC RL circuit with a switch for simulating a short-circuit. This schematic provides the requirements for the monitored, short-protected circuit: a voltage supply $V_{in}$, circuit load $R_{0}$, inductor $L_{0}$, and the optional, low-value resistor $R_{1}$ used for sensing current. If $R_{1}$ is not used, the resistance through inductor $L_{0}$ may be used to calculate current. Note that the short occurs via the switch around $R_{0}$.
 %    \begin{figure}
 %    	\centering
-%        \includegraphics[scale=2.0]{img/Model_DC_RL_Circuit_General.pdf}
+%        \includegraphics[scale=2.0]{fig/Model_DC_RL_Circuit_General.pdf}
 %        \caption{A DC RL circuit with load $R_0$, inductor $L_0$, optional resistor $R_1$ and switch for simulating potential shorts.}
 %        \label{fig:ModelDCRL}
 %    \end{figure}
@@ -176,7 +176,7 @@ As previously mentioned, in a manufactured circuit the spatial parameters and in
 \paragraph{Board Space Consumed}
 \begin{figure}
     \centering
-    \includegraphics[scale=2.0]{img/Inductor_Perpendicular_Mount.pdf}
+    \includegraphics[scale=2.0]{fig/Inductor_Perpendicular_Mount.pdf}
     \caption{Board Space Consumed by an Inductor} The highlighted square circumscribing area $A$ of the inductor represents the board space consumed by a solenoid-style air-core inductor.
     \label{fig:BoardSpaceConsumed}
 \end{figure}
@@ -282,13 +282,13 @@ p_{scd} = \frac{\delta(I_{max},V_{max})}{2}
 \end{equation}
 \begin{figure}
     \centering
-    \includegraphics[width=0.60\linewidth]{img/shortedschedule.pdf}
+    \includegraphics[width=0.60\linewidth]{fig/shortedschedule.pdf}
     \caption{Failed Short Protection Schedule} $\mathrm{T}_{scd}$ executing with $p_{scd} = \delta(I_{max},V_{max}) = 4$.\\The short begins at $t = 2$ and $I_{crit}$ is reached at $t = 6$ before $\mathrm{T}_{scd}$ can halt the short.
     \label{fig:shortedschedule}
 \end{figure}
 \begin{figure}
     \centering
-    \includegraphics[width=0.60\linewidth]{img/stoppedschedule.pdf}
+    \includegraphics[width=0.60\linewidth]{fig/stoppedschedule.pdf}
     \caption{Successful Short Protection Schedule} $\mathrm{T}_{scd}$ executing with $p_{scd} = \frac{\delta(I_{max},V_{max})}{2} = 2$.\\The short begins at $t = 2$ and is halted by $\mathrm{T}_{scd}$ at $t = 5$ before $I_{crit}$ is reached.
     \label{fig:stoppedschedule}
 \end{figure}
@@ -419,14 +419,14 @@ Aside from the variations described above, all experiments were conducted as des
 Figure \ref{fig:ExperimentSetup} depicts the experimental circuit schematic. In the schematic, subscripts \textit{DM} refer to connections made to the Microchip demo board. The setup also requires attaching oscilloscope probes to ports RA2 in Figure \ref{fig:ExperimentSetup} and RA1 on the demo board. Figure \ref{fig:Experiment1Setup} depicts the proper connection of all materials in Experiment 1. All probe connections route off-camera to the oscilloscope. An extended list of non-trivial materials used in the experiments can be found in Appendix \ref{appendix:scd-materials}.
 \begin{figure}
     \centering
-    \includegraphics[width=0.45\linewidth]{img/Experiment_Setup.pdf}
+    \includegraphics[width=0.45\linewidth]{fig/Experiment_Setup.pdf}
     \caption{Experiment Setup Schematic} Experiment Setup Schematic
     \label{fig:ExperimentSetup}
 \end{figure}
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.75\linewidth]{img/SCD_5_9mH_EXP_SETUP.jpg}
+    \includegraphics[width=0.75\linewidth]{fig/SCD_5_9mH_EXP_SETUP.jpg}
     \caption{Experiment Setup Image}
     \label{fig:Experiment1Setup}
 \end{figure}

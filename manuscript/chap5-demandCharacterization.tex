@@ -32,7 +32,7 @@ Hence, the demand depends on the relationship between the task's execution times
 
 \begin{figure}
 \centering
-\includegraphics[width=\linewidth]{Figures/AVRImage.pdf}
+\includegraphics[width=\linewidth]{fig/AVRImage.pdf}
 \caption{Different modes of an AVR task where $c_i$ and $\omega_{rb_i}$ are the execution time and the right boundary speed of the $i^{\rm th}$ mode, respectively.}
 \label{fig:AVRImage}
 \end{figure}
@@ -77,7 +77,7 @@ Hence, the execution time of AVR tasks is modeled as a function of the speed at 
 %PNG Graphic
 %\begin{figure}
 %\centering
-%\includegraphics[width=\linewidth]{Figures/Engine.PNG}
+%\includegraphics[width=\linewidth]{fig/Engine.PNG}
 %\caption{Different stages of fuel ignition in a vehicle.}
 %\label{fig:Engine}
 %\end{figure}
@@ -85,7 +85,7 @@ Hence, the execution time of AVR tasks is modeled as a function of the speed at 
 %Vector Graphic - Last Update: 2018-08-21-12:05 - Aaron
 \begin{figure}
     \centering
-    \includegraphics[width=0.9\linewidth]{Figures/vectorEngineIsolated.pdf}
+    \includegraphics[width=0.9\linewidth]{fig/vectorEngineIsolated.pdf}
     \caption{Different stages of fuel ignition in a vehicle.}
     \label{fig:Engine}
 \end{figure}
@@ -176,11 +176,11 @@ The two cases are defined below and presented in Figure \ref{fig:mint}:
 \begin{figure}
 \centering
   \subfloat[$\widetilde{T}(\omega,f) | \omega_{p}(\omega,f) \leq \omega_{\max}$]{
-      \includegraphics[scale=0.055]{Figures/mint-peakBare.pdf}}
+      \includegraphics[scale=0.055]{fig/mint-peakBare.pdf}}
       \label{fig:mintPeak}
   \label{mintPeak}
   \subfloat[$\widetilde{T}(\omega,f) | \omega_{p}(\omega,f) > \omega_{\max}$]{
-      \includegraphics[scale=0.055]{Figures/mint-limitBare.pdf}}
+      \includegraphics[scale=0.055]{fig/mint-limitBare.pdf}}
       \label{fig:mintMax}
   \label{mintMax}
 %\caption{Minimum interarrival time $\widetilde{T}(\omega,f)$ between speeds $\omega$ and $f$ where (a) $\omega_p(\omega,f) \leq \omega_{\max}$ and (b) $\omega_p(\omega,f) > \omega_{\max}$. Green, ascending lines represent periods of maximum acceleration, $\alpha_{\max}$, yellow, flat lines represent periods of zero acceleration, $\alpha = 0$, and red, descending lines represent periods of maximum deceleration, $\alpha_{\min}$.}
@@ -275,7 +275,7 @@ Fig.~\ref{fig:Knapsack1} provides a visual example representation of our problem
 For clarity, the subscripts of the speeds are used to denote the precedence constraints.
 \begin{figure}
 \centering
-\includegraphics[width=1.0\linewidth]{Figures/vectorKnapsackv2.pdf}
+\includegraphics[width=1.0\linewidth]{fig/vectorKnapsackv2.pdf}
 \caption{Example items for our knapsack problem. A job that is higher in the precedence relation is preceded by a job lower in the relation.}
 \label{fig:Knapsack1}
 \end{figure}
@@ -283,7 +283,7 @@ For clarity, the subscripts of the speeds are used to denote the precedence cons
 %PNG
 %\begin{figure}
 %\centering
-%\includegraphics[width=0.5\linewidth]{Figures/KnapsackTree.PNG}
+%\includegraphics[width=0.5\linewidth]{fig/KnapsackTree.PNG}
 %\caption{Precedence constraints among jobs are expressed using out-trees.}
 %\label{fig:KnapsackTree}
 %\end{figure}
@@ -291,7 +291,7 @@ For clarity, the subscripts of the speeds are used to denote the precedence cons
 %Vectorized Image
 %\begin{figure}
 %    \centering
-%    \includegraphics[width=0.8\linewidth]{Figures/vectorKnapsackTreeIsolated.pdf}
+%    \includegraphics[width=0.8\linewidth]{fig/vectorKnapsackTreeIsolated.pdf}
 %    \caption{Precedence constraints among jobs are expressed using out-trees.}
 %    \label{fig:KnapsackTree}
 %\end{figure}
@@ -299,7 +299,7 @@ For clarity, the subscripts of the speeds are used to denote the precedence cons
 %Vectorized, Shortened
 \begin{figure}
     \centering
-    \includegraphics[width=1.0\linewidth]{Figures/vectorKnapsackTreeShortenedv5.pdf}
+    \includegraphics[width=1.0\linewidth]{fig/vectorKnapsackTreeShortenedv5.pdf}
     \caption{Precedence constraints among jobs are expressed using out-trees. Nodes represent WCETs for the initial speeds and arrows represent minimum inter-arrival times. The tree demonstrates the various precedence relations and possible paths. Leaves represent completion of the parent job without adding subsequent jobs (i.e. items). Furthermore, each of the leaves has zero execution since its parent is the final job included in the knapsack.}
     \label{fig:KnapsackTree}
 \end{figure}
@@ -592,15 +592,15 @@ Note that by definition, final injections of $s_{k+1}$ into $S_A(k)$ will mainta
 \begin{figure}
 \centering
   \subfloat[Leading Injection]{
-      \includegraphics[scale=0.07]{Figures/LEI.pdf}}
+      \includegraphics[scale=0.07]{fig/LEI.pdf}}
       \label{fig:injLEI}
   \label{injLEI}
   \subfloat[Internal Injection]{
-      \includegraphics[scale=0.07]{Figures/II.pdf}}
+      \includegraphics[scale=0.07]{fig/II.pdf}}
       \label{fig:injII}
   \label{injII}
   \subfloat[Final Injection]{
-      \includegraphics[scale=0.07]{Figures/FEI.pdf}}
+      \includegraphics[scale=0.07]{fig/FEI.pdf}}
       \label{fig:injFEI}
   \label{injFEI}
 %\caption{A two-speed sequence, $\omega_1, \omega_2$, shown in blue dots, receives a(n) (a) leading injection, (b) internal injection, and (c) final injection by $\omega_3$ (green square). Dashed green lines, dotted red lines, and solid black lines represent the added minimum inter-arrival times, removed minimum inter-arrival times, and unchanged minimum inter-arrival times, respectively. Green squares represent the injected speed $\omega_3$.}
@@ -1059,7 +1059,7 @@ The results are shown in Table~\ref{fig:Exp1Comp}(b). As before both approaches 
 
 \begin{figure}
 \centering
-\includegraphics[width=1.0\linewidth]{Figures/runtimePlot-confidence_intervals.png}
+\includegraphics[width=1.0\linewidth]{fig/runtimePlot-confidence_intervals.png}
 \caption{Graph depicting the runtime of different algorithms as a function of the number of modes of randomly generated AVR task sets. For each mode, the 95\% confidence interval is shown.}
 \label{fig:finalgraph}
 \end{figure}
