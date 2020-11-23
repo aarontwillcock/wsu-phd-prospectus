@@ -177,7 +177,7 @@ As previously mentioned, in a manufactured circuit the spatial parameters and in
 \begin{figure}
     \centering
     \includegraphics[scale=2.0]{fig/Inductor_Perpendicular_Mount.pdf}
-    \caption{Board Space Consumed by an Inductor} The highlighted square circumscribing area $A$ of the inductor represents the board space consumed by a solenoid-style air-core inductor.
+    \caption{Board Space Consumed by an Air-Core Solenoid-Style Inductor} The highlighted square circumscribing area $A$ of the inductor represents the board space consumed by a solenoid-style air-core inductor.
     \label{fig:BoardSpaceConsumed}
 \end{figure}
 For ease of analysis, we assume the axis of the inductor is mounted perpendicular to the board as shown in Figure \ref{fig:BoardSpaceConsumed}. Therefore, the board space consumed by the inductor is defined as the square that circumscribes area $A$ of the inductor as seen in Figure \ref{fig:InductorParams}:
@@ -283,13 +283,13 @@ p_{scd} = \frac{\delta(I_{max},V_{max})}{2}
 \begin{figure}
     \centering
     \includegraphics[width=0.60\linewidth]{fig/shortedschedule.pdf}
-    \caption{Failed Short Protection Schedule} $\mathrm{T}_{scd}$ executing with $p_{scd} = \delta(I_{max},V_{max}) = 4$.\\The short begins at $t = 2$ and $I_{crit}$ is reached at $t = 6$ before $\mathrm{T}_{scd}$ can halt the short.
+    \caption{Short Protection Schedule: Failure} $\mathrm{T}_{scd}$ executing with $p_{scd} = \delta(I_{max},V_{max}) = 4$.\\The short begins at $t = 2$ and $I_{crit}$ is reached at $t = 6$ before $\mathrm{T}_{scd}$ can halt the short.
     \label{fig:shortedschedule}
 \end{figure}
 \begin{figure}
     \centering
     \includegraphics[width=0.60\linewidth]{fig/stoppedschedule.pdf}
-    \caption{Successful Short Protection Schedule} $\mathrm{T}_{scd}$ executing with $p_{scd} = \frac{\delta(I_{max},V_{max})}{2} = 2$.\\The short begins at $t = 2$ and is halted by $\mathrm{T}_{scd}$ at $t = 5$ before $I_{crit}$ is reached.
+    \caption{Short Protection Schedule: Successful} $\mathrm{T}_{scd}$ executing with $p_{scd} = \frac{\delta(I_{max},V_{max})}{2} = 2$.\\The short begins at $t = 2$ and is halted by $\mathrm{T}_{scd}$ at $t = 5$ before $I_{crit}$ is reached.
     \label{fig:stoppedschedule}
 \end{figure}
 %Game Fucking Over
@@ -420,14 +420,14 @@ Figure \ref{fig:ExperimentSetup} depicts the experimental circuit schematic. In 
 \begin{figure}
     \centering
     \includegraphics[width=0.45\linewidth]{fig/Experiment_Setup.pdf}
-    \caption{Experiment Setup Schematic} Experiment Setup Schematic
+    \caption{Short Circuit Experiment Setup Schematic} Short Circuit Experiment Setup Schematic
     \label{fig:ExperimentSetup}
 \end{figure}
 
 \begin{figure}
     \centering
     \includegraphics[width=0.75\linewidth]{fig/SCD_5_9mH_EXP_SETUP.jpg}
-    \caption{Experiment Setup Image}
+    \caption{Short Circuit Experiment Setup Image}
     \label{fig:Experiment1Setup}
 \end{figure}
 
@@ -465,7 +465,7 @@ Using the OCM derived from the experiment setup, we apply Equations \ref{eq:SCDU
     \legend{Minimum Utilization,Scaling Utilization}
     \end{axis}
 \end{tikzpicture}
-    \caption{Simulated Utilization vs. Operating Current}
+    \caption{Simulated Short Circuit Detection Utilization vs. Operating Current}
     \label{fig:Simulated Utilization}
 \end{figure}
 
@@ -521,7 +521,7 @@ In addition to the comparison table, an example FUL waveform is shown in Figure 
     \draw[mark=square*] (axis cs:\pgfkeysvalueof{/pgfplots/xmin},1.96000e-01) -- (axis cs:\pgfkeysvalueof{/pgfplots/xmax},1.96000e-01);
     \end{axis}
     \end{tikzpicture}
-    \caption{FUL Short Waveform}
+    \caption{Fault Under Load Short Circuit Detection Waveform}
     \label{fig:FULShort}
 \end{figure}
 
@@ -549,7 +549,7 @@ The results of Experiment 3 and Experiment 4 indicate that $U(\mathrm{T}_{scd})$
     \legend{$L=12.0mH$,$L=9.5mH$,$L=8.1mH$,$L=5.6mH$,$L=3.9mH$}
     \end{axis}
     \end{tikzpicture}
-    \caption{Experiment 3 Results: Scaling Inductance vs Current at Detection}
+    \caption{Short Circuit Experiment 3 Results: Scaling Inductance vs Current at Detection}
     \label{fig:ScalingInductance}
 \end{figure}
 \begin{figure}
@@ -568,7 +568,7 @@ The results of Experiment 3 and Experiment 4 indicate that $U(\mathrm{T}_{scd})$
     \legend{$U=1.0000$,$U=0.694$,$U=0.5000$,$U=0.2500$,$U=0.1316$}
     \end{axis}
     \end{tikzpicture}
-        \caption{Experiment 4 Results: Scaling Utilization vs Current at Detection}
+        \caption{Short Circuit Experiment 4 Results: Scaling Utilization vs Current at Detection}
     \label{fig:ScalingUtilization}
 \end{figure}
 
