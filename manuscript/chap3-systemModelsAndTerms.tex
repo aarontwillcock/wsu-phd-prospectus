@@ -209,8 +209,21 @@ In contrast, Figure \ref{fig:edfSchedulable} shows how EDF can schedule the two 
     \label{fig:edfSchedulable}
 \end{figure}
 
-\subsubsection{Scheduling Algorithms}
+\subsection{System Model Summary}
 
-An algorithm which takes tasks as inputs and generates a schedule.
+To summarize the system model, we've covered how \textit{jobs} and \textit{tasks} are used to describe individual real-time computational workloads.
+\textit{Utilization} and \textit{demand} are then used to describe the computational requirements of a set of tasks.
+Together, these help system designers perform \textit{feasibility} and \textit{schedulability} analysis to determine whether a \textit{schedule} exists that guarantees temporal correctness and, if so, which scheduling algorithms could schedule the tasks.
 
+\subsection{Integrating Real-Time Systems with Physical Dynamics}
 
+To illustrate how tying physical dynamics brings complexity to real-time systems, consider the typical sporadic task definition: $\tau = (a,p,c,d)$.
+In the examples above, these parameters are assumed to be fixed.
+Suppose, however, that the real-time task cannot have a fixed minimum interarrival time, $p$.
+Instead, suppose $p$ is a function of some physical dynamic modeled as $x(t)$, a variable which changes over time.
+To properly determine utilization or demand, we may, for example, need to understand minimum and maximum values of $x(t)$ as well as upper and lower bounds on $\dot{x}$ and $\ddot{x}$.
+Even with the appropriate model for $x(t)$, we now need to calculate utilization or demand using a variable interarrival time.
+Without a utilization bound or DBF, we cannot perform feasibility or schedulability analysis.
+
+In the following chapters, we will examine how real-time tasks used for short circuit detection and spark ignition in internal combustion engines connect real-time tasks to physical dynamics.
+We will explore how bounds on the changing physical dynamics are then used to simplify feasibility and schedulability analysis.
