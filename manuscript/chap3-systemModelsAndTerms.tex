@@ -3,7 +3,7 @@
 This chapter will cover common terms for describing computation, timing, and analysis in the context of real-time systems.
 Note that chapter-specific terms and notation (for example, engine control) will be covered in the relevant chapter.
 
-\subsection{Modeling Computation: Jobs and Tasks}
+\subsection{Modeling Basic Computation: Jobs and Tasks}
 
 % \textit{Jobs} and \textit{tasks} are two tools used to characterize demand and help perform schedulability analysis.
 
@@ -56,33 +56,51 @@ The hyperperiod $H$ represents the least common multiple (LCM) of all periods (o
 Formally, $H = \text{LCM}(p_1, p_2, \dots, p_n)$.
 This hyperperiod represents when the pattern of computation repeats.
 
-\subsection{Bounding Computation: Utilization and Demand}
+\subsection{Characterizing Demand}
 
-With the fundamental tools for modeling computation described, we now describe tools to represent bounds on the total computation a task (or set of tasks) may require. 
+With some fundamental tools for modeling computation covered, we now describe methods of representing the total computation a task (or set of tasks) may require. 
 
 \subsubsection{Utilization}
 
-One method of bounding load is utilization, the ratio of WCET to period.
-The utilization for an individual task is thus $u_i = \frac{c_i}{p_i}$.
+One such method is utilization, the ratio of WCET to period.
+For an individual task, $\tau_i$, utilization is given by:
+\begin{equation}
+    u_i = \frac{c_i}{p_i}.
+\end{equation}
 The utilization for a task set is then,
 \begin{equation}
     U = \sum_{i \in \Tau} \frac{c_i}{p_i}.
 \end{equation}
 
-Note that while utilization describes the ratio of time consumed to time available, it does not describe the change in computational load over time as jobs are released or job deadlines pass.
+Note that while utilization describes the ratio of time consumed to time available, it does not describe the change in computational load over time.
 
 \subsubsection{Demand and the Demand Bound Function}
 
-To provide a more precise bound on computation over time, demand is used.
-The demand over some time interval $[t_1,t_2]$ is the sum of all WCETs of jobs with release time and deadline in the interval.
-Demand, however, only reflects a particular interval and not any possible interval.
-The Demand Bound Function (DBF), introduced by Baruah et al. \cite{baruah_preemptively_1990}, is a function which characterizes demand by providing the maximum cumulative execution time a set of tasks may require from a processor over any interval of size $\delta$. 
-The definition presented in Baruah et al. \cite{baruah_preemptively_1990} is used here.
+To provide a more precise representation of computation over time, \textit{demand} is used.
+The \textit{demand} over some time interval $[t_1,t_2]$ is the sum of all WCETs of jobs with release time and deadline in the interval.
+Figure \ref{fig:demandExample} illustrates how tasks contribute to demand.
+Demand, however, only reflects a particular interval of time and not any possible interval.
+To address demand over any interval, the Demand Bound Function (DBF) was introduced by Baruah et al. \cite{baruah_preemptively_1990}.
+The DBF is a function which characterizes demand by providing the maximum cumulative execution time a set of tasks may require from a processor over any interval of size $\delta$. 
+The formal definition presented in Baruah et al. \cite{baruah_preemptively_1990} is used here.
 \begin{definition}[Demand bound Function]\label{def:dbf}
     The \textit{demand bound function}, $DBF(\tau,\delta)$, gives the cumulative WCET of all jobs of $\tau$ with both release times and deadlines within any time interval of length $\delta$.
 \end{definition}
+Note that since the DBF describes demand over any interval, the DBF is typically more complex to calculate than utilization.
 
-\subsection{Schedules, Feasibility, Scheduling Algorithms and Schedulability}
+\begin{figure}[!htbp]
+    \centering
+    \includegraphics[width=0.75\linewidth]{fig/demandExample.pdf}
+    \caption{Real-Time Demand Example}
+    Task $\tau_1 = (a_1=2, p_1 = 5, c_1=2, d_1=4)$ is a periodic task.\\
+    The \textit{demand} over interval $\delta = [3,14]$ is $2$.
+    Since first job's release at time $t=2$ is not in the interval, the WCET of the first job is not counted towards demand.
+    The second job's release time and deadline are in the interval so the WCET of the second job counts towards demand.
+    The third job deadline at time $t=16$ is not in the interval and thus the WCET of the third job is not counted towards the demand.
+    \label{fig:rt-demand}
+\end{figure}
+
+\subsection{Feasibility and Schedulability}
 
 With utilization and the DBF to bound computation, we now introduce the schedule.
 
