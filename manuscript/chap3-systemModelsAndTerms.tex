@@ -102,9 +102,33 @@ Note that since the DBF describes demand over any interval, the DBF is typically
 
 \subsection{Feasibility and Schedulability}
 
-With utilization and the DBF to bound computation, we now introduce the schedule.
+With utilization and the DBF as tools for modeling computation, our aim is to determine whether computation can be performed without missing deadlines.
+To do so requires generating a schedule that ensures every job of every task is allocated the appropriate processor time to complete its execution before its deadline.
+The first step in this process is feasibility analysis.
 
-\subsubsection{Schedule}
+\subsubsection{Schedules}
+
+To place feasibility and schedulability in context, we first examine schedules.
+A \textit{schedule} is an assignment of tasks to a processor (or set of processors) which represents when (and thus, for how long) each job and task is executed.
+Formally, a schedule for a single processor is a function which can be given as:
+\begin{equation}
+    \sigma(t) = i \; | \; t \in \mathbb{R}^+, \; i \in \mathbb{Z}
+\end{equation}
+where $t$ represents time and $i$ represents the index of the task being executed where index zero is no task (the processor is idle).
+Figure \ref{fig:rt-schedule} gives a simple schedule for two tasks.
+
+\begin{figure}[!htbp]
+    \centering
+    \includegraphics[width=0.5\linewidth]{fig/scheduleExample.pdf}
+    \caption{Real-Time Demand Example}
+    Task $\tau_1 = (a_1 = 0, p_1 = 5, c_1 = 1, d_1 = 5)$ and is periodic.\\
+    Task $\tau_2 = (a_2 = 0, p_2 = 7, c_2 = 1, d_2 = 7)$ and is also periodic.\\
+    Note the value of $\sigma(t)$ indicates which task is to be executing\\
+    where $\sigma(t) = 0$ indicates no task is scheduled to run.
+    \label{fig:rt-schedule}
+\end{figure}
+
+Given a set of tasks and processors to execute the tasks on, we now turn our attention to whether any schedule can be made, a process known feasibility analysis, and whether a particular scheduling algorithm algorithm could make a feasible schedule, a process known as schedulability analysis.
 
 A function describing which jobs or tasks are executed.
 A map of workloads onto available time.
