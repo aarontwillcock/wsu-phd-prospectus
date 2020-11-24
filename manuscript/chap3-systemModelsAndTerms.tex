@@ -7,7 +7,7 @@ Note that chapter-specific terms and notation (for example, engine control) will
 
 % \textit{Jobs} and \textit{tasks} are two tools used to characterize demand and help perform schedulability analysis.
 
-\subsubsection{Job}
+\subsubsection{Jobs}
 
 A job, $j_i$, is the smallest unit for modeling real-time computation characterized by the tuple $j = (a,e,d)$ where $a$ is the release time, $d$ is the relative deadline, and $e$ is the execution time.
 The release time, $a$, is the earliest time at which the processor time may be allocated to the job.
@@ -78,7 +78,7 @@ Note that while utilization describes the ratio of time consumed to time availab
 
 To provide a more precise representation of computation over time, \textit{demand} is used.
 The \textit{demand} over some time interval $[t_1,t_2]$ is the sum of all WCETs of jobs with release time and deadline in the interval.
-Figure \ref{fig:demandExample} illustrates how tasks contribute to demand.
+Figure \ref{fig:rt-demand} illustrates how tasks contribute to demand.
 Demand, however, only reflects a particular interval of time and not any possible interval.
 To address demand over any interval, the Demand Bound Function (DBF) was introduced by Baruah et al. \cite{baruah_preemptively_1990}.
 The DBF is a function which characterizes demand by providing the maximum cumulative execution time a set of tasks may require from a processor over any interval of size $\delta$. 
