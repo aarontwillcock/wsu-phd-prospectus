@@ -186,7 +186,28 @@ By the utilization feasibility test, there exists a schedule where neither task 
 Figure \ref{fig:rmNotSchedulable}, however, shows how RM cannot schedule the two tasks without missing a deadline.
 In contrast, Figure \ref{fig:edfSchedulable} shows how EDF can schedule the two tasks without missing a deadline.
 
+\begin{figure}[!htbp]
+    \centering
+    \includegraphics[width=0.75\linewidth]{fig/rmNotSchedulable.pdf}
+    \caption{Rate Monotonic Missing a Deadline}
+    Task $\tau_1 = (0,2,1,2)$ and is periodic.\\
+    Task $\tau_2 = (0,7,3.3,7)$ and is also periodic.\\
+    Note that at time $t=6$ under RM, $\tau_1$ is the highest priority.
+    This prevents $\tau_2$ from completing the last $0.3$ units of execution before its deadline at $t=7$.
+    The remaining $0.3$ units executed at and after $t=7$ are highlighted in red, illustrating the deadline miss.
+    \label{fig:rmNotSchedulable}
+\end{figure}
 
+\begin{figure}[!htbp]
+    \centering
+    \includegraphics[width=0.75\linewidth]{fig/edfSchedulable.pdf}
+    \caption{Earliest Deadline First Making Deadlines}
+    Task $\tau_1 = (0,2,1,2)$ and is periodic.\\
+    Task $\tau_2 = (0,7,3.3,7)$ and is also periodic.\\
+    Note that unlike RM, at time $t=6$ EDF maintains $\tau_2$ as the highest priority since its next deadline is earlier than $\tau_1$'s deadline.
+    The initial execution of $\tau_1$'s fourth job is slightly delayed but still finishes before its deadline.
+    \label{fig:edfSchedulable}
+\end{figure}
 
 \subsubsection{Scheduling Algorithms}
 
