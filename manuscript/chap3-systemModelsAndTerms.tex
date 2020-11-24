@@ -130,8 +130,26 @@ Figure \ref{fig:rt-schedule} gives a simple schedule for two tasks.
 
 Given a set of tasks and processors to execute the tasks on, we now turn our attention to whether any schedule can be made, a process known feasibility analysis, and whether a particular scheduling algorithm algorithm could make a feasible schedule, a process known as schedulability analysis.
 
-A function describing which jobs or tasks are executed.
-A map of workloads onto available time.
+\subsubsection{Feasibility Analysis}
+
+As mentioned above, feasibility analysis in a real-time system is the process of determining whether there exists \textit{any} schedule which could guarantee all tasks meet their deadlines.
+Using utilization, a simple feasibility result for single processors where tasks are preemptible (they may be interrupted at any time to switch to another task) comes from Liu and Leyland \cite{liu_scheduling_1973}.
+If utilization is less than one ($U \leq 1$) than the total time required by tasks is less than the processor availability.
+
+Using the DBF, feasibility may be checked by checking whether the demand over any interval of length $\delta$ exceeds processor availability. CITE
+For example, in the case of a single processor where tasks are preemptible the following must hold:
+\begin{equation}
+    \dbf(\tau,\delta) \leq \delta \; \forall \; \delta \in \mathbb{R}^+
+\end{equation}
+In short, if the demand of a set of tasks over an interval is greater than the size of the interval itself then it is impossible to schedule on a single processor.
+
+Note that the results described above only apply to single processors where tasks may be interrupted at any time.
+Other feasibility results exist for different scheduling settings such as nonpreemptive tasks CITE, multiple processors CITE, precedence constraints CITE, or a combination thereof.
+Additionaly complications exists for systems where computation is performed on heterogeneous architectures CITE (processors with different speeds, for example) or where certain tasks must be completed by specific processors (as opposed to any processor) CITE. 
+However, we will not cover those results here as our focus is on changing core real-time parameters.
+
+While feasibility is a necessary condition of a real-time system with temporal guarantees, feasibility does not prescribe a particular schedule to satisfy each task's computation requirement.
+To effectively schedule the tasks, schedulability analysis is used.
 
 \subsubsection{Utilization}
 
