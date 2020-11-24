@@ -151,9 +151,41 @@ However, we will not cover those results here as our focus is on changing core r
 While feasibility is a necessary condition of a real-time system with temporal guarantees, feasibility does not prescribe a particular schedule to satisfy each task's computation requirement.
 To effectively schedule the tasks, schedulability analysis is used.
 
-\subsubsection{Utilization}
+\subsubsection{Schedulability}
 
-\subsubsection{Demand Bound Function}
+There are many algorithms for creating schedules for a set of tasks.
+In general, scheduling algorithms determine which task or job should run by assigning priorities.
+\textit{Fixed priority algorithms} assign each task a fixed priority.
+Under fixed priority algorithms, the task with the highest priority that has a job released but not executed is scheduled to run.
+Only after the highest priority task's active job is completed may the next-hightest task's job run.
+\textit{Dynamic priority algorithms} allow the priorities of tasks to change in time.
+Although dynamic priority scheduling algorithms honor the same heirarchy as fixed priority algorithms (meaning the task with the highest priority that has a job released but not executed is scheduled to run before others), task priorities may change during operation which prompts the processor to abandon the former highest-priority task in favor of the newest highest-priority task.
+
+As with feasibility analysis, the algorithms used differ depending on properties of the processors and task such as preemptibility, the number of properties, and whether precedence constraints exist.
+In any case, we may examine two simple scheduling algorithms for preemptive tasks on a single processor: Earliest Deadline First (EDF), a dynamic priority algorithm, and Rate Monotonic (RM), a fixed priority algorithm.
+
+EDF assigns the highest priority to tasks with the earliest deadline and lowest priority to latest deadline.
+Under preemptive scheduling, this requires interrupting executing tasks if a task with an earlier deadline has a job ready to execute.
+Since the task with the earliest deadline will frequently change as time passes, tasks frequency trade priorities.
+In the context of preemptive tasks on a uniprocessor, the schedulability test for EDF is identical to the aforementioned feasibility test: $U \leq 1$.
+
+In contrast, RM assignes the highest priority to tasks with the smallest period and lowest priority to the largest period.
+Since task periods are traditionally fixed, the priorities will not change as time passes.
+In the context of preemptive tasks on a uniprocessor, a sufficient schedulability test for RM is given by Liu and Leyland \cite{liu_scheduling_1973}:
+\begin{equation}
+    U \leq n \cdot (n^{\frac{1}{n}}-1)
+\end{equation}
+where $n$ is the number of tasks.
+Note that a task set which does not meet the criteria above is may still be schedulable by RM but requires additional analysis beyond utilization.
+
+Here, we also highlight a key distinction between feasibility and schedulability.
+Task sets which are feasible by \textit{any} schedule may not be schedulable by a particular algorithm.
+Consider the task set $\Tau = {\tau_1, \tau_2}$ where $\tau_1 = (0,2,1,2)$ and $\tau_2 = (0,7,3.3,7)$.
+The utilizations are $u_1 = 0.5$ and $u_2 = 0.47$.
+By the utilization feasibility test, there exists a schedule where neither task misses a deadline.
+Figure \ref{fig:rmNotSchedulable}, however, shows how RM cannot schedule the two tasks without missing a deadline.
+In contrast, Figure \ref{fig:edfSchedulable} shows how EDF can schedule the two tasks without missing a deadline.
+
 
 
 \subsubsection{Scheduling Algorithms}
