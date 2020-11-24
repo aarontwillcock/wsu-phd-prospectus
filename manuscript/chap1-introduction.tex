@@ -75,10 +75,19 @@ In each setting, real-time systems meet the need for correct computation in a ti
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.75\linewidth]{fig/whirlwindComputer.JPG}
-    \caption{Whirlwind} Segments of the Whirlwind Computer in the Museum of Science, Boston, Massachusetts, USA.
-    Credit: 
-    \label{fig:whirlwindComputer}
+    \subfloat[Whirlwind Computer]{
+        \includegraphics[width=0.45\linewidth]{fig/whirlwindComputer.JPG}
+        \label{fig:whirlwindComputer}
+    }
+    \subfloat[Isomerization Unit]{
+        \includegraphics[width=0.45\linewidth]{fig/isomUnit.jpg}
+        \label{fig:isomUnit}
+    }
+    \caption{Real-Time Systems: Whirlwind and an Isomerization Unit}
+    a) Whirlwind Computer segments - Museum of Science, Boston, MA, USA.\\
+    Credit: \href{https://commons.wikimedia.org/wiki/User:Daderot}{Daderot}\cite{daderot_whirlwind_2010}.\\
+    b) A modern isomerization unit in Gazprom neftekhim Salavat.\\
+    Credit: \href{https://salavat-neftekhim.gazprom.com/press/news/2017/06/36/}{Gazprom neftekhim Salavat} \cite{noauthor_state---art_nodate}.
 \end{figure}
 
 \subsection{Modern Real-Time Systems and Why we Study Them}
@@ -126,7 +135,7 @@ In the pursuit of integrating real-time systems and control in Cyber-Physical Sy
     \includegraphics[width=0.7\linewidth]{fig/515.jpg}
     \caption{Scheduling Cartoon} A cartoon highlighting how scheduling itself takes time... sometimes too much time.
 
-    Credit: Cartoon \copyright Glasbergen, used with special permission from \url{www.glasbergen.com}
+    Credit: Cartoon \copyright Glasbergen, used with special permission from \url{www.glasbergen.com} \cite{noauthor_todays_nodate}.
 \end{figure}
 
 \subsection{Approach}
@@ -151,22 +160,22 @@ In light of this opportunity, the main thesis of this work is:
 \subsection{Contributions}
 
 The main contributions of this work are:
-\begin{itemize}
+\begin{enumerate}
     \item two inductor-based real-time software-based short-circuit detection methods,
     \item a hardware-software codesign approach for software-based short-circuit detection that demonstrates the tradeoff of processor utilization under EDF against inductor size (and thus board space consumed by circuitry),
     \item a demand characterization method for Adaptive Variable-Rate (AVR) tasks used in Internal Combustion Engines (ICEs) in which engine dynamics are used to limit the search space for the Demand Bound Function (DBF).
-\end{itemize}
+\end{enumerate}
 
 \subsection{Organization}
 
 The remainder of this work is as follows:
 
 \begin{enumerate}
-    \item Chapter \ref{chap:relatedWork} summarizes the related work for each major contribution.
-    \item Chapter \ref{chap:systemModel} provides the system model and terms common to each contribution.
-    \item Chapter \ref{chap:codesign} covers the codesign of software-based short circuit protection systems.
-    \item Chapter \ref{chap:scd} describes the demand characterization of AVR tasks in ICEs.
-    \item Chapter \ref{chap:futureWork} discusses future work.
-    \item Chapter \ref{chap:conclusion} summarizes and concludes this work.
-    \item Chapter \ref{chap:publicationList} lists the publications which contributed to this work.
+    \item Chapter \ref{chap:relatedWork}, Related Work, summarizes the related work for each major contribution.
+    \item Chapter \ref{chap:systemModel}, System Model, provides the system model and terms common to each contribution.
+    \item Chapter \ref{chap:scd}, Hardware-software Codesign of Short Circuit Detection, covers the codesign of software-based short circuit protection systems.
+    \item Chapter \ref{chap:engCtrl}, Knapsack Approach to Worst-Case Demand of AVR Tasks, describes the demand characterization of Adaptive Variable-Rate (AVR) tasks in Internal Combustion Engines (ICEs).
+    \item Chapter \ref{chap:futureWork}, Future Work, discusses future work.
+    \item Chapter \ref{chap:conclusion}, Conclusion, summarizes and concludes this work.
+    \item Chapter \ref{chap:publicationList}, Publication List, lists the publications which contributed to this work.
 \end{enumerate}
