@@ -989,7 +989,8 @@ in steps of \unit[10]{ms}. %, i.e., $\delta = 10, 20, \ldots, 1000 ms$.
 %Please note this takes longer than calculating demand over only $[0,1s]$. This is because the inter-arrival times ($\widetilde{T}$) are in decimals and it is not necessary that the time left in the recursion loop in Alg.~\ref{algo} is in multiples of \unit[10]{$ms$}.  
 The experiments were performed using Python 3.6.5 on a 3.40 GHz, quad-core processor with 8 GB of RAM.
 While the results are platform dependent, the general trend showing the relative performance of the proposed approach against the DRT algorithm should be representative.
-Each experiment is run 10 times and the average values are reported. The code and the original data used for this publication can be found on the artifact evaluation page~\cite{githubLink}.
+Each experiment is run 10 times and the average values are reported.
+The code and the original data used for this publication can be found on the artifact evaluation page~\cite{bijinemula_code_2018}.
 
 In the first experiment, two task sets were used. The first task set appeared in existing publications~\cite{biondi_exact_2014,mohaqeqi_refinement_2017} (Table~\ref{fig:taskset-1}). Note that this task set is not ideal, as some boundary speeds can be reached from the others in an integer number of rotations using maximum acceleration, which simplifies the search for the worst-case demand. The results are shown in Table~\ref{fig:Exp1Comp}(a). Though both approaches were able to find the worst-case demand, our algorithm is 13.5 times faster.
 
