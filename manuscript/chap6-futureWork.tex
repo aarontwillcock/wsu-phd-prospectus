@@ -1,40 +1,79 @@
-\section{Future Work, Timeline, and Target Conferences} \label{chap:futureWork}
+\section{Future Work, Timeline, and Target Venues} \label{chap:futureWork}
 
-\subsection{Hardware-Software Codesign}
+\subsection{Future Works}
 
-To further extend real-time anomaly detection in modern electronics, the codesign of batteries and Battery Management Systems (BMSs) are also in development:
+\subsubsection{DBF of Monotonically Ascending Execution Sequences}
 
-\subsubsection{Internal Short Detection of Reconfigurable Software-Defined Batteries}
+For tasks with a repeatable sequences of WCETs, the Generalized Multi-Frame Model (GMF) can be used to characterize the demand of the task over time.
+Some repeatable sequences, however, demonstrate a monotonically ascending WCET which is not exploited by the GMF model.
+The most applicable approach to computing a Demand Bound Function (DBF) for repeatable sequences of WCETs represented in the GMF model is computationally expensive - $O(N^2 lg N)$.
+Preliminary results show that exploiting the monotonic ascension of execution times can reduce the time to generate a DBF to $O(N lg N)$.
+These sequences may be found in systems where (TODO?) or control systems where Analog to Digital Converter (ADC) resolution changes as a function of tracking error.
 
-Summary: Reconfigurable, Software-Defined Batteries (RSDBs) = SDB + Reconfigurability. How to we detect anomalies in systems like this? How quickly can they be detected?
+\subsubsection{Online Short Circuit Detection and Recovery}
 
-\subsubsection{Battery Size Selection for Reconfigurable Software-Defined Batteries}
+The previous work on real-time short-circuit detection focused on a single monitored pathway.
+To further this work, short-circuit detection will be implemented on multiple 
 
-Summary: Using load profiles to select battery size (and switching scheme?)
-Notes: I think this should be some other work that focuses on picking a reconfiguration routine.
-
-\subsection{Demand Characterization}
-
-To further exploit physical system dynamics in pursuit of faster, less pessimistic demand characterization and schedulability, the following works are in development:
-
-\subsubsection{Approximation of Knapsack AVR}
+\subsubsection{FPTAS for AVR Task DBF}
 
 The current approach to demand characterization of AVR tasks in ICEs does not leverage any approximation.
 Thus, this work may be extended by providing a Fully Polynomial Time Approximation Scheme (FPTAS) of the existing approach.
 Offering an FPTAS of the existing approach will allow faster demand approximation in situations where approximate and more pessimistic results are acceptable.
 Where the exact characterization may be suitable offline where computing power and time are not constraints, the FPTAS approximation may be useful in situations where demand characterization is performed online by systems which are reallocating tasks across ECUs and are limited to ECU computing hardware.
 
-\subsection{Worst-Case Demand of Multi-Frame Systems with Monotonically Ascending Execution time}
-
-For tasks with a repeatable sequences of WCETs, the Generalized Multi-Frame Model (GMF) can be used to characterize the demand of the task over time.
-Some repeatable sequences, however, demonstrate a monotonically ascending WCET which is not exploited by the GMF model.
-These sequences may be found in switched control systems or control systems where Analog to Digital Converter (ADC) resolution changes as a function of tracking error.
-
-\subsection{Worst-Case Demand of Internal Combustion Engines with Variable Displacement}
+\subsubsection{DBF of AVR Tasks in ICEs with Dynamic-Skip Fire}
 
 The demand characterization offered by the Knapsack AVR approach is for a single AVR task which corresponds to a single piston in an ICE.
-In practice, ICEs, especially in automobiles with multiple passengers, have more than one cylinder.
-With increasing consumer interest in more efficient ICEs, manufacturers have made ICEs capable of disabling fuel injection into or changing the stroke length of particular cylinders.
+In practice, ICEs, especially in modern automobiles, have more than one cylinder.
+Increasing interest in efficient ICEs has driven manufacturers to produce ICEs capable of disabling fuel injection and/or changing the stroke length of individual cylinders.
 These techniques, along with others not mentioned here, are referred to as Variable Displacement (VD) as they change the total displacement of the ICE.
-VD techniques are engaged when engine load is low to conserve fuel but are disabled when engine load is high (under acceleration, for example).
+VD techniques are used when engine load is low to conserve fuel and are disabled when engine load is high (under acceleration, for example).
 If each cylinder is associated with an AVR task, and cylinders are disabled (or max acceleration reduced) during low loads, a proper demand characterization of the engine must have one task per cylinder and incorporate the effects of VD.
+
+\subsubsection{Online Demand-Based Battery Recongifugration}
+
+With the advent of hybrid and electric EVs, recent works like CITE:SDB and CITE:RECONFIG focus on the development of reconfigurable and software-defined batteries.
+These batteries are capable of adapting their output voltages and currents by parallelizing or serializing cells within the battery online.
+These batteries are also composed of different chemistries with varied advantages over each other such as maximum current input/output, lifespan, etc.
+In this work, we aim to characterize the usable energy of a reconfigurable battery.
+
+Summary: Using load profiles to select battery size (and switching scheme?)
+Notes: I think this should be some other work that focuses on picking a reconfiguration routine.
+
+\subsection{Timeline and Target Venues}
+
+Table \ref{tab:timeline} lists the timeline for the remaining expected publications.
+The publication type, project name, and target venue are also provided.
+Table \ref{tab:venues} lists the full names and abbreviations of the target venues.
+
+\begin{table}[h]
+    \centering
+    \def\arraystretch{1.25}%  1 is the default, change whatever you need
+    \begin{tabular}{|l|l|l|l|l}
+    \cline{1-4}
+    \textbf{Target Date} & \textbf{Publication Type} & \textbf{Project}                                                                             & \textbf{Target Venue} &  \\ \cline{1-4}
+    2021-03-03           & Conference                & \begin{tabular}[c]{@{}l@{}}WCD of Monotonically Ascending\\ Execution Sequences\end{tabular} & ECRTS                      &  \\ \cline{1-4}
+    2021-04-01           & Journal                   & \begin{tabular}[c]{@{}l@{}}Online Short Circuit\\ Detection and Recovery\end{tabular}        & IEEE ToC                   &  \\ \cline{1-4}
+    2021-05-01           & Journal                   & FPTAS for AVR Task DBF                                                                       & IEEE ToC                   &  \\ \cline{1-4}
+    2021-05-25           & Conference                & \begin{tabular}[c]{@{}l@{}}DBF of AVR Tasks in ICEs\\ with Dynamic-Skip Fire\end{tabular}    & RTSS                       &  \\ \cline{1-4}
+    2021-10-26           & Conference                & \begin{tabular}[c]{@{}l@{}}Online Demand-Based\\ Battery Reconfiguration\end{tabular}        & RTAS                       &  \\ \cline{1-4}
+    \end{tabular}
+    \caption{Target Publication Timeline}
+    \label{tab:timeline}
+\end{table}
+
+\begin{table}[h]
+    \centering
+    \def\arraystretch{1.25}%  1 is the default, change whatever you need
+    \begin{tabular}{|l|l|l|l}
+    \cline{1-3}
+    \textbf{Abbreviation} & \textbf{Type} & \textbf{Full Name}                                           &  \\ \cline{1-3}
+    ECRTS                 & Conference    & Euromicro Conference on Real-Time Systems                    &  \\ \cline{1-3}
+    RTSS                  & Conference    & Real-Time Systems Symposium                                  &  \\ \cline{1-3}
+    RTAS                  & Conference    & \begin{tabular}[c]{@{}l@{}}Real-Time and Embedded Technology\\ and Applications Symposium\end{tabular} &  \\ \cline{1-3}
+    IEEE ToC              & Journal       & IEEE Transactions on Computers                               &  \\ \cline{1-3}
+    \end{tabular}
+    \caption{Target Venues}
+    \label{tab:targetVenues}
+\end{table}
