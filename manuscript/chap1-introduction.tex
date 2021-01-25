@@ -20,6 +20,13 @@ The computation performed by the ECU must produce the correct signal to fire (or
 Failure to guarantee either can result in death.
 These systems, where logical and temporal correctness must be guaranteed to avoid catastrophe, are known as Real-Time Systems.
 
+The focus of our work is on Real-Time Systems where the physical dynamics of a system are directly linked to real-time parameters.
+One example is found in Internal Combustion Engines (ICEs) where a computation must be performed between each complete revolution of the ICE's crankshaft.
+As the engine speed changes, so does the time allotted for computation.
+In this system, the time allotted for computation is not only linked to engine speed but anything that affects engine speed: minimum and maximum acceleration, engine temperature, ambient air pressure, etc.
+Providing guarantees for a real-time system in this context requires analysis of engine speed and how other factors affect it. 
+In this work and in proposed future works, we examine how the interconnectedness of real-time and physical parameters and develop tools for guaranteeing logical and temporal correctness.
+
 \begin{figure}
     \centering
     \includegraphics[width=0.75\linewidth]{fig/chevyVoltPostCrashTestDummies.jpg}
@@ -34,7 +41,7 @@ These systems, where logical and temporal correctness must be guaranteed to avoi
 % Introduce growing need for research that combines RTS and Control.
 \subsection{What is a Real-Time System?}
 
-In general, real-time systems are systems in which the utility of a computation depends on logical correctness of the result and timeliness of the computation CITE.
+In general, real-time systems are systems in which the utility of a computation depends on logical correctness of the result and timeliness of the computation \cite{buttazzo_hard_1997}.
 As illustrated by the airbag example, real-time systems are often present in safety-critical applications where incorrect or untimely operation leads to catastrophe.
 % Example systems include TODO 
 
