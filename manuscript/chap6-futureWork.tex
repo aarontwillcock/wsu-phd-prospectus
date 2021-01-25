@@ -1,89 +1,95 @@
 \section{Future Work, Timeline, and Target Venues} \label{chap:futureWork}
 
+In the previous chapters, two examples of real-time parameters directly connecting to real-world systems are covered.
+These works provide a foundation upon which to extend current results.
+This chapter covers proposed future works, a timeline for completion, and the target venues for publishing the work.
+
 \subsection{Future Works}
 
-The following works cover different 
-
-How are they linked?
-
+As with the systems previously covered, these works focus on leveraging the interconnectedness of real-time parameters and physical systems to derive new or improved DBF calculations, utilization bounds, or codesign possibilities.
+In practice, less pessimistic DBFs and utilization bounds increase schedulability.
+Faster DBF and utilization bound algorithms make rescheduling online more feasible.
 
 \subsubsection{DBF of Monotonically Ascending Execution Sequences}
 
-For tasks with a Repeating WCET Sequences (RWSs), the Generalized Multi-Frame Model (GMF) can be used to characterize the demand of the task over time.
+The Generalized Multi-Frame Model (GMF) can be used to characterize the demand of a task with Repeating WCET Sequences (RWSs).
 RWSs with Monotonically Ascending Execution times (MAEs), however, are not exploited by the GMF model.
 The most applicable approach to computing a Demand Bound Function (DBF) for RWSs with MAEs is computationally expensive - $O(N^2 lg N)$.
 Preliminary results show that exploiting MAEs can reduce the time to generate a DBF to $O(N lg N)$.
 Since $N$ is the number of WCETs in the RWS, this is a significant improvement over the state of the art.
-The target contributions of this work include:
-\begin{enumerate}
-    \item a real-time task model for describing RWSs,
-    \item an algorithm for creating a DBF for a particular RWS, and 
-    \item a case study of calculating DBF for a robotic arm using a variable resolution ADC.
-\end{enumerate}
+In practice, this approach could be used for systems sampling variable resolution ADCs where required resolution increases in time.
+The aim of this work is to present a faster DBF calculation for tasks using RWSs with MAEs.
+% The target contributions of this work include:
+% \begin{enumerate}
+%     \item a real-time task model for describing RWSs,
+%     \item an algorithm for creating a DBF for a particular RWS, and 
+%     \item a case study of calculating DBF for a robotic arm using a variable resolution ADC.
+% \end{enumerate}
 
 \subsubsection{DBF of Short Circuit Protection for Multiple Power Paths}
 
-The previous work by Willcock and Fisher \cite{willcock_trading_2017} focused on real-time short-circuit detection for single monitored power pathway.
-A relationship between inductor size and real-time utilization under EDF was established.
-To further this work, short-circuit detection will be implemented on multiple, monitored power distribution pathways which share a single source.
-Single-source power pathways, such as a battery supplying several loads or a breaker box in a house powering all receptacles, have maximum currents which are not equivalent to the sum of all individual power pathways' maximum current.
-For example, most home breakers allow a maximum of 100 or 200 Amperes of continuous current.
-Individual breakers allow a maximum of 15-30 Amperes of continuous current.
-Yet there are more than 10 breakers on a home breaker box.
-This is because not all pathways are expected to draw maximum current simultaneously.
-In real-time systems responsible for current monitoring and short-circuit protection of power distribution pathways, this limitation on maximum power from the common source can be exploited to limit the maximum utilization of all current monitoring tasks.
+Our previous work focused on real-time short-circuit detection for single monitored power pathway using implicit deadlines\cite{willcock_trading_2017}.
+A relationship between inductor size and real-time utilization under EDF was established to demonstrate tradeoff between board space consumed and real-time task utilization.
+To further this work, short-circuit detection will be implemented on multiple, monitored power distribution pathways sharing a single source.
 In practice, this approach would be implemented in power distribution panels where current monitoring is required.
-The target contributions of this work include:
-\begin{enumerate}
-    \item a utilization bound on software-based short-circuit protection for $n$ monitored, single-source power pathways,
-    \item a demand bound function for software-based short-circuit protection for $n$ monitored, single-source power pathways,
-    \item a formal relationship between the DBF of the short-circuit protection tasks and the power path parameters (such as inductor size, max current, critical current, and single source current limit),
-    \item and a case study on a ~50A power distribution system for an autonomous ground vehicle.
-\end{enumerate}
+The aim of this work is to present a tighter, less pessimistic bound on the utilization of real-time short-circuit protection tasks by leveraging maximum current through the single-source.
+% Single-source power pathways, such as a battery supplying several loads or a breaker box in a house powering all receptacles, have maximum currents which are not equivalent to the sum of all individual power pathways' maximum current.
+% For example, most home breakers allow a maximum of 100 or 200 Amperes of continuous current.
+% Individual breakers allow a maximum of 15-30 Amperes of continuous current.
+% Yet there are more than 10 breakers on a home breaker box.
+% This is because not all pathways are expected to draw maximum current simultaneously.
+% In real-time systems responsible for current monitoring and short-circuit protection of power distribution pathways, this limitation on maximum power from the common source can be exploited to limit the maximum utilization of all current monitoring tasks.
+% The target contributions of this work include:
+% \begin{enumerate}
+%     \item a utilization bound on software-based short-circuit protection for $n$ monitored, single-source power pathways,
+%     \item a demand bound function for software-based short-circuit protection for $n$ monitored, single-source power pathways,
+%     \item a formal relationship between the DBF of the short-circuit protection tasks and the power path parameters (such as inductor size, max current, critical current, and single source current limit),
+%     \item and a case study on a ~50A power distribution system for an autonomous ground vehicle.
+% \end{enumerate}
 
 \subsubsection{FPTAS for AVR Task DBF}
 
-The previous  work on demand characterization of AVR tasks in ICEs does not leverage any approximation.
-While exact, this characterization may be suitable online where computing power and time are significantly constrained.
-An FPTAS approximation is useful where demand characterization is performed online.
-Systems which reallocate tasks across ECUs CITE or cannot afford the time or energy required by the exact approach benefit from an approximation alternative.
-Thus, the target contribution of this work is to develop an FPTAS of the exact demand characterization presented in Bijinemula et al. \cite{bijinemula_efficient_2019}.
+Our previous  work on demand characterization of AVR tasks in ICEs does not leverage any approximation \cite{bijinemula_efficient_2019}.
+While exact, this characterization may not be suitable online where computing power and time are significantly constrained.
+Systems which reallocate tasks across ECUs or change the transition speeds online \cite{peng_schedulability_2018} cannot afford the time or energy required by the exact approach benefit from an approximation alternative.
+The aim of this work is to develop an FPTAS of the exact demand characterization presented in Bijinemula et al. \cite{bijinemula_efficient_2019}.
 
 \subsubsection{DBF of AVR Tasks in ICEs with Dynamic-Skip Fire}
 
-The demand characterization offered by the Knapsack AVR approach is for a single AVR task which corresponds to a single piston in an ICE.
-In practice, ICEs, especially in modern automobiles, have more than one cylinder.
+The demand characterization offered by the Knapsack AVR approach is for a single AVR task which corresponds to a single piston in an ICE \cite{bijinemula_efficient_2019}.
+In practice, ICEs have more than one cylinder.
 Increasing interest in efficient ICEs has driven manufacturers to produce ICEs capable of disabling fuel injection and/or changing the stroke length of individual cylinders.
 These techniques, along with others not mentioned here, are referred to as Variable Displacement (VD) as they change the total displacement of the ICE.
 VD techniques are used when engine load is low to conserve fuel and are disabled when engine load is high (under acceleration, for example).
 If each cylinder is associated with an AVR task, and cylinders are disabled (or max acceleration reduced) during low loads, a proper demand characterization of the engine must have one task per cylinder and incorporate the effects of VD.
-The target contributions of this work include:
-\begin{enumerate}
-    \item a real-time task model for AVR tasks in ICEs implementing VD through the Dynamic Skip-Fire (DSF),
-    \item a set of transformations for reducing the search space for AVR tasks in ICEs with DSF, and
-    \item an exact DBF for a set of $Y$ AVR tasks implementing DSF on a $Y$-cylinder ICE.
-\end{enumerate}
+The aim of this work is to develop a DBF for AVR tasks in ICEs implementing VD through a strategy known as Dynamic Skip-Fire (DSF).
+% The target contributions of this work include:
+% \begin{enumerate}
+%     \item a real-time task model for AVR tasks in ICEs implementing VD through the Dynamic Skip-Fire (DSF),
+%     \item a set of transformations for reducing the search space for AVR tasks in ICEs with DSF, and
+%     \item an exact DBF for a set of $Y$ AVR tasks implementing DSF on a $Y$-cylinder ICE.
+% \end{enumerate}
 
 \subsubsection{Online Demand-Based Hybrid Powertrain Reconfiguration}
 
-With the advent of hybrid and electric EVs, recent works like Badam et al. \cite{badam_software_2015} and He et al. \cite{he_case_2017} focus on the development of reconfigurable and software-defined batteries.
-In Badam et al. cells of different chemistries (with varied advantages over each other) are toggled between to extend the life of the battery.
-The work illustrated how certain chemistries are better for short-term, high current draw while others are best suited for long-term, low current draw.
-In He et al., batteries are capable of parallelizing or serializing individual cells.
-The work highlights how failing cells may be isolated from the battery power paths to prevent them from degrading the output of the entire battery.
-To extend in the direction of these works, we intend to develop strategies for route-responsive powertrain reconfiguration.
+Recent works like Badam et al. \cite{badam_software_2015} and He et al. \cite{he_case_2017} focus on the development of reconfigurable and software-defined batteries.
+In Badam et al., cells of different chemistries (with varied advantages over each other) are toggled between to extend the life of the battery.
+% The work illustrated how certain chemistries are better for short-term, high current draw while others are best suited for long-term, low current draw.
+In He et al. \cite{he_case_2017}, batteries are shown to be capable of parallelizing or serializing individual cells to isolate failing cells from the battery power paths - preventing them from degrading the output of the entire battery.
+% To extend in the direction of these works, we intend to develop strategies for route-responsive powertrain reconfiguration.
 For electric and hybrid vehicles in which destinations are known a priori, public information like elevation change, intersections, and speed limits can provide projected power requirements for traveling a given route.
 This projected power requirement can be translated to a demand profile for a hybrid powertrain.
 In the case of reconfigurable batteries, the demand profile can be used parallelize or serialize cells online while traveling the route to minimize energy cost, extend battery life, or minimize travel time.
-In the case of mixed-chemistry batteries, the demand profile can be used to prioritize chemistries during charging and map chemistries to segments of the route.
-In the case of a hybrid powertrain with an internal combustion engine and battery available for propulsion, the demand profile can be used to identify which source should supply propulsion over the route.
-The target contributions of this work include:
-\begin{enumerate}
-    \item a generic model of mixed-source powertrains,
-    \item algorithms for identifying legal powertrain configurations which meet projected power requirements,
-    \item algorithms for identifying charging (or refueling) priorities for minimizing energy consumption or cost of operation,
-    \item and a case study on a 
-\end{enumerate}
+The aim of this work is to develop algorithms for reconfiguring a hybrid battery online to meet projected power requirements while minimizing the number of cells and total energy required.
+% In the case of mixed-chemistry batteries, the demand profile can be used to prioritize chemistries during charging and map chemistries to segments of the route.
+% In the case of a hybrid powertrain with an internal combustion engine and battery available for propulsion, the demand profile can be used to identify which source should supply propulsion over the route.
+% The target contributions of this work include:
+% \begin{enumerate}
+%     \item a generic model of mixed-source powertrains,
+%     \item algorithms for identifying legal powertrain configurations which meet projected power requirements,
+%     \item algorithms for identifying charging (or refueling) priorities for minimizing energy consumption or cost of operation,
+%     \item and a case study on a 
+% \end{enumerate}
 
 \subsection{Timeline and Target Venues}
 
