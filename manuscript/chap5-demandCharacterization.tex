@@ -1,5 +1,9 @@
 \section{Demand Characterization of an Engine Control Tasks}   \label{chap:engCtrl}
 
+In this chapter, a real-time task  in which WCET and period are a function of engine speed is analyzed.
+The acceleration bounds of the engine are used to calculate a DBF more efficiently than the state of the art.
+Experimentation shows that using accelration bounds to reduce the search space for the DBF results in a runtime 13.5 times faster than previous works.
+
 \subsection{Introduction}
 
 Resource management is a key consideration in any real-time system.
@@ -32,7 +36,7 @@ Hence, the demand depends on the relationship between the task's execution times
 
 \begin{figure}
 \centering
-\includegraphics[width=\linewidth]{fig/AVRImage.pdf}
+\includegraphics[scale=2.0]{fig/wcetVsRPM.pdf}
 \caption{Adaptive Variable Rate (AVR) Task WCET versus Engine Speed}Different modes of an AVR task where $c_i$ and $\omega_{rb_i}$ are the execution time and the right boundary speed of the $i^{\rm th}$ mode, respectively.
 \label{fig:AVRImage}
 \end{figure}
@@ -85,7 +89,7 @@ Hence, the execution time of AVR tasks is modeled as a function of the speed at 
 %Vector Graphic - Last Update: 2018-08-21-12:05 - Aaron
 \begin{figure}
     \centering
-    \includegraphics[width=0.9\linewidth]{fig/vectorEngineIsolated.pdf}
+    \includegraphics[width=0.9\linewidth]{fig/combustionCycle-4step.pdf}
     \caption{Stages of Ignition a Spark Ignition Internal Combustion Engine (ICE)}
     \label{fig:Engine}
 \end{figure}
@@ -300,7 +304,7 @@ For clarity, the subscripts of the speeds are used to denote the precedence cons
 \begin{figure}
     \centering
     \includegraphics[width=1.0\linewidth]{fig/vectorKnapsackTreeShortenedv5.pdf}
-    \caption{Example Out Tree of Knapsack Items}Precedence constraints among jobs are expressed using out-trees. Nodes represent WCETs for the initial speeds and arrows represent minimum inter-arrival times. The tree demonstrates the various precedence relations and possible paths. Leaves represent completion of the parent job without adding subsequent jobs (i.e. items). Furthermore, each of the leaves has zero execution since its parent is the final job included in the knapsack.
+    \caption{Example Out Tree of Knapsack Items}Precedence constraints among jobs are expressed using out-trees. Nodes represent WCETs for initial speeds and arrows represent minimum inter-arrival times. The tree demonstrates various precedence relations and possible paths. Leaves represent completion of the parent job without subsequent jobs (i.e. items). Each leaf has zero execution since its parent is the final job included in the knapsack.
     \label{fig:KnapsackTree}
 \end{figure}
 
@@ -592,15 +596,15 @@ Note that by definition, final injections of $s_{k+1}$ into $S_A(k)$ will mainta
 \begin{figure}
 \centering
   \subfloat[Leading Injection]{
-      \includegraphics[scale=0.07]{fig/LEI.pdf}}
+      \includegraphics[scale=0.10]{fig/LEI.pdf}}
       \label{fig:injLEI}
   \label{injLEI}
   \subfloat[Internal Injection]{
-      \includegraphics[scale=0.07]{fig/II.pdf}}
+      \includegraphics[scale=0.10]{fig/II.pdf}}
       \label{fig:injII}
   \label{injII}
   \subfloat[Final Injection]{
-      \includegraphics[scale=0.07]{fig/FEI.pdf}}
+      \includegraphics[scale=0.10]{fig/FEI.pdf}}
       \label{fig:injFEI}
   \label{injFEI}
 %\caption{A two-speed sequence, $\omega_1, \omega_2$, shown in blue dots, receives a(n) (a) leading injection, (b) internal injection, and (c) final injection by $\omega_3$ (green square). Dashed green lines, dotted red lines, and solid black lines represent the added minimum inter-arrival times, removed minimum inter-arrival times, and unchanged minimum inter-arrival times, respectively. Green squares represent the injected speed $\omega_3$.}
