@@ -107,8 +107,8 @@ In each setting, real-time systems met the need for correct computation in a tim
 % With the advent of CPS, RTS and Control Systems are further integrated.
 % Modern RTS are not only concened with scheduling but also with SWaP.
 
-Modern real-time systems are found in the same areas where they began: passenger and military aircraft, telecommunications, and chemical process control.
-Real-time systems have also extended into autonomous (and non-autonomous) vehicles, spacecraft \cite{vavra_real-time_2018}, medical devices \cite{jiang_real-time_2010}, and critical infrastructure like dams, power stations, and water treatment plants.
+Modern real-time systems are found in the same areas in which they began: passenger and military aircraft, telecommunications, and chemical process control.
+Real-time systems have also extended into autonomous (and non-autonomous) vehicles, spacecraft \cite{vavra_real-time_2018}, medical devices \cite{jiang_real-time_2010}, and critical infrastructure like dams, power stations, and water treatment plants [CITE?].
 Where a microcontroller can be found, so can a real-time system.
 With ever smaller transistors, microcontrollers, and printed circuit boards, computing and control hardware is proliferating rapidly and becoming more intertwined with physical systems.
 These systems where physical dynamics, hardware, and software are so closely integrated are known as Cyber-Physical Systems (CPS).
@@ -116,14 +116,16 @@ These systems where physical dynamics, hardware, and software are so closely int
 %given rise to new concepts like the Internet of Things, Cloud Computing, Edge Computing, and Cyber-Physical Systems.
 The advent of CPSs has thus brought real-time systems and control systems closer together.
 This close integration has magnifying the impact of advances in electronics and controls on real-time computing and vice versa.
+This close integration, however, has also made modern systems and the analysis thereof more complex.
 % For example, effective real-time analysis can provide bounds on minimum required processor speed, helping system designers reduce the Size, Weight, and Power (SWaP) of their systems.
 
 \subsection{Research Need}
 % Summary: Growing number of devices, desire to lower SWaP, desire to integrate closely with physical world (CPS) require less pessimistic, more efficient, and more inclusive analysis.
 The study of real-time systems is driven by the need for logical and temporal guarantees in increasingly complicated settings - in other words, predictable computing.
 In real-time systems where multiple processors, multiple threads of execution, or tasks frequently change, guaranteeing correctness can be difficult and unintuitive.
-Similarly, in systems where computational load is directly tied to system dynamics analysis can be nontrivial.
-The integration of Real-Time Systems and control in Cyber-Physical Systems combined with the desire to lower SWaP creates a need for less pessimistic and more efficient demand characterization and schedulability analysis.
+Analysis is similarly nontrivial in systems where computational load is directly tied to system dynamics, such as the real-time task based on ICE crankshaft speed.
+The integration of Real-Time Systems and control in CPSs combined with the desire to reduce the Size, Weight, and Power (SWAP) creates a need for less pessimistic and more efficient demand characterization and schedulability analysis.
+
 To illustrate why, consider the airbag deployment ECU example above.
 If the real-time schedulability analysis is too pessimistic, a system may be declared unschedulable (and thus, unsafe) when, in fact, it is schedulable.
 This pessimistic analysis may cause designers to purchase faster processors (or even more processors) than required.
@@ -131,12 +133,13 @@ In the best case, using a faster processor may only waste excess processor time,
 In the worst case, the system may need an additional processor entirely.
 In a vehicle, this extra processor may mean an additional ECU complete with its own communication wiring, power wiring, enclosure, mounting brackets, and any space or weight consumed.
 Clearly, the cost of the extra (possibly unnecessary) processor is more than just the processor itself.
+% the extra processing time needed to satisfy the pessimistic demand characterization.
 
 Similarly, if the real-time schedulability analysis is too inefficient, providing real-time guarantees may be limited to offline settings where all tasks and computing hardware are known and fixed in advance.
-This is problematic for real-world systems where hardware can fail (reducing the number of processors, for example), mistakes in modeling lead to jobs exceeding their WCET (meaning temporal correctness is no longer guaranteed), or when system workloads will change quickly with the addition and removal of tasks (changing the demand).
+This is problematic for real-world systems where hardware can fail (reducing the number of processors, for example), where mistakes in modeling lead to jobs exceeding their WCET (meaning temporal correctness is no longer guaranteed), or when system workloads change quickly with the addition and removal of tasks (changing the demand).
 To adapt the schedule online, a real-time system must be able to recharacterize the demand and re-evaluate schedulability quickly.
-Furthermore, in systems where online schedulability analysis is required the schedulability test itself reduces the processor availability for computing that tasks that are being scheduled!
-In the pursuit of integrating real-time systems and control in Cyber-Physical Systems more realistic models of demand and more adaptive real-time systems require less pessimistic demand characterization and more efficient schedulability analysis. 
+As comically illustrated in Figure \ref{fig:schedulingCartoon}, for systems that require online schedulability analysis the schedulability analysis \textbf{itself} reduces the processor availability for computing the very tasks that are being scheduled!
+In the pursuit of integrating real-time systems and control intp CPSs, more realistic models of demand and more adaptive real-time systems require less pessimistic demand characterization and more efficient schedulability analysis.
 
 \begin{figure}
     \centering
@@ -144,6 +147,7 @@ In the pursuit of integrating real-time systems and control in Cyber-Physical Sy
     \caption{Scheduling Cartoon} A cartoon highlighting how scheduling itself takes time... sometimes too much time.
 
     Credit: Cartoon \copyright Glasbergen, used with special permission from \url{www.glasbergen.com} \cite{glasbergen_todays_1998}.
+    \label{fig:schedulingCartoon}
 \end{figure}
 
 \subsection{Approach}
