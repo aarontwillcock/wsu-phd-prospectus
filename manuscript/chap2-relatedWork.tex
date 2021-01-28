@@ -27,13 +27,13 @@ These works address properties of environment and power-aware real-time tasks bu
 
 \subsection{Engine Control} \label{subsec:engCtrl-relatedWork}
 
-Usage of multiple worst-case execution times and periods for engine-controlled tasks was first studied by Kim et al. \cite{kim_rhythmic_2012}, where the authors proposed the rhythmic task model and obtained schedulability results assuming the dependency of a task's attributes on external physical events.
-However, the analysis is limited to a single AVR task scheduled along with periodic tasks using rate monotonic scheduling algorithm in which the AVR task has the highest priority.
+In the context of real-time engine control tasks, usage of multiple worst-case execution times and periods for engine-controlled tasks was first studied by Kim et al. \cite{kim_rhythmic_2012}, where the authors proposed the rhythmic task model and obtained schedulability results assuming the dependency of task attributes on external physical events.
+However, the analysis is limited to a single rate-adaptive task scheduled along with periodic tasks using rate monotonic scheduling algorithm in which the task has the highest priority.
 
 Biondi et al. \cite{biondi_exact_2014} presented the calculation of the worst-case demand as a search problem in the speed domain and the infinite number of paths in the search tree was narrowed down by identifying certain paths that met a given criteria.
 A similar method was applied using rate monotonic~\cite{biondi_response-time_2015} and EDF scheduling~\cite{biondi_feasibility_2015}.
 However, these works assume a constant acceleration between two jobs releases, which does not always result in the worst-case demand, as shown by Mohaqeqi et al. \cite{mohaqeqi_refinement_2017}.
-In one of the first works on EDF scheduling of AVR tasks, Guo and Baruah~\cite{guo_uniprocessor_2015} developed a sufficient schedulability test based on a speed-up factor analysis. %\sandeep{Remove the description of [9] and [11] if needed for space.}
+In one of the first works on EDF scheduling of AVR tasks, Guo and Baruah~\cite{guo_uniprocessor_2015} developed a sufficient schedulability test based on a speed-up factor analysis.
 
 Identifying the fact that the exact speed of rotation of the crankshaft may not be known, Biondi et al. \cite{biondi_real-time_2016} proposed two methods to estimate the angular speed of the crankshaft.
 In a recent paper~\cite{biondi_real-time_2016}, Biondi et al. proposed a task model for expressing some practical features of engine control tasks and presented schedulability tests for engine control applications under EDF scheduling. 
