@@ -139,7 +139,7 @@ As mentioned above, feasibility analysis in a real-time system is the process of
 Using utilization, a simple feasibility result for single processors where tasks are preemptible (they may be interrupted at any time to switch to another task) comes from Liu and Leyland \cite{liu_scheduling_1973}.
 If utilization is less than one ($U \leq 1$) than the total time required by tasks is less than the processor availability.
 
-Using the DBF, feasibility may be checked by checking whether the demand over any interval of length $\delta$ exceeds processor availability. CITE
+Using the DBF, feasibility may be examined by checking whether the demand over any interval of length $\delta$ exceeds processor availability. CITE
 For example, in the case of a single processor where tasks are preemptible the following must hold:
 \begin{equation}
     \dbf(\tau,\delta) \leq \delta \; \forall \; \delta \in \mathbb{R}^+
@@ -149,7 +149,7 @@ In short, if the demand of a set of tasks over an interval is greater than the s
 Note that the results described above only apply to single processors where tasks may be interrupted at any time.
 Other feasibility results exist for different scheduling settings such as nonpreemptive tasks CITE, multiple processors CITE, precedence constraints CITE, or a combination thereof.
 Additionaly complications exists for systems where computation is performed on heterogeneous architectures CITE (processors with different speeds, for example) or where certain tasks must be completed by specific processors (as opposed to any processor) CITE. 
-However, we will not cover those results here as our focus is on changing core real-time parameters.
+However, we will not cover those results here as our focus is on changing real-time task parameters.
 
 While feasibility is a necessary condition of a real-time system with temporal guarantees, feasibility does not prescribe a particular schedule to satisfy each task's computation requirement.
 To effectively schedule the tasks, schedulability analysis is used.
@@ -164,7 +164,8 @@ Only after the highest priority task's active job is completed may the next-high
 \textit{Dynamic priority algorithms} allow the priorities of tasks to change in time.
 Although dynamic priority scheduling algorithms honor the same heirarchy as fixed priority algorithms (meaning the task with the highest priority that has a job released but not executed is scheduled to run before others), task priorities may change during operation which prompts the processor to abandon the former highest-priority task in favor of the newest highest-priority task.
 
-As with feasibility analysis, the algorithms used differ depending on properties of the processors and task such as preemptibility, the number of properties, and whether precedence constraints exist.
+As with feasibility analysis, the algorithms used differ depending on properties of the processors and tasks.
+Preemptibility, the number of processors, and precedence constraints are examples of such properties.
 In any case, we may examine two simple scheduling algorithms for preemptive tasks on a single processor: Earliest Deadline First (EDF), a dynamic priority algorithm, and Rate Monotonic (RM), a fixed priority algorithm.
 
 EDF assigns the highest priority to tasks with the earliest deadline and lowest priority to latest deadline.
@@ -173,13 +174,13 @@ Since the task with the earliest deadline will frequently change as time passes,
 In the context of preemptive tasks on a uniprocessor, the schedulability test for EDF is identical to the aforementioned feasibility test: $U \leq 1$.
 
 In contrast, RM assignes the highest priority to tasks with the smallest period and lowest priority to the largest period.
-Since task periods are traditionally fixed, the priorities will not change as time passes.
+Since task periods are traditionally fixed, the priorities will not change as time passes (assuming no tasks are added or removed online).
 In the context of preemptive tasks on a uniprocessor, a sufficient schedulability test for RM is given by Liu and Leyland \cite{liu_scheduling_1973}:
 \begin{equation}
     U \leq n \cdot (n^{\frac{1}{n}}-1)
 \end{equation}
 where $n$ is the number of tasks.
-Note that a task set which does not meet the criteria above is may still be schedulable by RM but requires additional analysis beyond utilization.
+Note that a task set which does not meet the criteria above may still be schedulable by RM but requires additional analysis beyond utilization to guarantee schedulability.
 
 Here, we also highlight a key distinction between feasibility and schedulability.
 Task sets which are feasible by \textit{any} schedule may not be schedulable by a particular algorithm.
