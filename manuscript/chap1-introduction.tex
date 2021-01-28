@@ -158,36 +158,37 @@ Physical systems have limitations set by physics.
 In mechanical systems, these limitations may manifest as bounds on speed or acceleration.
 In electrical systems, the limits may be on changes in current or voltage.
 Thus, there is an opportunity to use the known properties of the physical system to mitigate the impact of the inherent complexity.
-To address the need for less pessimistic and more efficient analysis in real-time cyber-physical systems, this work leverages limitations on physical system dynamics to characterize demand and perform schedulability analysis more efficiently while also enabling the codesign of hardware and software.
+To address the need for less pessimistic and more efficient analysis in real-time CPSs, this work leverages limitations on physical system dynamics to characterize demand and perform schedulability analysis more efficiently while also enabling the codesign of hardware and software.
 Specifically, this work aims to show how such limitations on physical dynamics can reduce the search space during demand characterization and schedulability analysis.
-Similarly, this work aims to show how those same physical limitations and their relationship to real-time demand may be traded off with real-time system properties such as utilization and worst-case execution time.
+Similarly, this work aims to show how those same physical limitations and their relationship to real-time demand may be traded off with real-time system properties such as utilization and WCET.
 This relationship allows system designers to directly relate physical system properties to system schedulability.
 
 \subsection{Thesis}
 
 In light of this opportunity, the main thesis of this work is:
 
-"Incorporating physical dynamics into real-time system analysis can reduce pessimism and increase efficiency of demand characterization and schedulability analysis while enabling the codesign of real-time, cyber-physical systems." 
+"Incorporating physical dynamics into real-time system analysis can reduce pessimism and increase efficiency of demand characterization and schedulability analysis while enabling the codesign of Real-Time, Cyber-Physical Systems." 
 
 \subsection{Contributions}
 
 The main contributions of this work are:
 \begin{enumerate}
-    \item two inductor-based real-time software-based short-circuit detection methods,
+    \item two real-time software-based short-circuit detection methods based on inductors with a case study demonstrating efficacy,
     \item a hardware-software codesign approach for software-based short-circuit detection that demonstrates the tradeoff of processor utilization under EDF against inductor size (and thus board space consumed by circuitry),
-    \item a demand characterization method for Adaptive Variable-Rate (AVR) tasks used in Internal Combustion Engines (ICEs) in which engine dynamics are used to limit the search space for the Demand Bound Function (DBF).
+    \item an exact demand characterization method for Adaptive Variable-Rate (AVR) tasks used in Internal Combustion Engines (ICEs) in which engine dynamics are used to limit the search space for the Demand Bound Function (DBF), and
+    \item experimental results comparing the characterization against existing AVR task sets as well as new, more complex AVR task sets.
 \end{enumerate}
 
 \subsection{Organization}
 
 The remainder of this work is as follows:
 
-\begin{enumerate}
+\begin{itemize}
     \item Chapter \ref{chap:relatedWork}, Related Work, summarizes the related work for each major contribution.
-    \item Chapter \ref{chap:systemModel}, System Model, provides the system model and terms common to each contribution.
-    \item Chapter \ref{chap:scd}, Hardware-software Codesign of Short Circuit Detection, covers the codesign of software-based short circuit protection systems.
+    \item Chapter \ref{chap:systemModel}, System Model, provides the system model and common terms.
+    \item Chapter \ref{chap:scd}, Hardware-software Codesign of Short Circuit Detection, covers the codesign of software-based short circuit detection systems.
     \item Chapter \ref{chap:engCtrl}, Knapsack Approach to Worst-Case Demand of AVR Tasks, describes the demand characterization of Adaptive Variable-Rate (AVR) tasks in Internal Combustion Engines (ICEs).
     \item Chapter \ref{chap:futureWork}, Future Work, Timeline, and Target Conferences, discusses future work, a prospective timeline, and specific conferences targeted for each work.
     \item Chapter \ref{chap:conclusion}, Conclusion, summarizes and concludes this work.
     \item Chapter \ref{chap:publicationList}, Publication List, lists the publications which contributed to this work.
-\end{enumerate}
+\end{itemize}
