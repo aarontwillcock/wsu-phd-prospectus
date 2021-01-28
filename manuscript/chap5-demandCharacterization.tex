@@ -2,7 +2,7 @@
 
 In this chapter, a real-time task  in which WCET and period are a function of engine speed is analyzed.
 The acceleration bounds of the engine are used to calculate a DBF more efficiently than the state of the art.
-Experimentation shows that using accelration bounds to reduce the search space for the DBF results in a runtime 13.5 times faster than previous works.
+Experimentation shows that using acceleration bounds to reduce the search space for the DBF results in a runtime 13.5 times faster than previous works.
 
 \subsection{Introduction}
 
@@ -46,7 +46,7 @@ Mohaqeqi et al.~\cite{mohaqeqi_refinement_2017} proposed an exact analysis, usin
 While this approach represents the state-of-the-art technique, it is computationally intensive and unlikely to be suitable for large problem instances.
 In this paper, we propose a knapsack-based method to efficiently calculate the exact worst-case demand of an AVR task.
 
-\noindent \textbf{Contributions}: The main contributions of this paper are:
+\noindent \textbf{Contributions}: The main contributions of this paper are\footnote{This work was published in the 2018 IEEE 39th Real-Time Systems Symposium (RTSS) under the title "An Efficient Knapsack-Based Approach for Calculating the Worst-Case Demand of AVR Tasks" \cite{bijinemula_efficient_2019}.}:
 \begin{enumerate}
 \item To determine the worst-case demand of an AVR task, the search for the dominant job sequence, i.e., one that results in the maximum demand over a given time interval, is modeled as a bounded precedence constraint knapsack problem.
 A dynamic programming based approach is presented to exactly and efficiently solve the problem.
@@ -118,7 +118,7 @@ Thus, a job's execution time is determined by the speed of the crankshaft at the
 \begin{property}[Speed After $n$ Rotations]
 Given an initial speed of $\omega(t)$ at time $t$ and a constant acceleration $\alpha$,
 the speed after an angular displacement of $\Delta \theta$
-is~\cite{verma_concepts_nodate, biondi_exact_2014}
+is~\cite{verma_concepts_2010, biondi_exact_2014}
 \begin{equation}
 \label{eqn:rotation}
     \Omega(\omega(t),\alpha, \Delta \theta) = \sqrt[]{\omega(t)^2+2\alpha \Delta \theta}.
