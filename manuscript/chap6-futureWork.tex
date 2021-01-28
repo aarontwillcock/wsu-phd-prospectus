@@ -14,10 +14,10 @@ Faster DBF and utilization bound algorithms make rescheduling online more feasib
 
 The Generalized Multi-Frame Model (GMF) can be used to characterize the demand of a task with Repeating WCET Sequences (RWSs).
 RWSs with Monotonically Ascending Execution times (MAEs), however, are not exploited by the GMF model.
-The most applicable approach to computing a Demand Bound Function (DBF) for RWSs with MAEs is computationally expensive - $O(N^2 lg N)$.
-Preliminary results show that exploiting MAEs can reduce the time to generate a DBF to $O(N lg N)$.
+The most applicable approach to computing a DBF for RWSs with MAEs is computationally expensive - $O(N^2 lg N)$.
+Preliminary results on exploiting MAEs reduce the DBF to calculation to $O(N lg N)$ time.
 Since $N$ is the number of WCETs in the RWS, this is a significant improvement over the state of the art.
-In practice, this approach could be used for systems sampling variable resolution ADCs where required resolution increases in time.
+In practice, this approach could be used for modeling systems in which number of sensors used in a control task increase as the system approaches a setpoint.
 The aim of this work is to present a faster DBF calculation for tasks using RWSs with MAEs.
 % The target contributions of this work include:
 % \begin{enumerate}
