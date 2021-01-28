@@ -576,10 +576,11 @@ Thus, $S$ is also invalid.
 
 We now provide some definitions that will be used to compare $S$ and $S_A$.
 
-\begin{definition}[$k$-Subsequence of $S$]\label{def:k-subsequence}
+\begin{definition}[$k$-Subsequence of $S$]\label{def:k-subsequence}\mbox{}
+
 Given any valid, finite speed sequence $S = \{\omega_1, \omega_2, \ldots, \omega_n\}$, for any $k \in \mathbb{N}_1^n$, we define $S(k) = (\omega^{(k)}_1, \omega^{(k)}_2, \ldots, \omega^{(k)}_k)$ to be the $k$-subsequence of $S$ containing the $k$ smallest elements of $S$ in the same order that they originally appear in $S$.
- (For example, $S= (4, 3, 1)$ would have $S(2) = (3,1)$).
- Note that a $k$-subsequence of a valid subsequence must also be valid itself.
+(For example, $S= (4, 3, 1)$ would have $S(2) = (3,1)$).
+Note that a $k$-subsequence of a valid subsequence must also be valid itself.
 Similarly, $S_A(k)$ has the $k^{th}$ smallest elements of $S$ in non-decreasing order.
 \end{definition}
 
@@ -644,7 +645,8 @@ We can compute the above difference based on the type of injection that adding t
 
 We are now prepared to compare the amount of time added to the absolute deadline of the last job of the sequence, considering $k$-subsequences $S$ and $S_A$ and injecting the $(k+1)^{th}$ smallest element ($s_{k+1}$) into both of these sequences for each of the three types of injections.
 
-\begin{property}[Leading Injection Suboptimality]\label{prop:ascending-dominates-L}
+\begin{property}[Leading Injection Suboptimality]\label{prop:ascending-dominates-L}\mbox{}
+
 For any valid, finite sequence $S = (\omega_1, \ldots, \omega_n)$, for all $k = 1, \ldots, n-1$:
 \begin{equation}\label{eqn:compare-delta-L}
     \Delta_L(S,k,k+1) \geq \Delta_F(S_A, k, k+1).
@@ -662,9 +664,8 @@ In this property, we have a leading injection into $S(k)$.  However, observe tha
 The LHS and RHS of the last inequality matches  Equation~\ref{eqn:compare-delta-L} and the lemma is proved.
 \end{proof}
 
+\begin{property}[Internal Injection Suboptimality]\label{prop:ascending-dominates-I}\mbox{}
 
-
-\begin{property}[Internal Injection Suboptimality]\label{prop:ascending-dominates-I}
 For any valid, finite sequence $S = (\omega_1, \ldots, \omega_n)$, for all $k = 1, \ldots, n-1$:
 \begin{equation}\label{eqn:compare-delta-I}
     \Delta_I(S,k,k+1) \geq \Delta_F(S_A, k, k+1).
@@ -913,7 +914,7 @@ The proof is by induction on $j$.
 
 \noindent \emph{Base Case}: Consider $j=\ell$.  If we replace $\omega_j$ with $\omega'_j$ according to Equation~\ref{eqn:replace-speed}, then the speed is reachable from $\omega_{\ell-1}$ (by the second term in the $\min$ of Equation~\ref{eqn:replace-speed}).  Thus, the sequence remains valid up to $\omega'_\ell$ with this replacement.  Clearly, $\omega'_\ell \geq \omega_{\ell-1}$; so, the sequence remains non-decreasing up to $\omega'_\ell$.  
 
-In addition, the sequence $\omega_1, \ldots, \omega_{\ell-1}, \omega'_\ell$ has equivalent demand to the sequence $\omega_1, \ldots, \omega_{\ell-1}, \omega_\ell$ since the minimum time between $\omega_{\ell-1}$, $\omega'_\ell$ is reduced (Property~\ref{prop:neg-deriv-min-interarrival}) and the execution of this subsequence is equivalent since $c(\omega'_\ell) = c(\omega_\ell)$.  Furthermore, since the release of the $\ell^{\rm th}$ job occurs earlier in the new sequence and the relative deadline is decreased (Property~\ref{prop:deadline-derivative}), the deadline of job released at speed $\omega'_{\ell}$ will have its deadline in the interval $[t_a, t_b]$ if the job released at $\omega_\ell$ in the original sequence did.  Therefore, the new subsequence demand is no less than the original sequence demand.
+In addition, sequence $\omega_1, \ldots, \omega_{\ell-1}, \omega'_\ell$ and $\omega_1, \ldots, \omega_{\ell-1}, \omega_\ell$ have equivalent demand since the minimum time between $\omega_{\ell-1}$, $\omega'_\ell$ is reduced (Property~\ref{prop:neg-deriv-min-interarrival}) and the execution of this subsequence is equivalent since $c(\omega'_\ell) = c(\omega_\ell)$.  Furthermore, since the release of the $\ell^{\rm th}$ job occurs earlier in the new sequence and the relative deadline is decreased (Property~\ref{prop:deadline-derivative}), the deadline of job released at speed $\omega'_{\ell}$ will have its deadline in the interval $[t_a, t_b]$ if the job released at $\omega_\ell$ in the original sequence did.  Therefore, the new subsequence demand is no less than the original sequence demand.
 
 \noindent \emph{Induction Hypothesis}:  Consider using Equation~\ref{eqn:replace-speed} to replace $\omega_\ell, \ldots,\omega_{\ell + k'}$ with $\omega'_\ell, \ldots,\omega'_{\ell + k'}$ for some $k': 1< k' < k$.  Assume these replacements result in a valid, non-decreasing sequence up to $\omega'_{\ell+k'}$; furthermore, the resulting job releases up to $\omega'_{\ell+k'}$ has demand no less than the original sequence.
 
