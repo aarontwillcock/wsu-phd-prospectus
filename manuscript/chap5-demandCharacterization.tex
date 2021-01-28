@@ -1062,10 +1062,12 @@ In the first experiment, two task sets were used. The first task set appeared in
 Since the first task set is not ideal, as described earlier, we created another task set (Table \ref{fig:taskset-2}). This task set is more general in the sense that the right boundary speeds are not reachable from one another in integer number of rotations when using $\alpha_{\max}$. Hence, we expect that the algorithms will require longer running times to find the worst-case demand of this task set.
 The results are shown in Table~\ref{fig:Exp1Comp}(b). As before both approaches were able to find the worst-case demand but our algorithm is 53.8 times faster.
 
-\begin{figure}
+\begin{figure}[h]
 \centering
 \includegraphics[width=1.0\linewidth]{fig/runtimePlot-confidence_intervals.png}
-\caption{Runtime Comparison of Digraph Real-Time and Knapsack AVR Algorithm: Number of Modes}Graph depicting the runtime of different algorithms as a function of the number of modes of randomly generated AVR task sets. For each mode, the 95\% confidence interval is shown.
+\caption{Runtime Comparison of the DRT and knapsack-based Algorithm} The graph depicts the runtime of the DRT and our knapsack-based algorithms as a function of the number of modes of randomly generated AVR task sets.
+
+For each mode, the 95\% confidence interval is shown.
 \label{fig:finalgraph}
 \end{figure}
 
