@@ -1,7 +1,7 @@
 \section{System Models and Terms}   \label{chap:systemModel}
 
 This chapter will cover common terms for describing computation, timing, and analysis in the context of real-time systems.
-Note that chapter-specific terms and notation (for example, engine control) will be covered in the relevant chapter.
+Note that chapter-specific terms and notation (for example, engine control tasks) will be covered in the relevant chapter.
 
 \subsection{Modeling Basic Computation: Jobs and Tasks}
 
@@ -10,9 +10,9 @@ Note that chapter-specific terms and notation (for example, engine control) will
 \subsubsection{Jobs}
 
 A job, $j_i$, is the smallest unit for modeling real-time computation characterized by the tuple $j = (a,e,d)$ where $a$ is the release time, $d$ is the relative deadline, and $e$ is the execution time.
-The release time, $a$, is the earliest time at which the processor time may be allocated to the job.
+The release time, $a$, is the earliest time at which processor time may be allocated to the job.
 The relative deadline, $d$, is the time by which $e$ units of processor time must be allocated to the job to avoid a \textit{deadline miss}.
-In the context of the airbag ECU, a \textit{deadline miss} is when the ECU calculation is not completed early enough and the passenger collides with the steering wheel or dashboard. 
+In the context of the airbag ECU, a \textit{deadline miss} is when the ECU calculation is not completed early enough to signal the airbag for deployment and the passenger collides with the steering wheel or dashboard. 
 The execution time, $e$, is the amount of processor time required to complete the requested computation. 
 Figure \ref{fig:rt-job} illustrates a single job and its typical parameters.
 
@@ -20,16 +20,19 @@ Figure \ref{fig:rt-job} illustrates a single job and its typical parameters.
     \centering
     \includegraphics[width=0.50\linewidth]{fig/singleJob.pdf}
     \caption{Real-Time Job Parameters} A single job of task $\tau$ with release time $a$, execution time $e$, and deadline $d$.
-    The x-axis is time where an upward arrow indicate the release of a job and a downward arrow represents the deadline of the job.
+    The x-axis is time where an upward arrow indicates the release of a job and a downward arrow represents the deadline of the job.
     The box represents execution time allocated to task $\tau$.
     \label{fig:rt-job}
 \end{figure}
 
 \subsubsection{Task}
 
-A task, $\tau_i$, is an infinite series of jobs characterized by the tuple $\tau_i = (a,p,c,d)$ where $a$ is the offset of the task, $p$ is either the period or minimum interarrival, $c$ is the WCET, and $d$ is the relative deadline.
+A task, $\tau_i$, is an infinite series of jobs characterized by the tuple $\tau_i = (a,p,c,d)$ where $a$ is the offset of the task,
+$p$ is either the period or minimum interarrival time,
+$c$ is the WCET,
+and $d$ is the relative deadline.
 The offset, $a$, is the time after $t=0$ at which the first job of the task is released.
-Tasks may be either aperiodic (also known as sporadic) or periodic.
+Tasks may be either \textit{aperiodic} (also known as \textit{sporadic}) or \textit{periodic}.
 Sporadic tasks release jobs at irregular intervals.
 If $\tau$ is a sporadic task, $p$ represents the minimum interarrival time between successive jobs.
 Periodic tasks release jobs at regular intervals.
