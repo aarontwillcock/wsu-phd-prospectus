@@ -7,18 +7,15 @@ In the context of engine control tasks, several works have covered the worst-cas
 \subsection{Short Circuit Detection} \label{subsec:scd-relatedWork}
 
 To the best of our knowledge, current approaches to short-circuit protection are rooted in dedicated circuitry and do not use adaptive real-time processing.
-Modern methodologies include Zone Selective Interlocking on systems with alternating current (AC) which, while successful, cannot be directly applied to DC \cite{du_new_2014}.
-Other methods use the Rogowski coil in conjunction with differential and integral signals from the coil to detect a short \cite{wang_new_2011}.
-While feasible, the Rogowski coil implementation is large and does not slow current rise in the system.
-\textbf{TODO: Double check that "reference" here isn't the PIC ref.} Some methods only require sampling of gate emitter voltage and a reference voltage \cite{horiguchi_short_2014}.
-Krone et al. use the gate emitter voltage, but also reference the DC link capacitors to assist in protection \cite{krone_fast_2015}.
-Each method, while different, relies solely on dedicated circuitry for short protection.
-Although variations exist in the components used and the design of the circuits, we sought an alternative where required circuitry was minimized.
-
-Furthermore, protection methods relying on the change in current, as in Hain and Bakran \cite{hain_new_2016}, require an inductor.
-This approach also includes auxiliary MOSFETs, latch circuits, and comparators.
-Additionally, some current protection methods relying on gate charge require differential amplifiers attached to auxiliary MOSFETs as found in Horiguchi et al. which also require an inductor in test circuits \cite{horiguchi_high-speed_2015}.
-Both models have more components than the single inductor required for protection in this approach, providing more motivation for software-based protection.
+Modern methodologies include forecasting current as in \cite{du_new_2014} and are applied to Zone Selective Interlocking systems.
+Our approach does not rely on forecasting or predictive measures and does not require Zone Selective Interlocking.
+While the Rogowski approach applies to AC, it does not apply to a DC system and is not used to slow current rise \cite{wang_new_2011}.
+In Horiguchi et al., reverse transfer capacitance of IGBTs and the IGBT gate emitter voltage are used to protect individual IGBTs from shorts.
+The designed circuit uses constants to determine values for the template circuitry and applies only to IGBTs \cite{horiguchi_short_2014} \cite{horiguchi_high-speed_2015}.
+Still other approaches rely on the gate emitter voltage combined with the change in DC link voltage \cite{krone_fast_2015}.
+This approach also relies on additional dedicated circuitry outside of an inductor.
+For protection methods relying on change in current, the approach in Hain and Bakran \cite{hain_new_2016} does use a parasitic inductor but performs detection in dedicated circuitry.
+No method mentioned above utilizes a microprocessor or applies a real-time task for protection nor do any of the methods above evaluate the tradeoff between real-time tasks and the short-circuit protection mechanism.
 
 In the area of cyber-physical and real-time systems, the senior thesis \cite{willcock_short_2016} upon which this work and its conference-published variant \cite{willcock_trading_2017-1} are based focused primarily on establishing a relationship between the inductance of an inductor and the utilization required for the task.
 This work extends the results of Willcock \cite{willcock_short_2016} by incorporating board space consumed into the utilization calculation and providing experimental validation of the extended relationship with low-cost hardware. Excluding the preceding variant of this work, we are unaware of other cyber-physical or real-time works specific to short protection. However, works identifying adaptive real-time tasks with multiple operating modes are present \cite{huang_techniques_2015}. Examples include thermal-aware computing in Hettiarachchi et al \cite{hettiarachchi_design_2014} and rate-adaptive tasks as in Buttazzo et al. \cite{buttazzo_rate-adaptive_2014}. Biondi and Buttazzo furthered this model with thorough analysis of its implications on the executing processor \cite{biondi_engine_2015}.
