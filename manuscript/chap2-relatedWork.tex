@@ -7,12 +7,13 @@ In the context of engine control tasks, several works have covered the worst-cas
 \subsection{Short Circuit Detection} \label{subsec:scd-relatedWork}
 
 To the best of our knowledge, current approaches to short circuit protection are rooted in dedicated circuitry and do not use adaptive real-time processing.
-Modern methodologies include forecasting current as in \cite{du_new_2014} and are applied to Zone Selective Interlocking systems.
+Modern methodologies include forecasting current as in Du et al. \cite{du_new_2014} and are applied to Zone Selective Interlocking systems.
 Our approach does not rely on forecasting or predictive measures and does not require Zone Selective Interlocking.
-While the Rogowski approach applies to AC, it does not apply to a DC system and is not used to slow current rise \cite{wang_new_2011}.
-In Horiguchi et al., reverse transfer capacitance of IGBTs and the IGBT gate emitter voltage are used to protect individual IGBTs from shorts.
-The designed circuit uses constants to determine values for the template circuitry and applies only to IGBTs \cite{horiguchi_short_2014} \cite{horiguchi_high-speed_2015}.
-Still other approaches rely on the gate emitter voltage combined with the change in DC link voltage \cite{krone_fast_2015}.
+Wang et al. use a rogowski coil to detect short circuits \cite{wang_new_2011}.
+While the rogowski approach applies to AC, it does not apply to a DC system and is not used to slow current rise.
+In Horiguchi et al. \cite{horiguchi_short_2014} \cite{horiguchi_high-speed_2015}, reverse transfer capacitance of IGBTs and the IGBT gate emitter voltage are used to protect individual IGBTs from shorts.
+The designed circuit uses constants to determine values for the template circuitry and applies only to IGBTs.
+Still other approaches, such as Krone et al. \cite{krone_fast_2015}, rely on the gate emitter voltage combined with the change in DC link voltage.
 This approach also relies on additional dedicated circuitry outside of an inductor.
 For protection methods relying on change in current, the approach in Hain and Bakran \cite{hain_new_2016} does use a parasitic inductor but performs detection in dedicated circuitry.
 No method mentioned above utilizes a microprocessor or applies a real-time task for protection nor do any of the methods above evaluate the tradeoff between real-time tasks and the short circuit protection mechanism.
