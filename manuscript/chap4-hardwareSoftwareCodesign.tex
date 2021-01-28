@@ -37,7 +37,12 @@ To address the need for flexible, short-circuit protection, our problem statemen
 \paragraph{Proposed Solution}
 To address the need for flexible, real-time short-circuit protection, we propose a short-protection method via a real-time task as follows:
 
-A DC RL circuit containing an air-core inductor placed in series between the system's resistive load and ground has is connected (and controlled) by a microcontroller.The microcontroller executes a real-time task responsible for sampling voltage across the inductor (or a small resistor) to measure current via an Analog-to-Digital Converter (ADC) pin. Short protection is accomplished by identifying the maximum expected current and the maximum rate of current change as limited by the circuit's inductor. Using the inductor spatial parameters in conjunction with ADC sampling times, a minimum sampling period is derived for the real-time task. From this minimum period, a relationship between minimum real-time utilization under Earliest Deadline First (EDF) scheduling and inductor volume  is provided. Real-time or physical system constraints may be applied to this relationship to facilitate the hardware-software co-design of a real-time short-circuit protection system.
+A DC RL circuit containing an air-core inductor placed in series between the system's resistive load and ground is connected (and controlled) by a microcontroller.
+The microcontroller executes a real-time task responsible for sampling voltage across the inductor (or a small resistor) to measure current via an Analog-to-Digital Converter (ADC) pin.
+Short protection is accomplished by identifying the maximum expected current and the maximum rate of current change as limited by the circuit's inductor.
+Using the inductor spatial parameters in conjunction with ADC sampling times, a minimum sampling period is derived for the real-time task.
+From this minimum period, a relationship between minimum real-time utilization under Earliest Deadline First (EDF) scheduling and inductor volume is provided.
+Real-time or physical system constraints may be applied to this relationship to facilitate the hardware-software co-design of a real-time short-circuit protection system.
 
 This approach is intended to allow existing systems with microprocessors to migrate short-circuit protection from dedicated-circuitry-only to a software-based implementation and future systems to be designed with the proposed hardware-software tradeoff in mind.
 
