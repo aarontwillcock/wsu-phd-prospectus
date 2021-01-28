@@ -8,7 +8,7 @@
 % What do they look like now?
 % Why do we care about studying them?
 % \subsection{Logical and Temporal Correctness}
-In 2018, an estimated 6.7 million car accidents in the US were reported - over 12 car accidents per minute \cite{national_highway_traffic_safety_administration_traffic_nodate}.
+In 2018, an estimated 6.7 million car accidents in the US were reported - over 12 accidents per minute \cite{national_highway_traffic_safety_administration_traffic_nodate}.
 In vehicles sold in the US since 1998, an Electronic Control Unit (ECU) in the vehicle is responsible for determining if airbags should be deployed \cite{insurance_institute_for_highway_safety_airbags_nodate}.
 The ECU uses wheel speed sensors, accelerometers, and Inertial Measurement Units (IMUs), to identify acceleration or vehicle speed sufficient to warrant deploying airbags. 
 If needed, airbags are deployed in under 50 milliseconds \cite{national_highway_traffic_safety_administration_air_2016}.
@@ -18,14 +18,14 @@ Even if the calculation is correct, however, deploying the airbag too late (afte
 Airbag systems demonstrate the need for two types of correctness: logical and temporal.
 The computation performed by the ECU must produce the correct signal to fire (or not fire) the airbags (logical correctness) \textbf{and} must produce the correct signal fast enough to save the occupants (temporal correctness).
 Failure to guarantee either can result in death.
-These systems, where logical and temporal correctness must be guaranteed to avoid catastrophe, are known as Real-Time Systems.
+These systems, where logical and temporal correctness must be guaranteed to avoid catastrophe, are known as hard Real-Time Systems.
 
 The focus of our work is on Real-Time Systems where the physical dynamics of a system are directly linked to real-time parameters.
 One example is found in Internal Combustion Engines (ICEs) where a computation must be performed between each complete revolution of the ICE's crankshaft.
 As the engine speed changes, so does the time allotted for computation.
 In this system, the time allotted for computation is not only linked to engine speed but anything that affects engine speed: minimum and maximum acceleration, engine temperature, ambient air pressure, etc.
-Providing guarantees for a real-time system in this context requires analysis of engine speed and how other factors affect it. 
-In this work and in proposed future works, we examine how the interconnectedness of real-time and physical parameters and develop tools for guaranteeing logical and temporal correctness.
+Providing guarantees for a real-time system in this context requires analysis of engine speed and other factors which affect engine speed. 
+In this work and in proposed future works, we examine how the interconnectedness of real-time and physical parameters can be used to develop new or improved tools for guaranteeing logical and temporal correctness.
 
 \begin{figure}
     \centering
@@ -45,18 +45,19 @@ In general, real-time systems are systems in which the utility of a computation 
 As illustrated by the airbag example, real-time systems are often present in safety-critical applications where incorrect or untimely operation leads to catastrophe.
 % Example systems include TODO 
 
-Consider, now, that accident detection and airbag deployment is not a calculation the ECU performs once but is calculated repeatedly.
+Consider, now, that accident detection and airbag deployment is not a calculation the ECU performs once but repeatedly.
 This repeated calculation over time is referred to as a \textit{task}.
 Note, formal definitions will be provided in Chapter \ref{chap:systemModel}.
 Furthermore, the ECU may be responsible for more than airbag deployment - that is, the ECU may have more than one task to execute.
-For each task on the ECU, some computation must be performed (fuel injection, spark ignition timing, throttle position sensing, wheel speed sensing, anti-lock braking, or traction control, for example).
+For each task on the ECU, some computation must be performed.
+Some ECUs may run fuel injection, spark ignition timing, or throttle position sensing tasks while others handle wheel speed sensing, anti-lock braking, or traction control, for example.
 Through code analysis, the time required to perform each task's computation can be upper bounded to give a \textit{Worst-Case Execution Time} (WCET).
 Each task must also be executed at some particular frequency, known as a \textit{period}.
 And each tasks' computed results must be known by some particular \textit{deadline}.
-This combination of a task's WCET, period, and deadline is used to calculate \textit{demand} - the amount of processor time a task needs over time to guarantee calculations are completed before their respective deadlines.
+This combination of a task's WCET, period, and deadline is used to calculate \textit{demand} - the amount of processor time a task needs over some time interval to guarantee calculations are completed before their respective deadlines.
 This process of calculating demand is known as \textit{demand characterization}.
-The study of real-time systems, therefore, involves characterizing the demand of some set of tasks, each with their own WCET, period, and deadline, to determine if a \textit{schedule}can be made for executing the tasks on a set of processors such that all computations are completed before their respective deadlines.
-The analysis described above, called \textit{schedulability}, is one kind of analysis performed on real-time systems to guarantee logical and temporal correctness.
+The study of real-time systems, therefore, involves the demand characterization of some set of tasks, each with their own WCET, period, and deadline, to determine if a \textit{schedule} can be made for executing the tasks on a set of processors such that all computations are completed before their respective deadlines.
+The analysis described above, called \textit{schedulability analysis}, is one kind of analysis performed on real-time systems to guarantee logical and temporal correctness.
 To better understand how real-time systems came to be, we now look toward the end of World War II.
 
 
