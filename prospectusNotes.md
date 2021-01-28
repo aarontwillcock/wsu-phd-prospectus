@@ -17,7 +17,7 @@ Keywords / Foci:
 
 1. Dynamics
    1. Use known dynamics to identify problems for future systems (for example, adaptivity models that don't yet exist)
-   2. Codesign links between parameters (for example, short-circuit detection, engine control design, setpoint sequences)
+   2. Codesign links between parameters (for example, short circuit detection, engine control design, setpoint sequences)
 2. Schedulability
    1. Use system dynamics to reveal underutilization (overly pessimistic analysis)
    2. Create task models to describe adaptivities not yet accounted for

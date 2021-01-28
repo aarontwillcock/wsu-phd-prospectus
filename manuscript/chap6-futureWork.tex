@@ -28,22 +28,22 @@ The aim of this work is to present a faster DBF calculation for tasks using RWSs
 
 \subsubsection{DBF of Short Circuit Protection for Multiple Power Paths}
 
-Our previous work focused on real-time short-circuit detection for single monitored power pathway using implicit deadlines \cite{willcock_trading_2017}.
+Our previous work focused on real-time short circuit detection for single monitored power pathway using implicit deadlines \cite{willcock_trading_2017}.
 A relationship between inductor size and real-time utilization under EDF was established to demonstrate tradeoff between board space consumed and real-time task utilization.
-To further this work, short-circuit detection will be implemented on multiple, monitored power distribution pathways sharing a single source.
+To further this work, short circuit detection will be implemented on multiple, monitored power distribution pathways sharing a single source.
 In practice, this approach would be implemented in power distribution panels where current monitoring is required.
-The aim of this work is to present a tighter, less pessimistic bound on the utilization of real-time short-circuit protection tasks by leveraging maximum current through the single-source.
+The aim of this work is to present a tighter, less pessimistic bound on the utilization of real-time short circuit protection tasks by leveraging maximum current through the single-source.
 % Single-source power pathways, such as a battery supplying several loads or a breaker box in a house powering all receptacles, have maximum currents which are not equivalent to the sum of all individual power pathways' maximum current.
 % For example, most home breakers allow a maximum of 100 or 200 Amperes of continuous current.
 % Individual breakers allow a maximum of 15-30 Amperes of continuous current.
 % Yet there are more than 10 breakers on a home breaker box.
 % This is because not all pathways are expected to draw maximum current simultaneously.
-% In real-time systems responsible for current monitoring and short-circuit protection of power distribution pathways, this limitation on maximum power from the common source can be exploited to limit the maximum utilization of all current monitoring tasks.
+% In real-time systems responsible for current monitoring and short circuit protection of power distribution pathways, this limitation on maximum power from the common source can be exploited to limit the maximum utilization of all current monitoring tasks.
 % The target contributions of this work include:
 % \begin{enumerate}
-%     \item a utilization bound on software-based short-circuit protection for $n$ monitored, single-source power pathways,
-%     \item a demand bound function for software-based short-circuit protection for $n$ monitored, single-source power pathways,
-%     \item a formal relationship between the DBF of the short-circuit protection tasks and the power path parameters (such as inductor size, max current, critical current, and single source current limit),
+%     \item a utilization bound on software-based short circuit protection for $n$ monitored, single-source power pathways,
+%     \item a demand bound function for software-based short circuit protection for $n$ monitored, single-source power pathways,
+%     \item a formal relationship between the DBF of the short circuit protection tasks and the power path parameters (such as inductor size, max current, critical current, and single source current limit),
 %     \item and a case study on a ~50A power distribution system for an autonomous ground vehicle.
 % \end{enumerate}
 
