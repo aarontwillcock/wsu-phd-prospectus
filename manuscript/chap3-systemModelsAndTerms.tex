@@ -184,7 +184,7 @@ Note that a task set which does not meet the criteria above may still be schedul
 
 Here, we also highlight a key distinction between feasibility and schedulability.
 Task sets which are feasible by \textit{any} schedule may not be schedulable by a particular algorithm.
-Consider the task set $\Tau = {\tau_1, \tau_2}$ where $\tau_1 = (0,2,1,2)$ and $\tau_2 = (0,7,3.3,7)$.
+Consider the task set $\Tau = \{\tau_1, \tau_2\}$ where $\tau_1 = (0,2,1,2)$ and $\tau_2 = (0,7,3.3,7)$.
 The utilizations are $u_1 = 0.5$ and $u_2 = 0.47$.
 By the utilization feasibility test, there exists a schedule where neither task misses a deadline.
 Figure \ref{fig:rmNotSchedulable}, however, shows how RM cannot schedule the two tasks without missing a deadline.
